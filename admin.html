@@ -75,6 +75,21 @@
         <div class="bg-neo-yellow border-2 border-black shadow-hard p-3 font-mono text-xs mb-8">
             ⚡ Edits here commit <b>content.json</b> to GitHub → Vercel redeploys the live site in ~30 seconds.
         </div>
+        <!-- Resume upload (independent of content.json) -->
+        <section class="bg-white border-4 border-black shadow-hard p-6 mb-10">
+            <h2 class="text-2xl font-black uppercase mb-1">📎 Resume (PDF)</h2>
+            <p class="font-mono text-xs text-gray-500 mb-4">Replaces <b>Assets/Resume/Sai Pranav Resume.pdf</b> — the file behind the DOWNLOAD CV button. Uploads instantly, no need to press SAVE &amp; DEPLOY.</p>
+            <div class="flex flex-col sm:flex-row gap-3 items-start sm:items-center">
+                <input type="file" id="resume-file" accept="application/pdf"
+                    class="font-mono text-sm file:bg-neo-black file:text-white file:border-2 file:border-black file:px-4 file:py-2 file:font-bold file:mr-4 file:cursor-pointer">
+                <button onclick="uploadResume()" id="resume-btn"
+                    class="border-2 border-black bg-neo-green font-black px-6 py-2 shadow-hard-sm hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition-all font-mono text-sm whitespace-nowrap">
+                    ⬆ UPLOAD RESUME
+                </button>
+            </div>
+            <p id="resume-status" class="font-mono text-xs mt-3 text-gray-500"></p>
+        </section>
+
         <div id="sections"></div>
     </main>
 
@@ -363,6 +378,57 @@
                     });
                 }
             });
+        }
+
+        // ---------- Resume upload ----------
+        const RESUME_PATH = 'Assets/Resume/Sai Pranav Resume.pdf';
+        const RESUME_API = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${encodeURIComponent(RESUME_PATH).replace(/%2F/g, '/')}`;
+
+        async function uploadResume() {
+            const input = document.getElementById('resume-file');
+            const btn = document.getElementById('resume-btn');
+            const status = document.getElementById('resume-status');
+            const file = input.files && input.files[0];
+            if (!file) { toast('❌ Pick a PDF file first.', true); return; }
+            if (file.type !== 'application/pdf') { toast('❌ Must be a PDF.', true); return; }
+            if (file.size > 20 * 1024 * 1024) { toast('❌ PDF too large (max 20 MB).', true); return; }
+
+            btn.disabled = true;
+            btn.textContent = 'UPLOADING...';
+            status.textContent = 'Reading file...';
+            try {
+                const b64 = await new Promise((res, rej) => {
+                    const fr = new FileReader();
+                    fr.onload = () => res(fr.result.split(',')[1]);
+                    fr.onerror = rej;
+                    fr.readAsDataURL(file);
+                });
+
+                // Fetch current sha (file exists → update; missing → create)
+                status.textContent = 'Fetching current version...';
+                let sha;
+                const cur = await fetch(`${RESUME_API}?ref=${BRANCH}`, { headers: ghHeaders() });
+                if (cur.ok) sha = (await cur.json()).sha;
+                else if (cur.status !== 404) throw new Error('GitHub API error ' + cur.status);
+
+                status.textContent = 'Committing to GitHub...';
+                const body = { message: 'Update resume via admin panel', content: b64, branch: BRANCH };
+                if (sha) body.sha = sha;
+                const r = await fetch(RESUME_API, { method: 'PUT', headers: ghHeaders(), body: JSON.stringify(body) });
+                if (!r.ok) {
+                    const j = await r.json().catch(() => ({}));
+                    throw new Error(j.message || ('HTTP ' + r.status));
+                }
+                toast('✅ Resume uploaded! Live in ~30s.');
+                status.textContent = `Uploaded "${file.name}" (${(file.size / 1024).toFixed(0)} KB) at ${new Date().toLocaleTimeString()}.`;
+                input.value = '';
+            } catch (e) {
+                toast('❌ Resume upload failed: ' + e.message, true);
+                status.textContent = 'Failed: ' + e.message;
+            } finally {
+                btn.disabled = false;
+                btn.textContent = '⬆ UPLOAD RESUME';
+            }
         }
 
         // Warn about unsaved changes
