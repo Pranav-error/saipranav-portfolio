@@ -282,6 +282,33 @@
 
         /* Sticker stamp */
 
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 12px; }
+        ::-webkit-scrollbar-track { background: #FFFDF5; border-left: 2px solid #121212; }
+        ::-webkit-scrollbar-thumb { background: #121212; border: 2px solid #FFFDF5; }
+        html.dark ::-webkit-scrollbar-track { background: #141414; border-left: 2px solid #333; }
+        html.dark ::-webkit-scrollbar-thumb { background: #FBFF48; border: 2px solid #141414; }
+
+        /* Keyboard focus */
+        a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+            outline: 3px solid #FF70A6;
+            outline-offset: 2px;
+        }
+
+        /* Dark selection */
+        html.dark ::selection { background: #FBFF48 !important; color: #121212 !important; }
+
+        /* Skills grid hover lift */
+        #skills .group { transition: transform 0.15s ease; }
+        #skills .group:hover { transform: translateY(-4px); }
+
+        /* Back to top */
+        #back-to-top { opacity: 0; pointer-events: none; transition: opacity 0.3s, transform 0.3s; transform: translateY(10px); }
+        #back-to-top.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
+
+        html.dark nav a.bg-black { background-color: #FFFDF5 !important; color: #121212 !important; }
+
         /* ===== DARK MODE ===== */
         html.dark body {
             background-color: #141414;
@@ -781,6 +808,12 @@
 
     
 
+    <!-- Back to top -->
+    <button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top"
+        class="fixed bottom-6 left-6 z-[100] bg-neo-yellow text-black border-4 border-black w-12 h-12 font-black text-xl shadow-hard hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all cursor-hover flex items-center justify-center">
+        <i class="ri-arrow-up-line"></i>
+    </button>
+
     <!-- ========== TERMINAL FLOATING BUTTON ========== -->
     <button id="terminal-fab"
         onclick="openTerminal()"
@@ -987,6 +1020,14 @@
         const cursor = document.getElementById('cursor');
         const hoverElements = document.querySelectorAll('.cursor-hover, a, button, input, textarea');
 
+        function resetCursorStyle() {
+            const dark = document.documentElement.classList.contains('dark');
+            cursor.style.backgroundColor = dark ? '#FFFDF5' : '#fff';
+            cursor.style.mixBlendMode = dark ? 'normal' : 'difference';
+            cursor.style.border = dark ? '2px solid #121212' : 'none';
+        }
+        resetCursorStyle();
+
         document.addEventListener('mousemove', (e) => {
             cursor.style.left = e.clientX + 'px';
             cursor.style.top = e.clientY + 'px';
@@ -1005,9 +1046,7 @@
             el.addEventListener('mouseleave', () => {
                 cursor.style.width = '24px';
                 cursor.style.height = '24px';
-                cursor.style.backgroundColor = '#fff';
-                cursor.style.mixBlendMode = 'difference';
-                cursor.style.border = 'none';
+                resetCursorStyle();
             });
         });
 
@@ -1166,7 +1205,22 @@
             let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
             let scrolled = (winScroll / height) * 100;
             document.getElementById("progressBar").style.width = scrolled + "%";
+            document.getElementById("back-to-top").classList.toggle('show', winScroll > 600);
         };
+
+        // Nav scrollspy: highlight the section in view
+        const spyLinks = [...document.querySelectorAll('nav .md\\:flex a[href^="#"]')].filter(a => !a.classList.contains('bg-neo-yellow'));
+        const spyObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                spyLinks.forEach(a => {
+                    const on = a.getAttribute('href') === '#' + entry.target.id;
+                    a.classList.toggle('bg-black', on);
+                    a.classList.toggle('text-white', on);
+                });
+            });
+        }, { rootMargin: '-35% 0px -55% 0px' });
+        document.querySelectorAll('section[id]').forEach(sec => spyObserver.observe(sec));
 
         // ===== Theme Toggle =====
         function syncThemeIcons() {
@@ -1178,6 +1232,7 @@
             el.classList.toggle('dark');
             localStorage.setItem('theme', el.classList.contains('dark') ? 'dark' : 'light');
             syncThemeIcons();
+            if (typeof resetCursorStyle === 'function') resetCursorStyle();
         }
         syncThemeIcons();
 
