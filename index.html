@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <script>(function () { var t = localStorage.getItem('theme'); if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) document.documentElement.classList.add('dark'); })();</script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- SEO Meta Tags -->
@@ -280,6 +281,53 @@
         }
 
         /* Sticker stamp */
+
+        /* ===== DARK MODE ===== */
+        html.dark body {
+            background-color: #141414;
+            background-image:
+                radial-gradient(#4a4a4a 1px, transparent 1px),
+                linear-gradient(to right, #222 1px, transparent 1px),
+                linear-gradient(to bottom, #222 1px, transparent 1px);
+            color: #FFFDF5;
+        }
+
+        html.dark .bg-white { background-color: #1c1c1c !important; }
+        html.dark .bg-neo-white { background-color: #1c1c1c !important; }
+        html.dark .bg-gray-50 { background-color: #171717 !important; }
+        html.dark #projects { background-color: #141414 !important; }
+
+        html.dark .border-black { border-color: #FFFDF5 !important; }
+        html.dark .divide-black > :not([hidden]) ~ :not([hidden]) { border-color: #FFFDF5 !important; }
+        html.dark .border-gray-300 { border-color: #3a3a3a !important; }
+        html.dark .border-gray-200 { border-color: #333 !important; }
+
+        html.dark .shadow-hard { box-shadow: 4px 4px 0 0 #FFFDF5 !important; }
+        html.dark .shadow-hard-sm { box-shadow: 2px 2px 0 0 #FFFDF5 !important; }
+        html.dark .shadow-hard-lg { box-shadow: 8px 8px 0 0 #FFFDF5 !important; }
+        html.dark .shadow-hard-xl { box-shadow: 12px 12px 0 0 #FFFDF5 !important; }
+        html.dark .hover\:shadow-none:hover { box-shadow: none !important; }
+        html.dark .stat-tile { box-shadow: 6px 6px 0 #FFFDF5; border-color: #121212; }
+        html.dark .stat-tile:hover { box-shadow: 0 0 0 #FFFDF5; }
+        html.dark .sticker { box-shadow: 4px 4px 0 #FFFDF5; }
+
+        html.dark .text-gray-600 { color: #b3b3b3 !important; }
+        html.dark .text-gray-700 { color: #c6c6c6 !important; }
+
+        /* Small colored elements keep black text for contrast */
+        html.dark .bg-neo-yellow:not(section),
+        html.dark .bg-neo-green:not(section),
+        html.dark .bg-neo-pink:not(section),
+        html.dark .bg-neo-orange:not(section) { color: #121212; }
+
+        html.dark .hover\:bg-neo-yellow:hover,
+        html.dark .hover\:bg-neo-pink:hover { color: #121212 !important; }
+        html.dark .hover\:bg-black:hover { background-color: #FFFDF5 !important; color: #121212 !important; }
+        html.dark input:focus, html.dark textarea:focus { color: #121212; }
+        html.dark .bg-neo-white.text-black { color: #FFFDF5; }
+
+        html.dark h1 { mix-blend-mode: normal; }
+
         .stamp {
             position: absolute;
             font-family: 'JetBrains Mono', monospace;
@@ -359,13 +407,23 @@
                     class="px-3 py-1 font-mono font-bold text-sm hover:bg-black hover:text-white transition-colors cursor-hover">/CLIENTS</a>
                 <a href="#contact"
                     class="px-3 py-1 font-mono font-bold text-sm bg-neo-yellow border border-black hover:bg-neo-pink transition-colors cursor-hover">CONTACT</a>
+                <button onclick="toggleTheme()" title="Toggle dark mode"
+                    class="px-3 py-1 border border-black bg-neo-black text-neo-yellow hover:bg-neo-purple hover:text-white transition-colors cursor-hover">
+                    <i class="theme-icon ri-moon-fill"></i>
+                </button>
             </div>
 
-            <!-- Mobile menu button -->
+            <!-- Mobile: theme + menu buttons -->
+            <div class="md:hidden flex gap-2">
+                <button onclick="toggleTheme()" title="Toggle dark mode"
+                    class="bg-neo-black text-neo-yellow border-2 border-black w-11 h-11 flex items-center justify-center shadow-hard text-xl cursor-hover">
+                    <i class="theme-icon ri-moon-fill"></i>
+                </button>
             <button id="mobile-menu-btn" onclick="toggleMobileMenu()"
                 class="md:hidden bg-white border-2 border-black w-11 h-11 flex items-center justify-center shadow-hard text-2xl cursor-hover">
                 <i class="ri-menu-4-line" id="mobile-menu-icon"></i>
             </button>
+            </div>
         </div>
 
         <!-- Mobile menu panel -->
@@ -1110,6 +1168,19 @@
             document.getElementById("progressBar").style.width = scrolled + "%";
         };
 
+        // ===== Theme Toggle =====
+        function syncThemeIcons() {
+            const dark = document.documentElement.classList.contains('dark');
+            document.querySelectorAll('.theme-icon').forEach(i => i.className = 'theme-icon ' + (dark ? 'ri-sun-fill' : 'ri-moon-fill'));
+        }
+        function toggleTheme() {
+            const el = document.documentElement;
+            el.classList.toggle('dark');
+            localStorage.setItem('theme', el.classList.contains('dark') ? 'dark' : 'light');
+            syncThemeIcons();
+        }
+        syncThemeIcons();
+
         // ===== Mobile Menu =====
         function toggleMobileMenu() {
             const menu = document.getElementById('mobile-menu');
@@ -1245,11 +1316,13 @@
                     <div class="font-mono text-[10px] text-neo-pink uppercase tracking-widest mb-2">CLIENT: ${esc(f.client)}</div>
                     <h3 class="text-3xl font-black uppercase mb-3 text-white">${esc(f.name)}</h3>
                     <p class="font-mono text-sm text-gray-400 mb-4">${esc(f.description)}</p>
-                    <div class="flex justify-between items-end">
-                        <div class="flex gap-2 font-mono text-[10px] font-bold flex-wrap">
-                            ${(f.tech || []).map(t => `<span class="border border-neo-pink/50 text-neo-pink px-2 py-1">${esc(t)}</span>`).join('')}
-                        </div>
-                        ${f.link ? `<a href="${esc(f.link)}" target="_blank" rel="noopener" class="font-mono text-xs text-neo-green border border-neo-green px-3 py-1 hover:bg-neo-green hover:text-black transition-all">VIEW →</a>` : ''}
+                    <div class="flex gap-2 font-mono text-[10px] font-bold flex-wrap mb-5">
+                        ${(f.tech || []).map(t => `<span class="border border-neo-pink/50 text-neo-pink px-2 py-1">${esc(t)}</span>`).join('')}
+                    </div>
+                    <div class="flex gap-3 flex-wrap font-mono text-xs font-black uppercase">
+                        ${f.live ? `<a href="${esc(f.live)}" target="_blank" rel="noopener" class="bg-neo-green text-black border-2 border-black px-4 py-2 shadow-[3px_3px_0_#fff] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition-all cursor-hover"><i class="ri-global-line mr-1"></i>LIVE SITE</a>` : ''}
+                        ${f.playstore ? `<a href="${esc(f.playstore)}" target="_blank" rel="noopener" class="bg-neo-yellow text-black border-2 border-black px-4 py-2 shadow-[3px_3px_0_#fff] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition-all cursor-hover"><i class="ri-google-play-fill mr-1"></i>PLAY STORE</a>` : ''}
+                        ${f.link ? `<a href="${esc(f.link)}" target="_blank" rel="noopener" class="text-neo-pink border-2 border-neo-pink px-4 py-2 hover:bg-neo-pink hover:text-black transition-all cursor-hover"><i class="ri-code-s-slash-line mr-1"></i>CODE</a>` : ''}
                     </div>
                 </div>`).join('');
             }

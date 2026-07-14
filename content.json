@@ -15,7 +15,12 @@
       "tag": "INFRX 2026 HACKATHON — 2ND PLACE · ₹75K PRIZE",
       "color": "blue",
       "description": "Reads 100–2,000 page unstructured mortgage PDFs and reconstructs them: 91% classification accuracy across 27 document types, table stitching via probabilistic threading, VLM + Tesseract dual-mode extraction (~6.5 pages/sec at zero API cost).",
-      "tech": ["PYTHON", "GPT-4O VLM", "TESSERACT", "JS"],
+      "tech": [
+        "PYTHON",
+        "GPT-4O VLM",
+        "TESSERACT",
+        "JS"
+      ],
       "link": "https://github.com/Pranav-error/infrx-mortgage-pipeline"
     },
     {
@@ -23,7 +28,11 @@
       "tag": "AWI SPACETECH HACKATHON — TOP 5",
       "color": "green",
       "description": "Satellite image processing system that detects illegal dumps using Sentinel-2A imagery and a Random Forest classifier. Route optimization engine using the Clarke-Wright algorithm with AUC 0.80 risk predictor over a 552-cell grid.",
-      "tech": ["PYTHON", "RANDOM FOREST", "SENTINEL-2A"],
+      "tech": [
+        "PYTHON",
+        "RANDOM FOREST",
+        "SENTINEL-2A"
+      ],
       "link": "https://github.com/Pranav-error/OrbitClean-2.0"
     },
     {
@@ -31,7 +40,11 @@
       "tag": "CARDANO HACKATHON ASIA — WINNER · $2K PRIZE",
       "color": "yellow",
       "description": "Healthcare diagnostics tool that verifies patient data cryptographically without exposing raw records. Won against 200+ teams nationally. Hash-map based data structures for secure and efficient patient record handling.",
-      "tech": ["PYTHON", "CRYPTOGRAPHY", "CARDANO"],
+      "tech": [
+        "PYTHON",
+        "CRYPTOGRAPHY",
+        "CARDANO"
+      ],
       "link": "https://github.com/Pranav-error/AURA-AI"
     },
     {
@@ -39,7 +52,11 @@
       "tag": "GOOGLE DEEPMIND HACKATHON — FINALIST",
       "color": "pink",
       "description": "Distributed system that coordinates computation across independent nodes without centralizing data. Structured logging and benchmarking to track performance and handle node failures gracefully.",
-      "tech": ["DISTRIBUTED SYSTEMS", "C++", "NODE.JS"],
+      "tech": [
+        "DISTRIBUTED SYSTEMS",
+        "C++",
+        "NODE.JS"
+      ],
       "link": "https://github.com/Pranav-error"
     },
     {
@@ -47,7 +64,11 @@
       "tag": "PERSONAL PATENT — FILED 2026",
       "color": "purple",
       "description": "Decentralized ledger system with graph algorithm-based verification to ensure data integrity at scale. Prevents tampering across distributed nodes using cryptographic proofs.",
-      "tech": ["DISTRIBUTED LEDGER", "GRAPH ALGORITHMS", "CRYPTOGRAPHY"],
+      "tech": [
+        "DISTRIBUTED LEDGER",
+        "GRAPH ALGORITHMS",
+        "CRYPTOGRAPHY"
+      ],
       "link": "https://github.com/Pranav-error"
     }
   ],
@@ -143,15 +164,69 @@
     }
   ],
   "hackathons": [
-    { "name": "InfrX 2026", "year": "2026", "result": "2ND PLACE", "project": "Mortgage doc pipeline — ₹75,000 prize", "color": "blue" },
-    { "name": "Cardano Hackathon Asia", "year": "2025", "result": "WINNER", "project": "Aura AI Diagnostics — $2,000 prize", "color": "yellow" },
-    { "name": "Google DeepMind Hackathon", "year": "2025", "result": "FINALIST", "project": "Architrust", "color": "pink" },
-    { "name": "AWI SpaceTech Hackathon", "year": "2025", "result": "TOP 5", "project": "OrbitClean", "color": "green" },
-    { "name": "Google Solution Challenge", "year": "2026", "result": "BUILT", "project": "Scorpio AI — Anti-Piracy Engine", "color": "blue" },
-    { "name": "Smart India Hackathon", "year": "2025", "result": "COMPETED", "project": "Botanical traceability on blockchain", "color": "purple" },
-    { "name": "Adobe India Hackathon", "year": "2025", "result": "COMPETED", "project": "—", "color": "red" },
-    { "name": "HackRx (Bajaj Finserv)", "year": "2025", "result": "COMPETED", "project": "AI Insurance Document Analyzer", "color": "orange" },
-    { "name": "DEEP Open Innovation", "year": "2025", "result": "COMPETED", "project": "Code Tribe", "color": "green" }
+    {
+      "name": "InfrX 2026",
+      "year": "2026",
+      "result": "2ND PLACE",
+      "project": "Mortgage doc pipeline — ₹75,000 prize",
+      "color": "blue"
+    },
+    {
+      "name": "Cardano Hackathon Asia",
+      "year": "2025",
+      "result": "WINNER",
+      "project": "Aura AI Diagnostics — $2,000 prize",
+      "color": "yellow"
+    },
+    {
+      "name": "Google DeepMind Hackathon",
+      "year": "2025",
+      "result": "FINALIST",
+      "project": "Architrust",
+      "color": "pink"
+    },
+    {
+      "name": "AWI SpaceTech Hackathon",
+      "year": "2025",
+      "result": "TOP 5",
+      "project": "OrbitClean",
+      "color": "green"
+    },
+    {
+      "name": "Google Solution Challenge",
+      "year": "2026",
+      "result": "BUILT",
+      "project": "Scorpio AI — Anti-Piracy Engine",
+      "color": "blue"
+    },
+    {
+      "name": "Smart India Hackathon",
+      "year": "2025",
+      "result": "COMPETED",
+      "project": "Botanical traceability on blockchain",
+      "color": "purple"
+    },
+    {
+      "name": "Adobe India Hackathon",
+      "year": "2025",
+      "result": "COMPETED",
+      "project": "—",
+      "color": "red"
+    },
+    {
+      "name": "HackRx (Bajaj Finserv)",
+      "year": "2025",
+      "result": "COMPETED",
+      "project": "AI Insurance Document Analyzer",
+      "color": "orange"
+    },
+    {
+      "name": "DEEP Open Innovation",
+      "year": "2025",
+      "result": "COMPETED",
+      "project": "Code Tribe",
+      "color": "green"
+    }
   ],
   "freelance": {
     "intro": "I take on freelance builds — full-stack apps, AI integrations, and websites that don't look like everyone else's.",
@@ -160,23 +235,55 @@
         "name": "Shree Nidhi Security Services",
         "client": "Security services company, Bangalore",
         "description": "Business website with service catalogue and lead-capture, built and delivered end-to-end.",
-        "tech": ["HTML/CSS", "JS", "VERCEL"],
-        "link": ""
+        "tech": [
+          "HTML/CSS",
+          "JS",
+          "VERCEL"
+        ],
+        "link": "",
+        "live": "",
+        "playstore": ""
       },
       {
         "name": "VedaAI",
         "client": "Teachers & educators",
         "description": "AI-powered question paper generator that builds exam papers from syllabus input.",
-        "tech": ["PYTHON", "FASTAPI", "LLM"],
-        "link": "https://github.com/Pranav-error/VedaAI"
+        "tech": [
+          "PYTHON",
+          "FASTAPI",
+          "LLM"
+        ],
+        "link": "https://github.com/Pranav-error/VedaAI",
+        "live": "",
+        "playstore": ""
       }
     ],
     "reviews": [
-      { "from": "Student @ L J University", "text": "Sai Pranav proved that no matter the pressure or how little time there is, he completes projects outstandingly.", "color": "green" },
-      { "from": "CEO @ Alpha Consultancy", "text": "Fast, reliable, and actually has good taste in design. A rare combination.", "color": "blue" },
-      { "from": "Student @ L J University", "text": "Cleanest code I've seen in years. He knows how to handle complex state management.", "color": "pink" },
-      { "from": "Dev @ CreativeChaos", "text": "Creative design ideas and a unique UI experience. The attention to detail is flawless.", "color": "purple" },
-      { "from": "UX Designer @ TechFlow", "text": "Highly intuitive UX. Delivered exactly what we needed before we even knew we needed it.", "color": "orange" }
+      {
+        "from": "Student @ L J University",
+        "text": "Sai Pranav proved that no matter the pressure or how little time there is, he completes projects outstandingly.",
+        "color": "green"
+      },
+      {
+        "from": "CEO @ Alpha Consultancy",
+        "text": "Fast, reliable, and actually has good taste in design. A rare combination.",
+        "color": "blue"
+      },
+      {
+        "from": "Student @ L J University",
+        "text": "Cleanest code I've seen in years. He knows how to handle complex state management.",
+        "color": "pink"
+      },
+      {
+        "from": "Dev @ CreativeChaos",
+        "text": "Creative design ideas and a unique UI experience. The attention to detail is flawless.",
+        "color": "purple"
+      },
+      {
+        "from": "UX Designer @ TechFlow",
+        "text": "Highly intuitive UX. Delivered exactly what we needed before we even knew we needed it.",
+        "color": "orange"
+      }
     ]
   }
 }
