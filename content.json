@@ -28,7 +28,7 @@
     },
     {
       "title": "Aura AI",
-      "tag": "CARDANO HACKATHON ASIA — NATIONAL WINNER",
+      "tag": "CARDANO HACKATHON ASIA — WINNER · $2K PRIZE",
       "color": "yellow",
       "description": "Healthcare diagnostics tool that verifies patient data cryptographically without exposing raw records. Won against 200+ teams nationally. Hash-map based data structures for secure and efficient patient record handling.",
       "tech": ["PYTHON", "CRYPTOGRAPHY", "CARDANO"],
@@ -98,7 +98,7 @@
       "category": "HACKATHON",
       "color": "yellow",
       "title": "National Hackathon Winner",
-      "description": "Won Cardano Hackathon Asia beating 200+ teams with Aura AI Diagnostics — a cryptographic healthcare verification tool.",
+      "description": "Won Cardano Hackathon Asia beating 200+ teams with Aura AI Diagnostics — a cryptographic healthcare verification tool. Took home a $2,000 (~₹1.8 lakh) prize.",
       "date": "2025"
     },
     {
@@ -138,13 +138,13 @@
       "category": "LEADERSHIP",
       "color": "blue",
       "title": "Technical Lead, Algorand Club",
-      "description": "Technical Lead at Algorand Club, REVA University. Ran workshops and smart contract projects. Organised 5+ hackathons and competed in 16+ including Adobe India and HackRx.",
+      "description": "Technical Lead at Algorand Club, REVA University. Ran workshops and smart contract projects. Organised 5+ hackathons and competed in 20+ including Adobe India and HackRx.",
       "date": "2026 – Present"
     }
   ],
   "hackathons": [
     { "name": "InfrX 2026", "year": "2026", "result": "2ND PLACE", "project": "Mortgage doc pipeline — ₹75,000 prize", "color": "blue" },
-    { "name": "Cardano Hackathon Asia", "year": "2025", "result": "WINNER", "project": "Aura AI Diagnostics", "color": "yellow" },
+    { "name": "Cardano Hackathon Asia", "year": "2025", "result": "WINNER", "project": "Aura AI Diagnostics — $2,000 prize", "color": "yellow" },
     { "name": "Google DeepMind Hackathon", "year": "2025", "result": "FINALIST", "project": "Architrust", "color": "pink" },
     { "name": "AWI SpaceTech Hackathon", "year": "2025", "result": "TOP 5", "project": "OrbitClean", "color": "green" },
     { "name": "Google Solution Challenge", "year": "2026", "result": "BUILT", "project": "Scorpio AI — Anti-Piracy Engine", "color": "blue" },
