@@ -19,7 +19,7 @@
     <meta property="og:title" content="R SAI PRANAV | Full Stack Developer & AI Engineer">
     <meta property="og:description"
         content="Full Stack Developer & AI/ML Engineer. National hackathon winner, patent holder, 3 internships. Building systems that matter.">
-    <meta property="og:image" content="Assets/images/og_icon.png">
+    <meta property="og:image" content="https://saipranav.me/Assets/images/og_icon.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
@@ -27,7 +27,7 @@
     <meta property="twitter:title" content="R SAI PRANAV | Full Stack Developer & AI Engineer">
     <meta property="twitter:description"
         content="Full Stack Developer & AI/ML Engineer. National hackathon winner, patent holder, 3 internships. Building systems that matter.">
-    <meta property="twitter:image" content="Assets/images/og_icon.png">
+    <meta property="twitter:image" content="https://saipranav.me/Assets/images/og_icon.png">
 
     <!-- Google Tag Manager -->
     <script>(function (w, d, s, l, i) {
@@ -212,6 +212,33 @@
             transform: translateY(0);
         }
 
+        /* Anchor offset for fixed nav */
+        section[id] {
+            scroll-margin-top: 90px;
+        }
+
+        /* Card tilt micro-interaction */
+        .tilt-card {
+            transition: transform 0.25s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.25s;
+        }
+
+        .tilt-card:hover {
+            transform: rotate(-1deg) translate(-2px, -2px);
+        }
+
+        /* Sticker stamp */
+        .stamp {
+            position: absolute;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 800;
+            font-size: 11px;
+            letter-spacing: 0.2em;
+            background: #121212;
+            color: #FFFDF5;
+            padding: 4px 10px;
+            border: 2px solid #121212;
+        }
+
         /* Glitch Effect on Hover */
         .glitch-hover:hover {
             animation: glitch-anim 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
@@ -264,7 +291,7 @@
                 saipranav.me
             </a>
 
-            <div class="hidden md:flex gap-4 bg-white border-2 border-black p-2 shadow-hard">
+            <div class="hidden md:flex gap-2 lg:gap-4 bg-white border-2 border-black p-2 shadow-hard">
                 <a href="#about"
                     class="px-3 py-1 font-mono font-bold text-sm hover:bg-black hover:text-white transition-colors cursor-hover">/ABOUT</a>
                 <a href="#skills"
@@ -273,11 +300,31 @@
                     class="px-3 py-1 font-mono font-bold text-sm hover:bg-black hover:text-white transition-colors cursor-hover">/LOGS</a>
                 <a href="#projects"
                     class="px-3 py-1 font-mono font-bold text-sm hover:bg-black hover:text-white transition-colors cursor-hover">/WORK</a>
-                <a href="#achievements"
-                    class="px-3 py-1 font-mono font-bold text-sm hover:bg-black hover:text-white transition-colors cursor-hover">/WINS</a>
+                <a href="#hackathons"
+                    class="px-3 py-1 font-mono font-bold text-sm hover:bg-black hover:text-white transition-colors cursor-hover">/BATTLES</a>
+                <a href="#freelance"
+                    class="px-3 py-1 font-mono font-bold text-sm hover:bg-black hover:text-white transition-colors cursor-hover">/CLIENTS</a>
                 <a href="#contact"
                     class="px-3 py-1 font-mono font-bold text-sm bg-neo-yellow border border-black hover:bg-neo-pink transition-colors cursor-hover">CONTACT</a>
             </div>
+
+            <!-- Mobile menu button -->
+            <button id="mobile-menu-btn" onclick="toggleMobileMenu()"
+                class="md:hidden bg-white border-2 border-black w-11 h-11 flex items-center justify-center shadow-hard text-2xl cursor-hover">
+                <i class="ri-menu-4-line" id="mobile-menu-icon"></i>
+            </button>
+        </div>
+
+        <!-- Mobile menu panel -->
+        <div id="mobile-menu"
+            class="hidden md:hidden pointer-events-auto mt-3 mx-auto max-w-7xl bg-white border-2 border-black shadow-hard-lg flex-col font-mono font-bold text-lg divide-y-2 divide-black">
+            <a href="#about" onclick="toggleMobileMenu()" class="px-5 py-3 hover:bg-neo-yellow">/ABOUT</a>
+            <a href="#skills" onclick="toggleMobileMenu()" class="px-5 py-3 hover:bg-neo-yellow">/SKILLS</a>
+            <a href="#experience" onclick="toggleMobileMenu()" class="px-5 py-3 hover:bg-neo-yellow">/LOGS</a>
+            <a href="#projects" onclick="toggleMobileMenu()" class="px-5 py-3 hover:bg-neo-yellow">/WORK</a>
+            <a href="#hackathons" onclick="toggleMobileMenu()" class="px-5 py-3 hover:bg-neo-yellow">/BATTLES</a>
+            <a href="#freelance" onclick="toggleMobileMenu()" class="px-5 py-3 hover:bg-neo-yellow">/CLIENTS</a>
+            <a href="#contact" onclick="toggleMobileMenu()" class="px-5 py-3 bg-neo-yellow">CONTACT →</a>
         </div>
     </nav>
 
@@ -323,6 +370,15 @@
             <div class="marquee-content">
                 /// OPEN FOR INTERNSHIPS /// FULL STACK DEVELOPMENT /// AI/ML ENGINEERING /// CYBERSECURITY /// PATENT HOLDER /// CARDANO HACKATHON WINNER ///
                 OPEN FOR INTERNSHIPS /// FULL STACK DEVELOPMENT /// AI/ML ENGINEERING ///
+            </div>
+        </div>
+    </div>
+
+    <!-- NOW BUILDING ticker (data-driven from content.json) -->
+    <div class="border-b-4 border-black bg-neo-black py-2 relative z-20">
+        <div class="marquee-container font-mono font-bold text-sm text-neo-green">
+            <div class="marquee-content" id="now-ticker">
+                <span class="px-4">LOADING NOW_BUILDING FEED...</span>
             </div>
         </div>
     </div>
@@ -496,56 +552,7 @@
             Experience<span class="text-neo-red">_Log</span>
         </h2>
 
-        <div class="relative border-l-4 border-black ml-4 md:ml-10 space-y-12">
-            <div class="reveal relative pl-8 md:pl-16">
-                <div class="absolute -left-[14px] top-2 w-6 h-6 bg-neo-yellow border-4 border-black"></div>
-                <div class="bg-white border-4 border-black p-6 shadow-hard hover:shadow-hard-xl transition-all">
-                    <div
-                        class="flex flex-col md:flex-row justify-between items-start md:items-center border-b-2 border-dashed border-gray-300 pb-4 mb-4">
-                        <h3 class="text-3xl font-black uppercase">Software Engineering Intern, Full Stack</h3>
-                        <span class="font-mono font-bold bg-neo-black text-white px-2 py-1">Dec 2025 – PRESENT</span>
-                    </div>
-                    <p class="font-mono text-xl mb-2 text-neo-yellow font-bold">@ MyStartupWave — Bangalore</p>
-                    <ul class="list-disc list-inside font-mono text-gray-700 space-y-1">
-                        <li>Built and shipped 10+ full-stack projects using Flutter, FastAPI, Node.js, and MongoDB from scratch to production.</li>
-                        <li>Cut API response times by up to 35% by fixing bottlenecks and adding caching; handled rate limiting and error logging in live systems.</li>
-                        <li>Applied OOP design patterns and data structures to keep codebases clean and maintainable across multiple projects.</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="reveal relative pl-8 md:pl-16">
-                <div class="absolute -left-[14px] top-2 w-6 h-6 bg-neo-red border-4 border-black"></div>
-                <div class="bg-white border-4 border-black p-6 shadow-hard hover:shadow-hard-xl transition-all">
-                    <div
-                        class="flex flex-col md:flex-row justify-between items-start md:items-center border-b-2 border-dashed border-gray-300 pb-4 mb-4">
-                        <h3 class="text-3xl font-black uppercase">Project Intern, Cybersecurity Engineering</h3>
-                        <span class="font-mono font-bold bg-neo-black text-white px-2 py-1">Nov 2025 – PRESENT</span>
-                    </div>
-                    <p class="font-mono text-xl mb-2 text-neo-red font-bold">@ iSPIRT Foundation (Sakram) — Bangalore</p>
-                    <ul class="list-disc list-inside font-mono text-gray-700 space-y-1">
-                        <li>Working on protocol frameworks for India's Digital Public Infrastructure (DPI) using C++ and Python.</li>
-                        <li>Contributing to hardware-bound cryptographic validation and data integrity verification systems.</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="reveal relative pl-8 md:pl-16">
-                <div class="absolute -left-[14px] top-2 w-6 h-6 bg-neo-blue border-4 border-black"></div>
-                <div class="bg-white border-4 border-black p-6 shadow-hard hover:shadow-hard-xl transition-all">
-                    <div
-                        class="flex flex-col md:flex-row justify-between items-start md:items-center border-b-2 border-dashed border-gray-300 pb-4 mb-4">
-                        <h3 class="text-3xl font-black uppercase">Research Intern, Explainable AI</h3>
-                        <span class="font-mono font-bold bg-neo-black text-white px-2 py-1">Jul 2025 – Jan 2026</span>
-                    </div>
-                    <p class="font-mono text-xl mb-2 text-neo-blue font-bold">@ CSIR–4Pi (Fourth Paradigm Institute) — Bangalore</p>
-                    <ul class="list-disc list-inside font-mono text-gray-700 space-y-1">
-                        <li>Built a medical image analysis pipeline for breast cancer detection using MedSAM, ResNet, and U-Net in PyTorch.</li>
-                        <li>Added XAI heatmaps so doctors could understand model predictions; co-authoring a research paper on this work.</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+        <div id="experience-timeline" class="relative border-l-4 border-black ml-4 md:ml-10 space-y-12"></div>
     </section>
     <!-- CODING STATS SECTION -->
     <section id="coding-stats" class="py-12 bg-neo-black text-white border-y-4 border-black relative overflow-hidden">
@@ -592,7 +599,7 @@
                             <div class="text-right">
                                 <div id="total-contributions"
                                     class="text-2xl font-black text-neo-green tracking-tighter">--</div>
-                                <p class="text-[8px] font-mono text-gray-500 uppercase">Commits</p>
+                                <p class="text-[8px] font-mono text-gray-500 uppercase">Recent Commits</p>
                             </div>
                         </div>
 
@@ -672,7 +679,7 @@
                                 class="border-2 border-neo-green/30 bg-neo-black/60 p-4 relative group overflow-hidden hover:border-neo-green transition-colors shadow-[4px_4px_0_rgba(51,255,87,0.1)]">
                                 <div
                                     class="text-[9px] font-mono text-neo-green mb-1 uppercase tracking-widest opacity-70">
-                                    Commits</div>
+                                    Recent Commits</div>
                                 <div id="total-contributions-grid"
                                     class="text-white font-black text-3xl tracking-tighter">--</div>
                             </div>
@@ -726,105 +733,7 @@
                 Selected Works
             </h2>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-
-                <!-- PROJECT 1 — OrbitClean -->
-                <article class="reveal group bg-white border-4 border-black p-4 shadow-hard">
-                    <div
-                        class="bg-neo-black border-2 border-black aspect-video relative overflow-hidden mb-6 group-hover:shadow-none transition-all flex items-center justify-center">
-                        <span class="font-mono text-neo-green text-sm font-bold">[ AWI SPACETECH HACKATHON — TOP 5 ]</span>
-                    </div>
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <h3 class="text-4xl font-black uppercase mb-2 group-hover:text-neo-red transition-colors glitch-hover">
-                                OrbitClean</h3>
-                            <p class="font-mono text-sm mb-4 max-w-xs">Satellite image processing system that detects illegal dumps using Sentinel-2A imagery and a Random Forest classifier. Route optimization engine using the Clarke-Wright algorithm with AUC 0.80 risk predictor over a 552-cell grid.</p>
-                            <div class="flex gap-2 font-mono text-xs font-bold flex-wrap">
-                                <span class="bg-neo-black text-white px-2 py-1">PYTHON</span>
-                                <span class="bg-neo-black text-white px-2 py-1">RANDOM FOREST</span>
-                                <span class="bg-neo-black text-white px-2 py-1">SENTINEL-2A</span>
-                            </div>
-                        </div>
-                        <a href="https://github.com/Pranav-error"
-                            class="w-12 h-12 border-2 border-black bg-neo-green flex items-center justify-center hover:bg-black hover:text-white transition-all cursor-hover shadow-hard-sm">
-                            <i class="ri-arrow-right-up-line text-2xl"></i>
-                        </a>
-                    </div>
-                </article>
-
-                <!-- PROJECT 2 — Aura AI Diagnostics -->
-                <article class="reveal group bg-white border-4 border-black p-4 shadow-hard mt-0 md:mt-20">
-                    <div
-                        class="bg-neo-black border-2 border-black aspect-video relative overflow-hidden mb-6 group-hover:shadow-none transition-all flex items-center justify-center">
-                        <span class="font-mono text-neo-yellow text-sm font-bold">[ CARDANO HACKATHON ASIA — NATIONAL WINNER ]</span>
-                    </div>
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <h3 class="text-4xl font-black uppercase mb-2 group-hover:text-neo-blue transition-colors glitch-hover">
-                                Aura AI</h3>
-                            <p class="font-mono text-sm mb-4 max-w-xs">Healthcare diagnostics tool that verifies patient data cryptographically without exposing raw records. Won against 200+ teams nationally. Hash-map based data structures for secure and efficient patient record handling.</p>
-                            <div class="flex gap-2 font-mono text-xs font-bold flex-wrap">
-                                <span class="bg-neo-black text-white px-2 py-1">PYTHON</span>
-                                <span class="bg-neo-black text-white px-2 py-1">CRYPTOGRAPHY</span>
-                                <span class="bg-neo-black text-white px-2 py-1">CARDANO</span>
-                            </div>
-                        </div>
-                        <a href="https://github.com/Pranav-error"
-                            class="w-12 h-12 border-2 border-black bg-neo-green flex items-center justify-center hover:bg-black hover:text-white transition-all cursor-hover shadow-hard-sm">
-                            <i class="ri-arrow-right-up-line text-2xl"></i>
-                        </a>
-                    </div>
-                </article>
-
-                <!-- PROJECT 3 — Architrust -->
-                <article class="reveal group bg-white border-4 border-black p-4 shadow-hard">
-                    <div
-                        class="bg-neo-black border-2 border-black aspect-video relative overflow-hidden mb-6 group-hover:shadow-none transition-all flex items-center justify-center">
-                        <span class="font-mono text-neo-pink text-sm font-bold">[ GOOGLE DEEPMIND HACKATHON — FINALIST ]</span>
-                    </div>
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <h3 class="text-4xl font-black uppercase mb-2 group-hover:text-neo-pink transition-colors glitch-hover">
-                                Architrust</h3>
-                            <p class="font-mono text-sm mb-4 max-w-xs">Distributed system that coordinates computation across independent nodes without centralizing data. Structured logging and benchmarking to track performance and handle node failures gracefully.</p>
-                            <div class="flex gap-2 font-mono text-xs font-bold flex-wrap">
-                                <span class="bg-neo-black text-white px-2 py-1">DISTRIBUTED SYSTEMS</span>
-                                <span class="bg-neo-black text-white px-2 py-1">C++</span>
-                                <span class="bg-neo-black text-white px-2 py-1">NODE.JS</span>
-                            </div>
-                        </div>
-                        <a href="https://github.com/Pranav-error"
-                            class="w-12 h-12 border-2 border-black bg-neo-green flex items-center justify-center hover:bg-black hover:text-white transition-all cursor-hover shadow-hard-sm">
-                            <i class="ri-arrow-right-up-line text-2xl"></i>
-                        </a>
-                    </div>
-                </article>
-
-                <!-- PROJECT 4 — Patent -->
-                <article class="reveal group bg-white border-4 border-black p-4 shadow-hard mt-0 md:mt-20">
-                    <div
-                        class="bg-neo-black border-2 border-black aspect-video relative overflow-hidden mb-6 group-hover:shadow-none transition-all flex items-center justify-center">
-                        <span class="font-mono text-neo-purple text-sm font-bold">[ PERSONAL PATENT — FILED 2026 ]</span>
-                    </div>
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <h3 class="text-4xl font-black uppercase mb-2 group-hover:text-neo-orange transition-colors glitch-hover">
-                                Spatial-Temporal Veracity</h3>
-                            <p class="font-mono text-sm mb-4 max-w-xs">Decentralized ledger system with graph algorithm-based verification to ensure data integrity at scale. Prevents tampering across distributed nodes using cryptographic proofs.</p>
-                            <div class="flex gap-2 font-mono text-xs font-bold flex-wrap">
-                                <span class="bg-neo-black text-white px-2 py-1">DISTRIBUTED LEDGER</span>
-                                <span class="bg-neo-black text-white px-2 py-1">GRAPH ALGORITHMS</span>
-                                <span class="bg-neo-black text-white px-2 py-1">CRYPTOGRAPHY</span>
-                            </div>
-                        </div>
-                        <a href="https://github.com/Pranav-error"
-                            class="w-12 h-12 border-2 border-black bg-neo-green flex items-center justify-center hover:bg-black hover:text-white transition-all cursor-hover shadow-hard-sm">
-                            <i class="ri-arrow-right-up-line text-2xl"></i>
-                        </a>
-                    </div>
-                </article>
-                <!-- End Projects -->
-            </div>
+            <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 gap-12"></div>
 
             <div class="text-center mt-24">
                 <a href="https://github.com/Pranav-error?tab=repositories"
@@ -835,216 +744,7 @@
         </div>
     </section>
 
-    <section id="reports" class="hidden">
-        <div class="max-w-7xl mx-auto px-4">
-            <div
-                class="flex items-center gap-2 mb-16 bg-white/5 border-2 border-white/10 p-4 inline-flex shadow-hard shadow-neo-blue/20">
-                <div class="flex gap-2">
-                    <div class="h-3 w-3 bg-red-500 rounded-full border border-black"></div>
-                    <div class="h-3 w-3 bg-yellow-500 rounded-full border border-black"></div>
-                    <div class="h-3 w-3 bg-green-500 rounded-full border border-black"></div>
-                </div>
-                <h2 class="font-mono text-white text-xl font-bold ml-4 tracking-tighter">USER_REPORTS.txt</h2>
-                <div class="ml-8 px-2 bg-neo-blue text-black text-[10px] font-black uppercase">LIVE_FEED</div>
-            </div>
-        </div>
-
-        <div class="marquee-container group cursor-hover">
-            <div class="marquee-content flex gap-8 py-12 px-4 select-none">
-                <!-- Original Set -->
-                <div
-                    class="flex-shrink-0 w-[450px] bg-neo-black border-4 border-white/10 p-8 shadow-hard hover:border-neo-green/50 hover:-translate-y-2 transition-all duration-500 relative group/card overflow-hidden text-left whitespace-normal">
-                    <div class="absolute top-0 left-0 w-full h-1 bg-neo-green"></div>
-                    <div class="absolute -top-4 -right-4 w-12 h-12 bg-white/5 rotate-45"></div>
-                    <div class="flex justify-between items-start mb-6">
-                        <div class="font-mono text-neo-green text-xs font-bold tracking-widest uppercase">REPORT_001.log
-                        </div>
-                        <div class="text-[10px] font-mono text-gray-500">2025.txt</div>
-                    </div>
-                    <div class="font-mono text-gray-400 text-[10px] mb-2 uppercase tracking-tight">FROM: Student @ L J
-                        University</div>
-                    <p class="font-bold text-xl leading-snug mb-6 text-white/90">"Sai Pranav Proved no matter how pressure or
-                        less time is he makes projects complete outstandingly"</p>
-                    <div class="flex text-neo-green/60 gap-1 text-lg">
-                        <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i
-                            class="ri-star-fill"></i><i class="ri-star-fill"></i>
-                    </div>
-                </div>
-
-                <div
-                    class="flex-shrink-0 w-[450px] bg-neo-black border-4 border-white/10 p-8 shadow-hard hover:border-neo-blue/50 hover:-translate-y-2 transition-all duration-500 relative group/card overflow-hidden text-left whitespace-normal">
-                    <div class="absolute top-0 left-0 w-full h-1 bg-neo-blue"></div>
-                    <div class="absolute -top-4 -right-4 w-12 h-12 bg-white/5 rotate-45"></div>
-                    <div class="flex justify-between items-start mb-6">
-                        <div class="font-mono text-neo-blue text-xs font-bold tracking-widest uppercase">REPORT_002.log
-                        </div>
-                        <div class="text-[10px] font-mono text-gray-500">2025.txt</div>
-                    </div>
-                    <div class="font-mono text-gray-400 text-[10px] mb-2 uppercase tracking-tight">FROM: CEO @ Alpha
-                        Consultancy</div>
-                    <p class="font-bold text-xl leading-snug mb-6 text-white/90">"Fast, reliable, and actually has good
-                        taste in design. A rare combination."</p>
-                    <div class="flex text-neo-blue/60 gap-1 text-lg">
-                        <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i
-                            class="ri-star-fill"></i><i class="ri-star-fill"></i>
-                    </div>
-                </div>
-
-                <div
-                    class="flex-shrink-0 w-[450px] bg-neo-black border-4 border-white/10 p-8 shadow-hard hover:border-neo-pink/50 hover:-translate-y-2 transition-all duration-500 relative group/card overflow-hidden text-left whitespace-normal">
-                    <div class="absolute top-0 left-0 w-full h-1 bg-neo-pink"></div>
-                    <div class="absolute -top-4 -right-4 w-12 h-12 bg-white/5 rotate-45"></div>
-                    <div class="flex justify-between items-start mb-6">
-                        <div class="font-mono text-neo-pink text-xs font-bold tracking-widest uppercase">REPORT_003.log
-                        </div>
-                        <div class="text-[10px] font-mono text-gray-500">2025.txt</div>
-                    </div>
-                    <div class="font-mono text-gray-400 text-[10px] mb-2 uppercase tracking-tight">FROM: Student @ L J
-                        University</div>
-                    <p class="font-bold text-xl leading-snug mb-6 text-white/90">"Cleanest code I've seen in years. He
-                        knows how to handle complex state management."</p>
-                    <div class="flex text-neo-pink/60 gap-1 text-lg">
-                        <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i
-                            class="ri-star-fill"></i><i class="ri-star-fill"></i>
-                    </div>
-                </div>
-
-                <div
-                    class="flex-shrink-0 w-[450px] bg-neo-black border-4 border-white/10 p-8 shadow-hard hover:border-neo-purple/50 hover:-translate-y-2 transition-all duration-500 relative group/card overflow-hidden text-left whitespace-normal">
-                    <div class="absolute top-0 left-0 w-full h-1 bg-neo-purple"></div>
-                    <div class="absolute -top-4 -right-4 w-12 h-12 bg-white/5 rotate-45"></div>
-                    <div class="flex justify-between items-start mb-6">
-                        <div class="font-mono text-neo-purple text-xs font-bold tracking-widest uppercase">
-                            REPORT_004.log</div>
-                        <div class="text-[10px] font-mono text-gray-500">2025.txt</div>
-                    </div>
-                    <div class="font-mono text-gray-400 text-[10px] mb-2 uppercase tracking-tight">FROM: Dev @
-                        CreativeChaos</div>
-                    <p class="font-bold text-xl leading-snug mb-6 text-white/90">"Creative designing idea and provided a
-                        Unique UI experience."</p>
-                    <div class="flex text-neo-purple/60 gap-1 text-lg">
-                        <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i
-                            class="ri-star-fill"></i><i class="ri-star-fill"></i>
-                    </div>
-                </div>
-
-                <div
-                    class="flex-shrink-0 w-[450px] bg-neo-black border-4 border-white/10 p-8 shadow-hard hover:border-neo-orange/50 hover:-translate-y-2 transition-all duration-500 relative group/card overflow-hidden text-left whitespace-normal">
-                    <div class="absolute top-0 left-0 w-full h-1 bg-neo-orange"></div>
-                    <div class="absolute -top-4 -right-4 w-12 h-12 bg-white/5 rotate-45"></div>
-                    <div class="flex justify-between items-start mb-6">
-                        <div class="font-mono text-neo-orange text-xs font-bold tracking-widest uppercase">
-                            REPORT_005.log</div>
-                        <div class="text-[10px] font-mono text-gray-500">2025.txt</div>
-                    </div>
-                    <div class="font-mono text-gray-400 text-[10px] mb-2 uppercase tracking-tight">FROM: UX Designer @
-                        TechFlow</div>
-                    <p class="font-bold text-xl leading-snug mb-6 text-white/90">"Highly intuitive UX. Delivered exactly
-                        what we needed before we even knew we needed it."</p>
-                    <div class="flex text-neo-orange/60 gap-1 text-lg">
-                        <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i
-                            class="ri-star-fill"></i><i class="ri-star-fill"></i>
-                    </div>
-                </div>
-
-                <!-- Duplicate Set for Loop -->
-                <div
-                    class="flex-shrink-0 w-[450px] bg-neo-black border-4 border-white/10 p-8 shadow-hard hover:border-neo-green/50 hover:-translate-y-2 transition-all duration-500 relative group/card overflow-hidden text-left whitespace-normal">
-                    <div class="absolute top-0 left-0 w-full h-1 bg-neo-green"></div>
-                    <div class="absolute -top-4 -right-4 w-12 h-12 bg-white/5 rotate-45"></div>
-                    <div class="flex justify-between items-start mb-6">
-                        <div class="font-mono text-neo-green text-xs font-bold tracking-widest uppercase">REPORT_001.log
-                        </div>
-                        <div class="text-[10px] font-mono text-gray-500">2025.txt</div>
-                    </div>
-                    <div class="font-mono text-gray-400 text-[10px] mb-2 uppercase tracking-tight">FROM: Student @ L J
-                        University</div>
-                    <p class="font-bold text-xl leading-snug mb-6 text-white/90">"Sai Pranav didn't just build a website, he
-                        built a war machine. Our conversions tripled in a week."</p>
-                    <div class="flex text-neo-green/60 gap-1 text-lg">
-                        <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i
-                            class="ri-star-fill"></i><i class="ri-star-fill"></i>
-                    </div>
-                </div>
-
-                <div
-                    class="flex-shrink-0 w-[450px] bg-neo-black border-4 border-white/10 p-8 shadow-hard hover:border-neo-blue/50 hover:-translate-y-2 transition-all duration-500 relative group/card overflow-hidden text-left whitespace-normal">
-                    <div class="absolute top-0 left-0 w-full h-1 bg-neo-blue"></div>
-                    <div class="absolute -top-4 -right-4 w-12 h-12 bg-white/5 rotate-45"></div>
-                    <div class="flex justify-between items-start mb-6">
-                        <div class="font-mono text-neo-blue text-xs font-bold tracking-widest uppercase">REPORT_002.log
-                        </div>
-                        <div class="text-[10px] font-mono text-gray-500">2025.txt</div>
-                    </div>
-                    <div class="font-mono text-gray-400 text-[10px] mb-2 uppercase tracking-tight">FROM: CEO @ Alpha
-                        Consultancy</div>
-                    <p class="font-bold text-xl leading-snug mb-6 text-white/90">"Fast, reliable, and actually has good
-                        taste in design. A rare combination."</p>
-                    <div class="flex text-neo-blue/60 gap-1 text-lg">
-                        <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i
-                            class="ri-star-fill"></i><i class="ri-star-fill"></i>
-                    </div>
-                </div>
-
-                <div
-                    class="flex-shrink-0 w-[450px] bg-neo-black border-4 border-white/10 p-8 shadow-hard hover:border-neo-pink/50 hover:-translate-y-2 transition-all duration-500 relative group/card overflow-hidden text-left whitespace-normal">
-                    <div class="absolute top-0 left-0 w-full h-1 bg-neo-pink"></div>
-                    <div class="absolute -top-4 -right-4 w-12 h-12 bg-white/5 rotate-45"></div>
-                    <div class="flex justify-between items-start mb-6">
-                        <div class="font-mono text-neo-pink text-xs font-bold tracking-widest uppercase">REPORT_003.log
-                        </div>
-                        <div class="text-[10px] font-mono text-gray-500">2025.txt</div>
-                    </div>
-                    <div class="font-mono text-gray-400 text-[10px] mb-2 uppercase tracking-tight">FROM: Student @ L J
-                        University</div>
-                    <p class="font-bold text-xl leading-snug mb-6 text-white/90">"Cleanest code I've seen in years. He
-                        knows how to handle complex state management."</p>
-                    <div class="flex text-neo-pink/60 gap-1 text-lg">
-                        <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i
-                            class="ri-star-fill"></i><i class="ri-star-fill"></i>
-                    </div>
-                </div>
-
-                <div
-                    class="flex-shrink-0 w-[450px] bg-neo-black border-4 border-white/10 p-8 shadow-hard hover:border-neo-purple/50 hover:-translate-y-2 transition-all duration-500 relative group/card overflow-hidden text-left whitespace-normal">
-                    <div class="absolute top-0 left-0 w-full h-1 bg-neo-purple"></div>
-                    <div class="absolute -top-4 -right-4 w-12 h-12 bg-white/5 rotate-45"></div>
-                    <div class="flex justify-between items-start mb-6">
-                        <div class="font-mono text-neo-purple text-xs font-bold tracking-widest uppercase">
-                            REPORT_004.log</div>
-                        <div class="text-[10px] font-mono text-gray-500">2025.txt</div>
-                    </div>
-                    <div class="font-mono text-gray-400 text-[10px] mb-2 uppercase tracking-tight">FROM: Dev @
-                        CreativeChaos</div>
-                    <p class="font-bold text-xl leading-snug mb-6 text-white/90">"The attention to detail in the
-                        NeoBrutalist implementation is flawless. A master of his craft."</p>
-                    <div class="flex text-neo-purple/60 gap-1 text-lg">
-                        <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i
-                            class="ri-star-fill"></i><i class="ri-star-fill"></i>
-                    </div>
-                </div>
-
-                <div
-                    class="flex-shrink-0 w-[450px] bg-neo-black border-4 border-white/10 p-8 shadow-hard hover:border-neo-orange/50 hover:-translate-y-2 transition-all duration-500 relative group/card overflow-hidden text-left whitespace-normal">
-                    <div class="absolute top-0 left-0 w-full h-1 bg-neo-orange"></div>
-                    <div class="absolute -top-4 -right-4 w-12 h-12 bg-white/5 rotate-45"></div>
-                    <div class="flex justify-between items-start mb-6">
-                        <div class="font-mono text-neo-orange text-xs font-bold tracking-widest uppercase">
-                            REPORT_005.log</div>
-                        <div class="text-[10px] font-mono text-gray-500">2025.txt</div>
-                    </div>
-                    <div class="font-mono text-gray-400 text-[10px] mb-2 uppercase tracking-tight">FROM: UX Designer @
-                        TechFlow</div>
-                    <p class="font-bold text-xl leading-snug mb-6 text-white/90">"Highly intuitive UX. Delivered exactly
-                        what we needed before we even knew we needed it."</p>
-                    <div class="flex text-neo-orange/60 gap-1 text-lg">
-                        <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i
-                            class="ri-star-fill"></i><i class="ri-star-fill"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    
 
     <!-- ========== TERMINAL FLOATING BUTTON ========== -->
     <button id="terminal-fab"
@@ -1084,69 +784,47 @@
                 <p class="font-mono text-sm text-gray-500 font-bold mb-2">/// UNLOCKED_RECORDS</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div id="achievements-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+        </div>
+    </section>
 
-                <!-- Achievement 1 -->
-                <div class="reveal group bg-white border-4 border-black p-6 shadow-hard hover:shadow-hard-xl hover:-translate-y-1 hover:-translate-x-1 transition-all relative overflow-hidden">
-                    <div class="absolute top-0 left-0 w-full h-1 bg-neo-yellow"></div>
-                    <div class="text-5xl mb-4">🥇</div>
-                    <div class="font-mono text-[10px] text-neo-yellow font-bold uppercase tracking-widest mb-2 bg-black inline-block px-2 py-0.5">HACKATHON</div>
-                    <h3 class="text-2xl font-black uppercase mb-3 leading-tight">National Hackathon Winner</h3>
-                    <p class="font-mono text-sm text-gray-600 leading-relaxed">Won Cardano Hackathon Asia beating 200+ teams with Aura AI Diagnostics — a cryptographic healthcare verification tool.</p>
-                    <div class="mt-4 font-mono text-xs text-gray-400 border-t border-gray-200 pt-3">📅 2025</div>
-                </div>
-
-                <!-- Achievement 2 -->
-                <div class="reveal group bg-white border-4 border-black p-6 shadow-hard hover:shadow-hard-xl hover:-translate-y-1 hover:-translate-x-1 transition-all relative overflow-hidden">
-                    <div class="absolute top-0 left-0 w-full h-1 bg-neo-purple"></div>
-                    <div class="text-5xl mb-4">📄</div>
-                    <div class="font-mono text-[10px] text-neo-purple font-bold uppercase tracking-widest mb-2 bg-black inline-block px-2 py-0.5">PATENT</div>
-                    <h3 class="text-2xl font-black uppercase mb-3 leading-tight">Personal Patent Filed</h3>
-                    <p class="font-mono text-sm text-gray-600 leading-relaxed">Filed patent for Decentralized Spatial-Temporal Data Veracity System — a distributed ledger with graph algorithm-based tamper-proof verification.</p>
-                    <div class="mt-4 font-mono text-xs text-gray-400 border-t border-gray-200 pt-3">📅 2026</div>
-                </div>
-
-                <!-- Achievement 3 -->
-                <div class="reveal group bg-white border-4 border-black p-6 shadow-hard hover:shadow-hard-xl hover:-translate-y-1 hover:-translate-x-1 transition-all relative overflow-hidden">
-                    <div class="absolute top-0 left-0 w-full h-1 bg-neo-pink"></div>
-                    <div class="text-5xl mb-4">🏅</div>
-                    <div class="font-mono text-[10px] text-neo-pink font-bold uppercase tracking-widest mb-2 bg-black inline-block px-2 py-0.5">HACKATHON</div>
-                    <h3 class="text-2xl font-black uppercase mb-3 leading-tight">Google DeepMind Finalist</h3>
-                    <p class="font-mono text-sm text-gray-600 leading-relaxed">Reached the finals of Google DeepMind Hackathon with Architrust — a distributed, privacy-preserving computation system.</p>
-                    <div class="mt-4 font-mono text-xs text-gray-400 border-t border-gray-200 pt-3">📅 2025</div>
-                </div>
-
-                <!-- Achievement 4 -->
-                <div class="reveal group bg-white border-4 border-black p-6 shadow-hard hover:shadow-hard-xl hover:-translate-y-1 hover:-translate-x-1 transition-all relative overflow-hidden">
-                    <div class="absolute top-0 left-0 w-full h-1 bg-neo-green"></div>
-                    <div class="text-5xl mb-4">🚀</div>
-                    <div class="font-mono text-[10px] text-neo-green font-bold uppercase tracking-widest mb-2 bg-black inline-block px-2 py-0.5">HACKATHON</div>
-                    <h3 class="text-2xl font-black uppercase mb-3 leading-tight">AWI SpaceTech Top 5</h3>
-                    <p class="font-mono text-sm text-gray-600 leading-relaxed">Top 5 finish at AWI SpaceTech Hackathon with OrbitClean — satellite image processing for illegal dump detection using Sentinel-2A and ML.</p>
-                    <div class="mt-4 font-mono text-xs text-gray-400 border-t border-gray-200 pt-3">📅 2025</div>
-                </div>
-
-                <!-- Achievement 5 -->
-                <div class="reveal group bg-white border-4 border-black p-6 shadow-hard hover:shadow-hard-xl hover:-translate-y-1 hover:-translate-x-1 transition-all relative overflow-hidden">
-                    <div class="absolute top-0 left-0 w-full h-1 bg-neo-orange"></div>
-                    <div class="text-5xl mb-4">🌐</div>
-                    <div class="font-mono text-[10px] text-neo-orange font-bold uppercase tracking-widest mb-2 bg-black inline-block px-2 py-0.5">COMMUNITY</div>
-                    <h3 class="text-2xl font-black uppercase mb-3 leading-tight">Member, GDG Bangalore</h3>
-                    <p class="font-mono text-sm text-gray-600 leading-relaxed">Member of Google Developer Groups (GDG) Bangalore — engaging with the developer community, attending tech talks, and collaborating on Google tech ecosystem projects.</p>
-                    <div class="mt-4 font-mono text-xs text-gray-400 border-t border-gray-200 pt-3">📅 Feb 2026 – Present</div>
-                </div>
-
-                <!-- Achievement 6 -->
-                <div class="reveal group bg-white border-4 border-black p-6 shadow-hard hover:shadow-hard-xl hover:-translate-y-1 hover:-translate-x-1 transition-all relative overflow-hidden">
-                    <div class="absolute top-0 left-0 w-full h-1 bg-neo-blue"></div>
-                    <div class="text-5xl mb-4">⚡</div>
-                    <div class="font-mono text-[10px] text-neo-blue font-bold uppercase tracking-widest mb-2 bg-black inline-block px-2 py-0.5">LEADERSHIP</div>
-                    <h3 class="text-2xl font-black uppercase mb-3 leading-tight">Technical Lead, Algorand Club</h3>
-                    <p class="font-mono text-sm text-gray-600 leading-relaxed">Technical Lead at Algorand Club, REVA University. Ran workshops and smart contract projects. Organised 5+ hackathons and competed in 16+ including Adobe India and HackRx.</p>
-                    <div class="mt-4 font-mono text-xs text-gray-400 border-t border-gray-200 pt-3">📅 2026 – Present</div>
-                </div>
-
+    <!-- ========== HACKATHON WALL ========== -->
+    <section id="hackathons" class="py-24 px-4 bg-white border-t-4 border-black relative overflow-hidden">
+        <div class="absolute top-10 right-10 text-9xl opacity-5 font-black select-none pointer-events-none rotate-12">16+</div>
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 border-b-4 border-black pb-4 reveal">
+                <h2 class="text-5xl md:text-8xl font-black uppercase tracking-tighter">
+                    HACKATHON<span class="text-neo-orange">_WALL</span>
+                </h2>
+                <p class="font-mono text-sm text-gray-500 font-bold mb-2">/// BATTLES_FOUGHT: 16+</p>
             </div>
+            <div id="hackathons-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+        </div>
+    </section>
+
+    <!-- ========== FREELANCE / CLIENT WORK ========== -->
+    <section id="freelance" class="py-24 px-4 bg-neo-black text-white border-t-4 border-black relative overflow-hidden">
+        <div class="absolute inset-0 opacity-20"
+            style="background-image: linear-gradient(#333 1px, transparent 1px), linear-gradient(90deg, #333 1px, transparent 1px); background-size: 40px 40px;">
+        </div>
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-8 border-b-4 border-white pb-4 reveal">
+                <h2 class="text-5xl md:text-8xl font-black uppercase tracking-tighter text-white">
+                    CLIENT<span class="text-neo-pink">_WORK</span>
+                </h2>
+                <p class="font-mono text-sm text-neo-pink font-bold mb-2">/// FREELANCE_MODE: ON</p>
+            </div>
+            <p id="freelance-intro" class="font-mono text-lg text-gray-400 max-w-2xl mb-12 reveal"></p>
+            <div id="freelance-projects" class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20"></div>
+
+            <div class="flex items-center gap-3 mb-6 reveal">
+                <div class="w-3 h-3 bg-neo-green rounded-full animate-pulse"></div>
+                <h3 class="font-mono text-white text-xl font-bold tracking-tighter">CLIENT_REPORTS.txt</h3>
+                <div class="px-2 bg-neo-pink text-black text-[10px] font-black uppercase">VERIFIED</div>
+            </div>
+        </div>
+        <div class="marquee-container group cursor-hover relative z-10">
+            <div class="marquee-content flex gap-8 py-8 px-4 select-none" id="reviews-marquee"></div>
         </div>
     </section>
 
@@ -1182,21 +860,20 @@
                     </div>
                 </div>
 
-                <form id="contact-form" class="space-y-6 bg-gray-50 p-6 border-2 border-black"
-                    onsubmit="event.preventDefault(); this.innerHTML='<div class=\'py-20 text-center\'><i class=\'ri-checkbox-circle-fill text-6xl text-neo-green mb-4 block\'></i><h3 class=\'text-2xl font-black uppercase\'>Transmission Received</h3><p class=\'font-mono text-sm mt-2\'>System response initialized. I will reach out shortly.</p></div>'">
+                <form id="contact-form" class="space-y-6 bg-gray-50 p-6 border-2 border-black">
                     <div class="flex flex-col">
                         <label class="font-mono font-bold mb-1 uppercase text-xs">Identity</label>
-                        <input type="text" placeholder="NAME / COMPANY"
+                        <input type="text" name="name" required placeholder="NAME / COMPANY"
                             class="bg-white border-2 border-black p-3 font-bold focus:outline-none focus:bg-neo-yellow focus:shadow-hard-sm transition-all cursor-hover">
                     </div>
                     <div class="flex flex-col">
                         <label class="font-mono font-bold mb-1 uppercase text-xs">Coordinates</label>
-                        <input type="email" placeholder="EMAIL ADDRESS"
+                        <input type="email" name="email" required placeholder="EMAIL ADDRESS"
                             class="bg-white border-2 border-black p-3 font-bold focus:outline-none focus:bg-neo-yellow focus:shadow-hard-sm transition-all cursor-hover">
                     </div>
                     <div class="flex flex-col">
                         <label class="font-mono font-bold mb-1 uppercase text-xs">Transmission</label>
-                        <textarea rows="4" placeholder="PROJECT DETAILS..."
+                        <textarea rows="4" name="message" required placeholder="PROJECT DETAILS..."
                             class="bg-white border-2 border-black p-3 font-bold focus:outline-none focus:bg-neo-yellow focus:shadow-hard-sm transition-all resize-none cursor-hover"></textarea>
                     </div>
                     <button type="submit"
@@ -1319,13 +996,21 @@
                     document.getElementById('created-at').textContent = formattedDate;
                 }
 
-                // Update contribution count (approximation) - only if element exists
+                // Real recent-commit count from public events (last ~90 days)
                 const contribHeader = document.getElementById('total-contributions');
                 const contribGrid = document.getElementById('total-contributions-grid');
-                const contribValue = `${(data.public_repos * 20) + (data.followers * 5)}+`;
-
-                if (contribHeader) contribHeader.textContent = contribValue;
-                if (contribGrid) contribGrid.textContent = contribValue;
+                try {
+                    const ev = await fetch('https://api.github.com/users/Pranav-error/events/public?per_page=100');
+                    const events = await ev.json();
+                    const commits = events.filter(e => e.type === 'PushEvent')
+                        .reduce((n, e) => n + ((e.payload && e.payload.commits) ? e.payload.commits.length : 0), 0);
+                    const v = commits > 0 ? commits + '+' : '—';
+                    if (contribHeader) contribHeader.textContent = v;
+                    if (contribGrid) contribGrid.textContent = v;
+                } catch (e) {
+                    if (contribHeader) contribHeader.textContent = '—';
+                    if (contribGrid) contribGrid.textContent = '—';
+                }
 
             } catch (error) {
                 console.error('Error fetching GitHub stats:', error);
@@ -1528,6 +1213,178 @@
             let scrolled = (winScroll / height) * 100;
             document.getElementById("progressBar").style.width = scrolled + "%";
         };
+
+        // ===== Mobile Menu =====
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('mobile-menu-icon');
+            const open = menu.classList.contains('hidden');
+            menu.classList.toggle('hidden', !open);
+            menu.classList.toggle('flex', open);
+            icon.className = open ? 'ri-close-line' : 'ri-menu-4-line';
+        }
+
+        // ===== Real Contact Form (FormSubmit) =====
+        const contactForm = document.getElementById('contact-form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const btn = contactForm.querySelector('button[type="submit"]');
+                const oldLabel = btn.textContent;
+                btn.textContent = 'TRANSMITTING...';
+                btn.disabled = true;
+                const fd = new FormData(contactForm);
+                fd.append('_subject', 'New message from saipranav.me');
+                fd.append('_template', 'table');
+                try {
+                    const r = await fetch('https://formsubmit.co/ajax/Rajasaipranav0@gmail.com', {
+                        method: 'POST',
+                        body: fd,
+                        headers: { 'Accept': 'application/json' }
+                    });
+                    if (!r.ok) throw new Error('send failed');
+                    contactForm.innerHTML = '<div class="py-20 text-center"><i class="ri-checkbox-circle-fill text-6xl text-neo-green mb-4 block"></i><h3 class="text-2xl font-black uppercase">Transmission Received</h3><p class="font-mono text-sm mt-2">Message sent. I will reach out shortly.</p></div>';
+                } catch (err) {
+                    btn.textContent = 'FAILED — EMAIL ME DIRECTLY ↑';
+                    btn.disabled = false;
+                    setTimeout(() => { btn.textContent = oldLabel; }, 4000);
+                }
+            });
+        }
+
+        // ===== Content Renderer (content.json) =====
+        const NEO = { yellow: 'neo-yellow', pink: 'neo-pink', blue: 'neo-blue', green: 'neo-green', purple: 'neo-purple', orange: 'neo-orange', red: 'neo-red' };
+        const esc = (t) => String(t ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        const neo = (c) => NEO[c] || 'neo-yellow';
+
+        function renderContent(data) {
+            // NOW ticker
+            const ticker = document.getElementById('now-ticker');
+            if (ticker && data.now?.length) {
+                const items = data.now.map(t => `<span class="px-6">⚡ NOW_BUILDING: ${esc(t)}</span>`).join('<span class="text-white">///</span>');
+                ticker.innerHTML = items + '<span class="text-white">///</span>' + items + '<span class="text-white">///</span>';
+            }
+
+            // Projects
+            const projects = document.getElementById('projects-grid');
+            if (projects && data.projects) {
+                projects.innerHTML = data.projects.map((p, i) => `
+                <article class="reveal tilt-card group bg-white border-4 border-black p-4 shadow-hard relative ${i % 2 ? 'mt-0 md:mt-20' : ''}">
+                    <span class="stamp -top-3 left-4 rotate-[-2deg]">WORK_0${i + 1}</span>
+                    <div class="bg-neo-black border-2 border-black aspect-video relative overflow-hidden mb-6 flex items-center justify-center p-4">
+                        <span class="font-mono text-${neo(p.color)} text-sm font-bold text-center">[ ${esc(p.tag)} ]</span>
+                    </div>
+                    <div class="flex justify-between items-start gap-4">
+                        <div>
+                            <h3 class="text-4xl font-black uppercase mb-2 group-hover:text-neo-red transition-colors glitch-hover">${esc(p.title)}</h3>
+                            <p class="font-mono text-sm mb-4">${esc(p.description)}</p>
+                            <div class="flex gap-2 font-mono text-xs font-bold flex-wrap">
+                                ${(p.tech || []).map(t => `<span class="bg-neo-black text-white px-2 py-1">${esc(t)}</span>`).join('')}
+                            </div>
+                        </div>
+                        <a href="${esc(p.link || 'https://github.com/Pranav-error')}" target="_blank" rel="noopener"
+                            class="shrink-0 w-12 h-12 border-2 border-black bg-neo-green flex items-center justify-center hover:bg-black hover:text-white transition-all cursor-hover shadow-hard-sm">
+                            <i class="ri-arrow-right-up-line text-2xl"></i>
+                        </a>
+                    </div>
+                </article>`).join('');
+            }
+
+            // Experience
+            const exp = document.getElementById('experience-timeline');
+            if (exp && data.experience) {
+                exp.innerHTML = data.experience.map(x => `
+                <div class="reveal relative pl-8 md:pl-16">
+                    <div class="absolute -left-[14px] top-2 w-6 h-6 bg-${neo(x.color)} border-4 border-black"></div>
+                    <div class="bg-white border-4 border-black p-6 shadow-hard hover:shadow-hard-xl transition-all">
+                        <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b-2 border-dashed border-gray-300 pb-4 mb-4 gap-2">
+                            <h3 class="text-2xl md:text-3xl font-black uppercase">${esc(x.role)}</h3>
+                            <span class="font-mono font-bold bg-neo-black text-white px-2 py-1 whitespace-nowrap">${esc(x.period)}</span>
+                        </div>
+                        <p class="font-mono text-xl mb-2 text-${neo(x.color)} font-bold">@ ${esc(x.company)}</p>
+                        <ul class="list-disc list-inside font-mono text-gray-700 space-y-1">
+                            ${(x.points || []).map(pt => `<li>${esc(pt)}</li>`).join('')}
+                        </ul>
+                    </div>
+                </div>`).join('');
+            }
+
+            // Achievements
+            const ach = document.getElementById('achievements-grid');
+            if (ach && data.achievements) {
+                ach.innerHTML = data.achievements.map(a => `
+                <div class="reveal tilt-card group bg-white border-4 border-black p-6 shadow-hard hover:shadow-hard-xl transition-all relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-${neo(a.color)}"></div>
+                    <div class="text-5xl mb-4">${a.emoji || '🏆'}</div>
+                    <div class="font-mono text-[10px] text-${neo(a.color)} font-bold uppercase tracking-widest mb-2 bg-black inline-block px-2 py-0.5">${esc(a.category)}</div>
+                    <h3 class="text-2xl font-black uppercase mb-3 leading-tight">${esc(a.title)}</h3>
+                    <p class="font-mono text-sm text-gray-600 leading-relaxed">${esc(a.description)}</p>
+                    <div class="mt-4 font-mono text-xs text-gray-400 border-t border-gray-200 pt-3">📅 ${esc(a.date)}</div>
+                </div>`).join('');
+            }
+
+            // Hackathon wall
+            const hack = document.getElementById('hackathons-grid');
+            if (hack && data.hackathons) {
+                const resultStyle = (r) => r === 'WINNER' ? 'bg-neo-yellow' : (r === 'FINALIST' || r.startsWith('TOP')) ? 'bg-neo-green' : 'bg-white';
+                hack.innerHTML = data.hackathons.map((h, i) => `
+                <div class="reveal tilt-card bg-white border-4 border-black p-5 shadow-hard relative ${i % 3 === 1 ? 'rotate-1' : i % 3 === 2 ? 'rotate-[-1deg]' : ''}">
+                    <div class="flex justify-between items-start mb-3">
+                        <span class="font-mono text-[10px] font-bold text-gray-400">#${String(i + 1).padStart(2, '0')} / ${esc(h.year)}</span>
+                        <span class="font-mono text-[10px] font-black px-2 py-0.5 border-2 border-black ${resultStyle(h.result)}">${esc(h.result)}</span>
+                    </div>
+                    <h3 class="text-xl font-black uppercase leading-tight mb-2">${esc(h.name)}</h3>
+                    <p class="font-mono text-xs text-gray-600 border-l-2 border-${neo(h.color)} pl-2">${esc(h.project)}</p>
+                </div>`).join('');
+            }
+
+            // Freelance
+            const fIntro = document.getElementById('freelance-intro');
+            if (fIntro && data.freelance?.intro) fIntro.textContent = data.freelance.intro;
+            const fProjects = document.getElementById('freelance-projects');
+            if (fProjects && data.freelance?.projects) {
+                fProjects.innerHTML = data.freelance.projects.map(f => `
+                <div class="reveal bg-neo-black border-4 border-white/20 p-6 hover:border-neo-pink transition-colors shadow-[6px_6px_0_rgba(255,112,166,0.2)] relative">
+                    <div class="font-mono text-[10px] text-neo-pink uppercase tracking-widest mb-2">CLIENT: ${esc(f.client)}</div>
+                    <h3 class="text-3xl font-black uppercase mb-3 text-white">${esc(f.name)}</h3>
+                    <p class="font-mono text-sm text-gray-400 mb-4">${esc(f.description)}</p>
+                    <div class="flex justify-between items-end">
+                        <div class="flex gap-2 font-mono text-[10px] font-bold flex-wrap">
+                            ${(f.tech || []).map(t => `<span class="border border-neo-pink/50 text-neo-pink px-2 py-1">${esc(t)}</span>`).join('')}
+                        </div>
+                        ${f.link ? `<a href="${esc(f.link)}" target="_blank" rel="noopener" class="font-mono text-xs text-neo-green border border-neo-green px-3 py-1 hover:bg-neo-green hover:text-black transition-all">VIEW →</a>` : ''}
+                    </div>
+                </div>`).join('');
+            }
+            const reviews = document.getElementById('reviews-marquee');
+            if (reviews && data.freelance?.reviews?.length) {
+                const card = (r, i) => `
+                <div class="flex-shrink-0 w-[340px] md:w-[450px] bg-neo-black border-4 border-white/10 p-8 hover:border-${neo(r.color)}/50 hover:-translate-y-2 transition-all duration-500 relative overflow-hidden text-left whitespace-normal">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-${neo(r.color)}"></div>
+                    <div class="flex justify-between items-start mb-6">
+                        <div class="font-mono text-${neo(r.color)} text-xs font-bold tracking-widest uppercase">REPORT_00${i + 1}.log</div>
+                    </div>
+                    <div class="font-mono text-gray-400 text-[10px] mb-2 uppercase tracking-tight">FROM: ${esc(r.from)}</div>
+                    <p class="font-bold text-xl leading-snug mb-6 text-white/90">"${esc(r.text)}"</p>
+                    <div class="flex text-${neo(r.color)}/60 gap-1 text-lg">${'<i class="ri-star-fill"></i>'.repeat(5)}</div>
+                </div>`;
+                const set = data.freelance.reviews.map(card).join('');
+                reviews.innerHTML = set + set; // duplicate for seamless loop
+            }
+
+            // Availability
+            if (data.meta?.availability) {
+                document.querySelectorAll('[data-availability]').forEach(el => el.textContent = data.meta.availability);
+            }
+
+            // Re-observe newly rendered reveal elements
+            document.querySelectorAll('.reveal:not(.active)').forEach(el => revealObserver.observe(el));
+        }
+
+        fetch('content.json?v=' + Date.now())
+            .then(r => r.json())
+            .then(renderContent)
+            .catch(err => console.error('content.json load failed:', err));
     </script>
 </body>
 

@@ -1,0 +1,165 @@
+{
+  "meta": {
+    "availability": "AVAILABLE FOR WORK",
+    "statusDot": "AVAILABLE"
+  },
+  "now": [
+    "Scorpio AI — Neural Anti-Piracy Engine for Google Solution Challenge 2026",
+    "Research paper on Explainable AI for breast cancer histopathology",
+    "Protocol frameworks for India's DPI @ iSPIRT",
+    "Arbix — cross-exchange arbitrage system on BNB Chain"
+  ],
+  "projects": [
+    {
+      "title": "OrbitClean",
+      "tag": "AWI SPACETECH HACKATHON — TOP 5",
+      "color": "green",
+      "description": "Satellite image processing system that detects illegal dumps using Sentinel-2A imagery and a Random Forest classifier. Route optimization engine using the Clarke-Wright algorithm with AUC 0.80 risk predictor over a 552-cell grid.",
+      "tech": ["PYTHON", "RANDOM FOREST", "SENTINEL-2A"],
+      "link": "https://github.com/Pranav-error/OrbitClean-2.0"
+    },
+    {
+      "title": "Aura AI",
+      "tag": "CARDANO HACKATHON ASIA — NATIONAL WINNER",
+      "color": "yellow",
+      "description": "Healthcare diagnostics tool that verifies patient data cryptographically without exposing raw records. Won against 200+ teams nationally. Hash-map based data structures for secure and efficient patient record handling.",
+      "tech": ["PYTHON", "CRYPTOGRAPHY", "CARDANO"],
+      "link": "https://github.com/Pranav-error/AURA-AI"
+    },
+    {
+      "title": "Architrust",
+      "tag": "GOOGLE DEEPMIND HACKATHON — FINALIST",
+      "color": "pink",
+      "description": "Distributed system that coordinates computation across independent nodes without centralizing data. Structured logging and benchmarking to track performance and handle node failures gracefully.",
+      "tech": ["DISTRIBUTED SYSTEMS", "C++", "NODE.JS"],
+      "link": "https://github.com/Pranav-error"
+    },
+    {
+      "title": "Spatial-Temporal Veracity",
+      "tag": "PERSONAL PATENT — FILED 2026",
+      "color": "purple",
+      "description": "Decentralized ledger system with graph algorithm-based verification to ensure data integrity at scale. Prevents tampering across distributed nodes using cryptographic proofs.",
+      "tech": ["DISTRIBUTED LEDGER", "GRAPH ALGORITHMS", "CRYPTOGRAPHY"],
+      "link": "https://github.com/Pranav-error"
+    }
+  ],
+  "experience": [
+    {
+      "role": "Software Engineering Intern, Full Stack",
+      "company": "MyStartupWave — Bangalore",
+      "period": "Dec 2025 – PRESENT",
+      "color": "yellow",
+      "points": [
+        "Built and shipped 10+ full-stack projects using Flutter, FastAPI, Node.js, and MongoDB from scratch to production.",
+        "Cut API response times by up to 35% by fixing bottlenecks and adding caching; handled rate limiting and error logging in live systems.",
+        "Applied OOP design patterns and data structures to keep codebases clean and maintainable across multiple projects."
+      ]
+    },
+    {
+      "role": "Project Intern, Cybersecurity Engineering",
+      "company": "iSPIRT Foundation (Sakram) — Bangalore",
+      "period": "Nov 2025 – PRESENT",
+      "color": "red",
+      "points": [
+        "Working on protocol frameworks for India's Digital Public Infrastructure (DPI) using C++ and Python.",
+        "Contributing to hardware-bound cryptographic validation and data integrity verification systems."
+      ]
+    },
+    {
+      "role": "Research Intern, Explainable AI",
+      "company": "CSIR–4Pi (Fourth Paradigm Institute) — Bangalore",
+      "period": "Jul 2025 – Jan 2026",
+      "color": "blue",
+      "points": [
+        "Built a medical image analysis pipeline for breast cancer detection using MedSAM, ResNet, and U-Net in PyTorch.",
+        "Added XAI heatmaps so doctors could understand model predictions; co-authoring a research paper on this work."
+      ]
+    }
+  ],
+  "achievements": [
+    {
+      "emoji": "🥇",
+      "category": "HACKATHON",
+      "color": "yellow",
+      "title": "National Hackathon Winner",
+      "description": "Won Cardano Hackathon Asia beating 200+ teams with Aura AI Diagnostics — a cryptographic healthcare verification tool.",
+      "date": "2025"
+    },
+    {
+      "emoji": "📄",
+      "category": "PATENT",
+      "color": "purple",
+      "title": "Personal Patent Filed",
+      "description": "Filed patent for Decentralized Spatial-Temporal Data Veracity System — a distributed ledger with graph algorithm-based tamper-proof verification.",
+      "date": "2026"
+    },
+    {
+      "emoji": "🏅",
+      "category": "HACKATHON",
+      "color": "pink",
+      "title": "Google DeepMind Finalist",
+      "description": "Reached the finals of Google DeepMind Hackathon with Architrust — a distributed, privacy-preserving computation system.",
+      "date": "2025"
+    },
+    {
+      "emoji": "🚀",
+      "category": "HACKATHON",
+      "color": "green",
+      "title": "AWI SpaceTech Top 5",
+      "description": "Top 5 finish at AWI SpaceTech Hackathon with OrbitClean — satellite image processing for illegal dump detection using Sentinel-2A and ML.",
+      "date": "2025"
+    },
+    {
+      "emoji": "🌐",
+      "category": "COMMUNITY",
+      "color": "orange",
+      "title": "Member, GDG Bangalore",
+      "description": "Member of Google Developer Groups (GDG) Bangalore — engaging with the developer community, attending tech talks, and collaborating on Google tech ecosystem projects.",
+      "date": "Feb 2026 – Present"
+    },
+    {
+      "emoji": "⚡",
+      "category": "LEADERSHIP",
+      "color": "blue",
+      "title": "Technical Lead, Algorand Club",
+      "description": "Technical Lead at Algorand Club, REVA University. Ran workshops and smart contract projects. Organised 5+ hackathons and competed in 16+ including Adobe India and HackRx.",
+      "date": "2026 – Present"
+    }
+  ],
+  "hackathons": [
+    { "name": "Cardano Hackathon Asia", "year": "2025", "result": "WINNER", "project": "Aura AI Diagnostics", "color": "yellow" },
+    { "name": "Google DeepMind Hackathon", "year": "2025", "result": "FINALIST", "project": "Architrust", "color": "pink" },
+    { "name": "AWI SpaceTech Hackathon", "year": "2025", "result": "TOP 5", "project": "OrbitClean", "color": "green" },
+    { "name": "Google Solution Challenge", "year": "2026", "result": "BUILT", "project": "Scorpio AI — Anti-Piracy Engine", "color": "blue" },
+    { "name": "Smart India Hackathon", "year": "2025", "result": "COMPETED", "project": "Botanical traceability on blockchain", "color": "purple" },
+    { "name": "Adobe India Hackathon", "year": "2025", "result": "COMPETED", "project": "—", "color": "red" },
+    { "name": "HackRx (Bajaj Finserv)", "year": "2025", "result": "COMPETED", "project": "AI Insurance Document Analyzer", "color": "orange" },
+    { "name": "DEEP Open Innovation", "year": "2025", "result": "COMPETED", "project": "Code Tribe", "color": "green" }
+  ],
+  "freelance": {
+    "intro": "I take on freelance builds — full-stack apps, AI integrations, and websites that don't look like everyone else's.",
+    "projects": [
+      {
+        "name": "Shree Nidhi Security Services",
+        "client": "Security services company, Bangalore",
+        "description": "Business website with service catalogue and lead-capture, built and delivered end-to-end.",
+        "tech": ["HTML/CSS", "JS", "VERCEL"],
+        "link": ""
+      },
+      {
+        "name": "VedaAI",
+        "client": "Teachers & educators",
+        "description": "AI-powered question paper generator that builds exam papers from syllabus input.",
+        "tech": ["PYTHON", "FASTAPI", "LLM"],
+        "link": "https://github.com/Pranav-error/VedaAI"
+      }
+    ],
+    "reviews": [
+      { "from": "Student @ L J University", "text": "Sai Pranav proved that no matter the pressure or how little time there is, he completes projects outstandingly.", "color": "green" },
+      { "from": "CEO @ Alpha Consultancy", "text": "Fast, reliable, and actually has good taste in design. A rare combination.", "color": "blue" },
+      { "from": "Student @ L J University", "text": "Cleanest code I've seen in years. He knows how to handle complex state management.", "color": "pink" },
+      { "from": "Dev @ CreativeChaos", "text": "Creative design ideas and a unique UI experience. The attention to detail is flawless.", "color": "purple" },
+      { "from": "UX Designer @ TechFlow", "text": "Highly intuitive UX. Delivered exactly what we needed before we even knew we needed it.", "color": "orange" }
+    ]
+  }
+}

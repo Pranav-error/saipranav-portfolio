@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>ADMIN // saipranav.me</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'neo-yellow': '#FBFF48', 'neo-pink': '#FF70A6', 'neo-blue': '#3B82F6',
+                        'neo-green': '#33FF57', 'neo-purple': '#A855F7', 'neo-orange': '#FF9F1C',
+                        'neo-red': '#FF2A2A', 'neo-white': '#FFFDF5', 'neo-black': '#121212',
+                    },
+                    fontFamily: {
+                        'display': ['"Space Grotesk"', 'sans-serif'],
+                        'mono': ['"JetBrains Mono"', 'monospace'],
+                    },
+                    boxShadow: {
+                        'hard': '4px 4px 0px 0px #000',
+                        'hard-sm': '2px 2px 0px 0px #000',
+                        'hard-lg': '8px 8px 0px 0px #000',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #FFFDF5;
+            background-image: radial-gradient(#000 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+    </style>
+</head>
+
+<body class="text-neo-black font-display antialiased min-h-screen pb-32">
+
+    <!-- Top bar -->
+    <nav class="sticky top-0 z-50 bg-neo-black text-white border-b-4 border-black px-4 py-3">
+        <div class="max-w-5xl mx-auto flex justify-between items-center gap-4 flex-wrap">
+            <div class="font-black text-xl">ADMIN<span class="text-neo-green">_PANEL</span> <span class="font-mono text-xs text-gray-400 ml-2 hidden sm:inline">saipranav.me</span></div>
+            <div class="flex gap-3 items-center">
+                <span id="save-status" class="font-mono text-xs text-gray-400"></span>
+                <button onclick="logout()" class="font-mono text-xs border border-white/30 px-3 py-2 hover:bg-white hover:text-black transition-all">LOGOUT</button>
+                <button onclick="saveAll()" id="save-btn"
+                    class="bg-neo-green text-black font-black px-6 py-2 border-2 border-black shadow-[3px_3px_0_#fff] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition-all">
+                    <i class="ri-save-3-fill mr-1"></i>SAVE & DEPLOY
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Login gate -->
+    <div id="login-view" class="max-w-lg mx-auto mt-24 px-4 hidden">
+        <div class="bg-white border-4 border-black shadow-hard-lg p-8">
+            <h1 class="text-4xl font-black uppercase mb-2">Login</h1>
+            <p class="font-mono text-sm text-gray-600 mb-6">Paste a GitHub <b>fine-grained personal access token</b> with <b>Contents: Read & Write</b> permission on <span class="bg-neo-yellow px-1">Pranav-error/saipranav-portfolio</span>.
+                Create one at <a class="underline font-bold" href="https://github.com/settings/personal-access-tokens/new" target="_blank">github.com/settings/personal-access-tokens/new</a>.</p>
+            <input id="token-input" type="password" placeholder="github_pat_..."
+                class="w-full bg-white border-2 border-black p-3 font-mono text-sm focus:outline-none focus:bg-neo-yellow mb-4">
+            <button onclick="login()" class="w-full bg-neo-black text-white font-black py-3 border-2 border-black shadow-hard hover:bg-neo-blue transition-all">UNLOCK →</button>
+            <p id="login-error" class="font-mono text-xs text-neo-red mt-3 hidden"></p>
+        </div>
+    </div>
+
+    <!-- Editor -->
+    <main id="editor-view" class="max-w-5xl mx-auto px-4 mt-10 hidden">
+        <div class="bg-neo-yellow border-2 border-black shadow-hard p-3 font-mono text-xs mb-8">
+            ⚡ Edits here commit <b>content.json</b> to GitHub → Vercel redeploys the live site in ~30 seconds.
+        </div>
+        <div id="sections"></div>
+    </main>
+
+    <!-- Toast -->
+    <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-[100] hidden bg-neo-black text-white border-4 border-neo-green font-mono text-sm px-6 py-4 shadow-[6px_6px_0_rgba(51,255,87,0.6)]"></div>
+
+    <script>
+        const OWNER = 'Pranav-error';
+        const REPO = 'saipranav-portfolio';
+        const BRANCH = 'main';
+        const FILE = 'content.json';
+        const API = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${FILE}`;
+
+        const COLORS = ['yellow', 'pink', 'blue', 'green', 'purple', 'orange', 'red'];
+        let state = null;
+        let fileSha = null;
+
+        // ---------- Schema ----------
+        const SECTIONS = [
+            { path: 'now', label: '⚡ Now Building (ticker)', kind: 'stringlist', hint: 'Short lines of what you are working on right now.' },
+            {
+                path: 'projects', label: '🛠 Projects', kind: 'objlist', fields: [
+                    { key: 'title', label: 'Title' },
+                    { key: 'tag', label: 'Banner tag (e.g. HACKATHON — WINNER)' },
+                    { key: 'color', label: 'Accent color', type: 'color' },
+                    { key: 'description', label: 'Description', type: 'textarea' },
+                    { key: 'tech', label: 'Tech (comma-separated)', type: 'csv' },
+                    { key: 'link', label: 'Repo / demo URL' },
+                ]
+            },
+            {
+                path: 'experience', label: '💼 Experience', kind: 'objlist', fields: [
+                    { key: 'role', label: 'Role' },
+                    { key: 'company', label: 'Company — City' },
+                    { key: 'period', label: 'Period (e.g. Dec 2025 – PRESENT)' },
+                    { key: 'color', label: 'Accent color', type: 'color' },
+                    { key: 'points', label: 'Bullet points (one per line)', type: 'lines' },
+                ]
+            },
+            {
+                path: 'achievements', label: '🏆 Achievements', kind: 'objlist', fields: [
+                    { key: 'emoji', label: 'Emoji' },
+                    { key: 'category', label: 'Category (HACKATHON / PATENT / ...)' },
+                    { key: 'color', label: 'Accent color', type: 'color' },
+                    { key: 'title', label: 'Title' },
+                    { key: 'description', label: 'Description', type: 'textarea' },
+                    { key: 'date', label: 'Date' },
+                ]
+            },
+            {
+                path: 'hackathons', label: '⚔️ Hackathon Wall', kind: 'objlist', fields: [
+                    { key: 'name', label: 'Hackathon name' },
+                    { key: 'year', label: 'Year' },
+                    { key: 'result', label: 'Result (WINNER / FINALIST / TOP 5 / COMPETED)' },
+                    { key: 'project', label: 'What you built' },
+                    { key: 'color', label: 'Accent color', type: 'color' },
+                ]
+            },
+            { path: 'freelance.intro', label: '💸 Freelance intro line', kind: 'text' },
+            {
+                path: 'freelance.projects', label: '💸 Client Projects', kind: 'objlist', fields: [
+                    { key: 'name', label: 'Project name' },
+                    { key: 'client', label: 'Client' },
+                    { key: 'description', label: 'Description', type: 'textarea' },
+                    { key: 'tech', label: 'Tech (comma-separated)', type: 'csv' },
+                    { key: 'link', label: 'Link (optional)' },
+                ]
+            },
+            {
+                path: 'freelance.reviews', label: '⭐ Client Reviews', kind: 'objlist', fields: [
+                    { key: 'from', label: 'From (e.g. CEO @ Company)' },
+                    { key: 'text', label: 'Review text', type: 'textarea' },
+                    { key: 'color', label: 'Accent color', type: 'color' },
+                ]
+            },
+        ];
+
+        // ---------- Path helpers ----------
+        const getPath = (obj, path) => path.split('.').reduce((o, k) => o?.[k], obj);
+        const setPath = (obj, path, val) => {
+            const keys = path.split('.');
+            const last = keys.pop();
+            const target = keys.reduce((o, k) => (o[k] = o[k] || {}), obj);
+            target[last] = val;
+        };
+
+        // ---------- Auth ----------
+        const token = () => localStorage.getItem('gh_token');
+
+        function logout() {
+            localStorage.removeItem('gh_token');
+            location.reload();
+        }
+
+        async function login() {
+            const t = document.getElementById('token-input').value.trim();
+            if (!t) return;
+            localStorage.setItem('gh_token', t);
+            const err = document.getElementById('login-error');
+            err.classList.add('hidden');
+            try {
+                await loadContent();
+            } catch (e) {
+                localStorage.removeItem('gh_token');
+                err.textContent = 'ERROR: ' + e.message;
+                err.classList.remove('hidden');
+            }
+        }
+
+        function ghHeaders() {
+            return {
+                'Authorization': 'Bearer ' + token(),
+                'Accept': 'application/vnd.github+json',
+                'X-GitHub-Api-Version': '2022-11-28'
+            };
+        }
+
+        // ---------- Load / Save ----------
+        async function loadContent() {
+            const r = await fetch(`${API}?ref=${BRANCH}`, { headers: ghHeaders() });
+            if (r.status === 401) throw new Error('Token rejected — check it has access to this repo.');
+            if (r.status === 404) throw new Error('content.json not found in repo — push it first.');
+            if (!r.ok) throw new Error('GitHub API error ' + r.status);
+            const j = await r.json();
+            fileSha = j.sha;
+            state = JSON.parse(decodeURIComponent(escape(atob(j.content.replace(/\n/g, '')))));
+            document.getElementById('login-view').classList.add('hidden');
+            document.getElementById('editor-view').classList.remove('hidden');
+            renderEditor();
+        }
+
+        async function saveAll() {
+            collectFromDOM();
+            const btn = document.getElementById('save-btn');
+            const status = document.getElementById('save-status');
+            btn.disabled = true;
+            btn.innerHTML = '<i class="ri-loader-4-line animate-spin mr-1"></i>SAVING...';
+            try {
+                const body = {
+                    message: 'Update site content via admin panel',
+                    content: btoa(unescape(encodeURIComponent(JSON.stringify(state, null, 2) + '\n'))),
+                    sha: fileSha,
+                    branch: BRANCH
+                };
+                const r = await fetch(API, { method: 'PUT', headers: ghHeaders(), body: JSON.stringify(body) });
+                if (!r.ok) {
+                    const j = await r.json().catch(() => ({}));
+                    throw new Error(j.message || ('HTTP ' + r.status));
+                }
+                const j = await r.json();
+                fileSha = j.content.sha;
+                toast('✅ Committed! Vercel is deploying — live in ~30s.');
+                status.textContent = 'saved ' + new Date().toLocaleTimeString();
+            } catch (e) {
+                toast('❌ Save failed: ' + e.message, true);
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<i class="ri-save-3-fill mr-1"></i>SAVE & DEPLOY';
+            }
+        }
+
+        function toast(msg, isErr) {
+            const t = document.getElementById('toast');
+            t.textContent = msg;
+            t.classList.remove('hidden');
+            t.style.borderColor = isErr ? '#FF2A2A' : '#33FF57';
+            clearTimeout(t._h);
+            t._h = setTimeout(() => t.classList.add('hidden'), 5000);
+        }
+
+        // ---------- Editor rendering ----------
+        const esc = (t) => String(t ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        const inputCls = 'w-full bg-white border-2 border-black p-2 font-mono text-sm focus:outline-none focus:bg-neo-yellow mb-3';
+
+        function fieldInput(sec, idx, f, value) {
+            const id = `f__${sec.path}__${idx}__${f.key}`;
+            if (f.type === 'textarea' || f.type === 'lines') {
+                const v = f.type === 'lines' ? (value || []).join('\n') : (value || '');
+                return `<label class="font-mono text-[10px] font-bold uppercase text-gray-500">${f.label}</label>
+                        <textarea id="${id}" rows="3" class="${inputCls}">${esc(v)}</textarea>`;
+            }
+            if (f.type === 'color') {
+                return `<label class="font-mono text-[10px] font-bold uppercase text-gray-500">${f.label}</label>
+                        <select id="${id}" class="${inputCls}">${COLORS.map(c => `<option ${c === value ? 'selected' : ''}>${c}</option>`).join('')}</select>`;
+            }
+            const v = f.type === 'csv' ? (value || []).join(', ') : (value || '');
+            return `<label class="font-mono text-[10px] font-bold uppercase text-gray-500">${f.label}</label>
+                    <input id="${id}" type="text" value="${esc(v)}" class="${inputCls}">`;
+        }
+
+        function renderEditor() {
+            const root = document.getElementById('sections');
+            root.innerHTML = SECTIONS.map(sec => {
+                const val = getPath(state, sec.path);
+                let body = '';
+                if (sec.kind === 'text') {
+                    body = `<input id="f__${sec.path}" type="text" value="${esc(val || '')}" class="${inputCls}">`;
+                } else if (sec.kind === 'stringlist') {
+                    body = (val || []).map((v, i) => `
+                        <div class="flex gap-2 mb-2">
+                            <input id="f__${sec.path}__${i}" type="text" value="${esc(v)}" class="${inputCls} mb-0 flex-1">
+                            <button onclick="removeItem('${sec.path}',${i})" class="border-2 border-black bg-neo-red text-white w-10 shrink-0 font-black hover:bg-black">✕</button>
+                        </div>`).join('');
+                } else {
+                    body = (val || []).map((item, i) => `
+                        <div class="border-2 border-black bg-gray-50 p-4 mb-4 relative">
+                            <div class="flex justify-between items-center mb-3">
+                                <span class="font-mono text-xs font-black bg-neo-black text-white px-2 py-0.5">#${i + 1}</span>
+                                <div class="flex gap-1">
+                                    <button onclick="moveItem('${sec.path}',${i},-1)" title="Move up" class="border-2 border-black bg-white w-8 h-8 font-black hover:bg-neo-yellow">↑</button>
+                                    <button onclick="moveItem('${sec.path}',${i},1)" title="Move down" class="border-2 border-black bg-white w-8 h-8 font-black hover:bg-neo-yellow">↓</button>
+                                    <button onclick="removeItem('${sec.path}',${i})" title="Delete" class="border-2 border-black bg-neo-red text-white w-8 h-8 font-black hover:bg-black">✕</button>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-4">
+                                ${sec.fields.map(f => `<div class="${f.type === 'textarea' || f.type === 'lines' ? 'md:col-span-2' : ''}">${fieldInput(sec, i, f, item[f.key])}</div>`).join('')}
+                            </div>
+                        </div>`).join('');
+                }
+                const addBtn = sec.kind === 'text' ? '' :
+                    `<button onclick="addItem('${sec.path}')" class="border-2 border-black bg-neo-green font-black px-4 py-2 shadow-hard-sm hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition-all font-mono text-sm">+ ADD</button>`;
+                return `
+                <section class="bg-white border-4 border-black shadow-hard p-6 mb-10">
+                    <h2 class="text-2xl font-black uppercase mb-1">${sec.label}</h2>
+                    ${sec.hint ? `<p class="font-mono text-xs text-gray-500 mb-4">${sec.hint}</p>` : '<div class="mb-4"></div>'}
+                    ${body}
+                    ${addBtn}
+                </section>`;
+            }).join('');
+        }
+
+        // ---------- Mutations ----------
+        function addItem(path) {
+            collectFromDOM();
+            const sec = SECTIONS.find(s => s.path === path);
+            const arr = getPath(state, path) || [];
+            if (sec.kind === 'stringlist') arr.push('');
+            else {
+                const blank = {};
+                sec.fields.forEach(f => blank[f.key] = (f.type === 'csv' || f.type === 'lines') ? [] : (f.type === 'color' ? 'yellow' : ''));
+                arr.push(blank);
+            }
+            setPath(state, path, arr);
+            renderEditor();
+        }
+
+        function removeItem(path, idx) {
+            if (!confirm('Delete item #' + (idx + 1) + '?')) return;
+            collectFromDOM();
+            getPath(state, path).splice(idx, 1);
+            renderEditor();
+        }
+
+        function moveItem(path, idx, dir) {
+            collectFromDOM();
+            const arr = getPath(state, path);
+            const j = idx + dir;
+            if (j < 0 || j >= arr.length) return;
+            [arr[idx], arr[j]] = [arr[j], arr[idx]];
+            renderEditor();
+        }
+
+        function collectFromDOM() {
+            if (!state) return;
+            SECTIONS.forEach(sec => {
+                if (sec.kind === 'text') {
+                    const el = document.getElementById(`f__${sec.path}`);
+                    if (el) setPath(state, sec.path, el.value);
+                } else if (sec.kind === 'stringlist') {
+                    const arr = [];
+                    let i = 0, el;
+                    while ((el = document.getElementById(`f__${sec.path}__${i}`))) { arr.push(el.value); i++; }
+                    setPath(state, sec.path, arr);
+                } else {
+                    const arr = getPath(state, sec.path) || [];
+                    arr.forEach((item, i) => {
+                        sec.fields.forEach(f => {
+                            const el = document.getElementById(`f__${sec.path}__${i}__${f.key}`);
+                            if (!el) return;
+                            if (f.type === 'csv') item[f.key] = el.value.split(',').map(s => s.trim()).filter(Boolean);
+                            else if (f.type === 'lines') item[f.key] = el.value.split('\n').map(s => s.trim()).filter(Boolean);
+                            else item[f.key] = el.value;
+                        });
+                    });
+                }
+            });
+        }
+
+        // Warn about unsaved changes
+        window.addEventListener('beforeunload', (e) => {
+            // only warn if editor is open
+            if (!document.getElementById('editor-view').classList.contains('hidden')) e.preventDefault();
+        });
+
+        // ---------- Boot ----------
+        (async () => {
+            if (token()) {
+                try { await loadContent(); return; } catch (e) { localStorage.removeItem('gh_token'); }
+            }
+            document.getElementById('login-view').classList.remove('hidden');
+        })();
+    </script>
+</body>
+
+</html>
