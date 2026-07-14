@@ -11,6 +11,14 @@
   ],
   "projects": [
     {
+      "title": "InfrX Mortgage Pipeline",
+      "tag": "INFRX 2026 HACKATHON — 2ND PLACE · ₹75K PRIZE",
+      "color": "blue",
+      "description": "Reads 100–2,000 page unstructured mortgage PDFs and reconstructs them: 91% classification accuracy across 27 document types, table stitching via probabilistic threading, VLM + Tesseract dual-mode extraction (~6.5 pages/sec at zero API cost).",
+      "tech": ["PYTHON", "GPT-4O VLM", "TESSERACT", "JS"],
+      "link": "https://github.com/Pranav-error/infrx-mortgage-pipeline"
+    },
+    {
       "title": "OrbitClean",
       "tag": "AWI SPACETECH HACKATHON — TOP 5",
       "color": "green",
@@ -78,6 +86,14 @@
   ],
   "achievements": [
     {
+      "emoji": "🥈",
+      "category": "HACKATHON",
+      "color": "blue",
+      "title": "InfrX 2026 — 2nd Place",
+      "description": "Won 2nd place and a ₹75,000 prize at the InfrX 2026 Hackathon with an AI mortgage document pipeline — 91% accuracy across 2,295 test pages. Team Noobda, REVA University.",
+      "date": "2026"
+    },
+    {
       "emoji": "🥇",
       "category": "HACKATHON",
       "color": "yellow",
@@ -127,6 +143,7 @@
     }
   ],
   "hackathons": [
+    { "name": "InfrX 2026", "year": "2026", "result": "2ND PLACE", "project": "Mortgage doc pipeline — ₹75,000 prize", "color": "blue" },
     { "name": "Cardano Hackathon Asia", "year": "2025", "result": "WINNER", "project": "Aura AI Diagnostics", "color": "yellow" },
     { "name": "Google DeepMind Hackathon", "year": "2025", "result": "FINALIST", "project": "Architrust", "color": "pink" },
     { "name": "AWI SpaceTech Hackathon", "year": "2025", "result": "TOP 5", "project": "OrbitClean", "color": "green" },
