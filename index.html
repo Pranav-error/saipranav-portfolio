@@ -8,10 +8,11 @@
 
     <!-- SEO Meta Tags -->
     <meta name="description"
-        content="R Sai Pranav | Full Stack Developer & AI/ML Engineer. 3 internships, national hackathon winner, personal patent. REVA University CSE.">
+        content="R Sai Pranav — Full Stack Developer & AI/ML Engineer. 2x hackathon prize winner (Cardano Asia, InfrX 2026), patent holder, 3 internships, 20+ hackathons. REVA University CSE, Bangalore.">
     <meta name="keywords"
         content="R Sai Pranav, Full Stack Developer, AI Engineer, Flutter, FastAPI, Python, C++, Node.js, Portfolio, Hackathon Winner, Patent">
     <meta name="author" content="R Sai Pranav">
+    <meta name="robots" content="index, follow, max-image-preview:large">
     <link rel="canonical" href="https://saipranav.me">
 
     <!-- Open Graph / Facebook -->
@@ -20,7 +21,12 @@
     <meta property="og:title" content="R SAI PRANAV | Full Stack Developer & AI Engineer">
     <meta property="og:description"
         content="Full Stack Developer & AI/ML Engineer. National hackathon winner, patent holder, 3 internships. Building systems that matter.">
-    <meta property="og:image" content="https://saipranav.me/Assets/images/og_icon.png">
+    <meta property="og:image" content="https://saipranav.me/Assets/images/og_card.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Sai Pranav — Full Stack Developer & AI/ML Engineer">
+    <meta property="og:site_name" content="saipranav.me">
+    <meta property="og:locale" content="en_US">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
@@ -28,7 +34,7 @@
     <meta property="twitter:title" content="R SAI PRANAV | Full Stack Developer & AI Engineer">
     <meta property="twitter:description"
         content="Full Stack Developer & AI/ML Engineer. National hackathon winner, patent holder, 3 internships. Building systems that matter.">
-    <meta property="twitter:image" content="https://saipranav.me/Assets/images/og_icon.png">
+    <meta property="twitter:image" content="https://saipranav.me/Assets/images/og_card.png">
 
     <!-- Google Tag Manager -->
     <script>(function (w, d, s, l, i) {
@@ -52,17 +58,39 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "R Sai Pranav",
-      "url": "https://saipranav.me",
-      "jobTitle": "Full Stack Developer & AI/ML Engineer",
-      "image": "Assets/images/og_icon.png",
-      "knowsAbout": ["Flutter", "FastAPI", "Python", "Java", "C++", "Node.js", "MongoDB", "Docker", "PyTorch", "System Design", "Cybersecurity", "Explainable AI"],
-      "sameAs": [
-        "https://github.com/Pranav-error",
-        "https://www.linkedin.com/in/rsaipranav"
-      ],
-      "description": "Full Stack Developer & AI/ML Engineer. 3 internships, national hackathon winner (Cardano Asia), personal patent holder, REVA University CSE."
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://saipranav.me/#person",
+          "name": "R Sai Pranav",
+          "url": "https://saipranav.me",
+          "jobTitle": "Full Stack Developer & AI/ML Engineer",
+          "image": "https://saipranav.me/Assets/images/og_card.png",
+          "email": "mailto:Rajasaipranav0@gmail.com",
+          "address": { "@type": "PostalAddress", "addressLocality": "Bangalore", "addressRegion": "Karnataka", "addressCountry": "IN" },
+          "alumniOf": { "@type": "CollegeOrUniversity", "name": "REVA University" },
+          "award": [
+            "Winner, Cardano Hackathon Asia 2025 ($2,000 prize, 200+ teams)",
+            "2nd Place, InfrX 2026 Hackathon (₹75,000 prize)",
+            "Finalist, Google DeepMind Hackathon 2025",
+            "Top 5, AWI SpaceTech Hackathon 2025"
+          ],
+          "knowsAbout": ["Flutter", "FastAPI", "Python", "Java", "C++", "Node.js", "MongoDB", "Docker", "PyTorch", "System Design", "Cybersecurity", "Explainable AI"],
+          "sameAs": [
+            "https://github.com/Pranav-error",
+            "https://www.linkedin.com/in/rsaipranav"
+          ],
+          "description": "Full Stack Developer & AI/ML Engineer. 2x hackathon prize winner, personal patent holder, 3 internships, 20+ hackathons. REVA University CSE."
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://saipranav.me/#website",
+          "url": "https://saipranav.me",
+          "name": "saipranav.me",
+          "publisher": { "@id": "https://saipranav.me/#person" },
+          "inLanguage": "en"
+        }
+      ]
     }
     </script>
 
@@ -71,7 +99,8 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link type="logo" rel="icon" href="Assets/images/title_icon.png">
+    <link rel="icon" type="image/png" href="Assets/images/title_icon.png">
+    <link rel="apple-touch-icon" href="Assets/images/title_icon.png">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap"
