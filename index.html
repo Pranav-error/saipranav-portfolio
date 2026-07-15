@@ -463,7 +463,7 @@
                     class="px-3 py-1 font-mono font-bold text-sm hover:bg-black hover:text-white transition-colors cursor-hover">/CLIENTS</a>
                 <a href="#contact"
                     class="px-3 py-1 font-mono font-bold text-sm bg-neo-yellow border border-black hover:bg-neo-pink transition-colors cursor-hover">CONTACT</a>
-                <button onclick="toggleTheme()" title="Toggle dark mode"
+                <button onclick="toggleTheme()" title="Toggle dark mode" aria-label="Toggle dark mode"
                     class="px-3 py-1 border border-black bg-neo-black text-neo-yellow hover:bg-neo-purple hover:text-white transition-colors cursor-hover">
                     <i class="theme-icon ri-moon-fill"></i>
                 </button>
@@ -471,11 +471,11 @@
 
             <!-- Mobile: theme + menu buttons -->
             <div class="md:hidden flex gap-2">
-                <button onclick="toggleTheme()" title="Toggle dark mode"
+                <button onclick="toggleTheme()" title="Toggle dark mode" aria-label="Toggle dark mode"
                     class="bg-neo-black text-neo-yellow border-2 border-black w-11 h-11 flex items-center justify-center shadow-hard text-xl cursor-hover">
                     <i class="theme-icon ri-moon-fill"></i>
                 </button>
-            <button id="mobile-menu-btn" onclick="toggleMobileMenu()"
+            <button id="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Open menu"
                 class="md:hidden bg-white border-2 border-black w-11 h-11 flex items-center justify-center shadow-hard text-2xl cursor-hover">
                 <i class="ri-menu-4-line" id="mobile-menu-icon"></i>
             </button>
@@ -838,14 +838,14 @@
     
 
     <!-- Back to top -->
-    <button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top"
+    <button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top" aria-label="Back to top"
         class="fixed bottom-6 left-6 z-[100] bg-neo-yellow text-black border-4 border-black w-12 h-12 font-black text-xl shadow-hard hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all cursor-hover flex items-center justify-center">
         <i class="ri-arrow-up-line"></i>
     </button>
 
     <!-- ========== TERMINAL FLOATING BUTTON ========== -->
     <button id="terminal-fab"
-        onclick="openTerminal()"
+        onclick="openTerminal()" aria-label="Open terminal"
         class="fixed bottom-6 right-6 z-[100] bg-neo-black text-neo-green border-4 border-neo-green font-mono font-black text-sm px-4 py-3 shadow-[4px_4px_0_rgba(51,255,87,1)] hover:bg-neo-green hover:text-black hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all cursor-hover flex items-center gap-2">
         <i class="ri-terminal-box-fill text-lg"></i> TERMINAL
     </button>
@@ -1021,13 +1021,13 @@
             <div>
                 <h3 class="font-bold text-neo-green mb-4 border-b border-gray-700 pb-2">SOCIALS</h3>
                 <div class="flex gap-4">
-                    <a href="mailto:Rajasaipranav0@gmail.com"
+                    <a href="mailto:Rajasaipranav0@gmail.com" aria-label="Email Sai Pranav"
                         class="text-2xl hover:text-neo-blue transition-colors cursor-hover"><i
                             class="ri-mail-fill"></i></a>
-                    <a href="https://github.com/Pranav-error"
+                    <a href="https://github.com/Pranav-error" target="_blank" rel="noopener" aria-label="Sai Pranav on GitHub"
                         class="text-2xl hover:text-neo-yellow transition-colors cursor-hover"><i
                             class="ri-github-fill"></i></a>
-                    <a href="https://www.linkedin.com/in/rsaipranav"
+                    <a href="https://www.linkedin.com/in/rsaipranav" target="_blank" rel="noopener" aria-label="Sai Pranav on LinkedIn"
                         class="text-2xl hover:text-neo-purple transition-colors cursor-hover"><i
                             class="ri-linkedin-fill"></i></a>
                 </div>
