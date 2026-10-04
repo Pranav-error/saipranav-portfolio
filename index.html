@@ -37,22 +37,19 @@
     <meta name="twitter:image" content="https://saipranav.me/Assets/images/og_card.png">
 
     <!-- Google Tag Manager -->
-    <script>(function (w, d, s, l, i) {
+    <script>window.addEventListener('load', function () { (function (w, d, s, l, i) {
             w[l] = w[l] || []; w[l].push({
                 'gtm.start':
                     new Date().getTime(), event: 'gtm.js'
             }); var f = d.getElementsByTagName(s)[0],
                 j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
                     'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
-        })(window, document, 'script', 'dataLayer', 'GTM-TLNG322R');</script>
+        })(window, document, 'script', 'dataLayer', 'GTM-TLNG322R'); });</script>
     <!-- End Google Tag Manager -->
     <title>R Sai Pranav | Software Engineer & AI/ML Engineer</title>
 
     <!-- Theme & Performance -->
     <meta name="theme-color" content="#121212">
-    <link rel="preload"
-        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@700&family=Space+Grotesk:wght@800&display=swap"
-        as="style">
 
     <!-- JSON-LD Structured Data for Search Engines -->
     <script type="application/ld+json">
@@ -105,18 +102,11 @@
     }
     </script>
 
+    <link rel="preload" href="/Assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/Assets/fonts/jetbrains-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="styles.css">
-
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css"></noscript>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="icon" type="image/png" href="Assets/images/title_icon.png">
     <link rel="apple-touch-icon" href="Assets/images/title_icon.png">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
 
 
     <style>
@@ -366,6 +356,8 @@
         html.dark .bg-neo-white.text-black { color: #FFFDF5; }
 
         html.dark h1 { mix-blend-mode: normal; }
+        html.dark .text-gray-500 { color: #9a9a9a !important; }
+        html.dark [style*="text-stroke"] { -webkit-text-stroke-color: #FFFDF5 !important; }
 
         .stamp {
             position: absolute;

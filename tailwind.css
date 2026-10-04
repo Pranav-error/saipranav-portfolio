@@ -1,3 +1,52 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Self-hosted latin subsets (variable fonts) — no third-party connection on the critical path. */
+@font-face {
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url(/Assets/fonts/space-grotesk-latin.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 100 800;
+  font-display: swap;
+  src: url(/Assets/fonts/jetbrains-mono-latin.woff2) format('woff2');
+}
+
+/* ponytail: Remix Icon subset to the 19 glyphs in use (1.7 KB vs 144 KB).
+   Using a new ri-* icon means re-running pyftsubset with its codepoint and adding its rule here. */
+@font-face {
+  font-family: 'remixicon';
+  font-display: block;
+  src: url(/Assets/fonts/remixicon-subset.woff2) format('woff2');
+}
+.ri-arrow-right-line:before { content: "\ea6c"; }
+.ri-arrow-right-up-line:before { content: "\ea70"; }
+.ri-arrow-up-line:before { content: "\ea76"; }
+.ri-checkbox-circle-fill:before { content: "\eb80"; }
+.ri-close-line:before { content: "\eb99"; }
+.ri-code-s-slash-line:before { content: "\ebad"; }
+.ri-download-line:before { content: "\ec5a"; }
+.ri-github-fill:before { content: "\edca"; }
+.ri-global-line:before { content: "\edcf"; }
+.ri-google-play-fill:before { content: "\edd6"; }
+.ri-linkedin-fill:before { content: "\eeb5"; }
+.ri-mail-fill:before { content: "\eef3"; }
+.ri-mail-line:before { content: "\eef6"; }
+.ri-map-pin-line:before { content: "\ef14"; }
+.ri-menu-4-line:before { content: "\ef36"; }
+.ri-moon-fill:before { content: "\ef72"; }
+.ri-star-fill:before { content: "\f186"; }
+.ri-sun-fill:before { content: "\f1bc"; }
+.ri-terminal-box-fill:before { content: "\f1f5"; }
+[class^="ri-"], [class*=" ri-"] {
+  font-family: 'remixicon' !important;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
