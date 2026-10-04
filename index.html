@@ -210,6 +210,36 @@
             transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
+        /* Contribution heatmap */
+        .contrib-stat { border: 2px solid rgba(255,255,255,0.15); padding: 12px 14px; background: #141414; }
+        .contrib-stat-label { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 4px; }
+        .contrib-stat-value { font-family: 'Space Grotesk', sans-serif; font-weight: 800; font-size: 1.6rem; line-height: 1.1; color: #fff; letter-spacing: -0.03em; }
+        .contrib-stat-value small { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; color: #33FF57; letter-spacing: 0.05em; margin-left: 6px; }
+        .contrib-wrap { display: grid; grid-template-columns: auto 1fr; gap: 8px; min-width: 720px; }
+        .contrib-days { display: grid; grid-template-rows: 18px repeat(7, 1fr); gap: 3px; font-size: 10px; color: rgba(255,255,255,0.5); }
+        .contrib-days span { display: flex; align-items: center; }
+        .contrib-days span:first-child { height: 18px; }
+        .contrib-months { display: grid; height: 18px; margin-bottom: 3px; font-size: 10px; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 0.1em; }
+        .contrib-grid { display: grid; grid-template-rows: repeat(7, 1fr); grid-auto-flow: column; gap: 3px; }
+        .contrib-cell { display: inline-block; width: 11px; height: 11px; background: #1c1c1c; outline: 1px solid rgba(255,255,255,0.04); outline-offset: -1px; }
+        .contrib-grid .contrib-cell { width: auto; height: auto; aspect-ratio: 1; transform: scale(0.3); opacity: 0;
+            transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s; transition-delay: calc(var(--c) * 14ms); }
+        .contrib-grid.lit .contrib-cell { transform: scale(1); opacity: 1; }
+        .contrib-grid .contrib-cell:hover { outline: 2px solid #fff; outline-offset: 0; z-index: 1; }
+        .contrib-cell[data-l="1"] { background: #0f4d24; }
+        .contrib-cell[data-l="2"] { background: #13873a; }
+        .contrib-cell[data-l="3"] { background: #22c55e; }
+        .contrib-cell[data-l="4"] { background: #33FF57; box-shadow: 0 0 10px rgba(51, 255, 87, 0.55); }
+        .contrib-cell.pad { visibility: hidden; }
+        .contrib-tip { position: absolute; pointer-events: none; opacity: 0; transform: translate(-50%, -100%); white-space: nowrap; z-index: 5;
+            background: #33FF57; color: #121212; font-size: 11px; font-weight: 800; padding: 6px 10px; border: 2px solid #121212; box-shadow: 3px 3px 0 #fff; transition: opacity 0.1s; }
+        .contrib-tip.on { opacity: 1; }
+        @media (prefers-reduced-motion: reduce) { .contrib-grid .contrib-cell { transition: none; transform: none; opacity: 1; } }
+
+        /* Above-the-fold: animate in CSS so it paints without waiting for JS */
+        .hero-in { animation: hero-in 0.6s cubic-bezier(0.25, 1, 0.5, 1) both; }
+        @keyframes hero-in { from { opacity: 0; transform: translateY(40px); } }
+
         .reveal.active {
             opacity: 1;
             transform: translateY(0);
@@ -478,17 +508,17 @@
         <div
             class="absolute bottom-1/3 right-[10%] w-24 h-24 bg-neo-pink rounded-full border-4 border-black shadow-hard hidden lg:block animate-pulse">
         </div>
-        <div class="absolute top-20 right-20 text-9xl opacity-5 font-black select-none pointer-events-none">CODE</div>
+        <div aria-hidden="true" class="absolute top-20 right-20 text-9xl opacity-5 font-black select-none pointer-events-none">CODE</div>
 
         <div class="relative z-10 text-center max-w-5xl">
-            <div class="reveal mb-6">
+            <div class="hero-in mb-6">
                 <div class="inline-block bg-neo-white border-2 border-black px-4 py-1 shadow-hard rotate-[-2deg]">
                     <span class="font-mono font-bold text-neo-green bg-black px-2 mr-2">●</span>
                     <span class="font-mono font-bold" data-availability>AVAILABLE FOR WORK</span>
                 </div>
             </div>
 
-            <div class="relative inline-block reveal">
+            <div class="relative inline-block hero-in">
                 <span class="sticker bg-neo-pink -top-6 -right-4 md:-right-16 rotate-[8deg] hidden sm:block">🏆 NATIONAL WINNER</span>
                 <span class="sticker bg-neo-purple text-white -left-4 md:-left-20 top-1/3 rotate-[-10deg] hidden sm:block">📄 PATENT FILED</span>
                 <span class="sticker bg-neo-green -bottom-4 right-8 rotate-[-4deg] hidden sm:block">⚔️ 20+ HACKATHONS</span>
@@ -500,15 +530,15 @@
             </div>
 
             <p
-                class="font-mono text-4xl md:text-6xl font-black max-w-2xl mx-auto mt-6 mb-6 bg-neo-yellow border-2 border-black p-4 shadow-hard reveal rotate-1 uppercase tracking-tight">
+                class="font-mono text-4xl md:text-6xl font-black max-w-2xl mx-auto mt-6 mb-6 bg-neo-yellow border-2 border-black p-4 shadow-hard hero-in rotate-1 uppercase tracking-tight">
                 Sai Pranav
             </p>
 
-            <div class="reveal mb-10 font-mono font-bold text-lg md:text-2xl bg-neo-black text-neo-green inline-block px-6 py-3 border-2 border-black shadow-hard rotate-[-1deg]">
+            <div class="hero-in mb-10 font-mono font-bold text-lg md:text-2xl bg-neo-black text-neo-green inline-block px-6 py-3 border-2 border-black shadow-hard rotate-[-1deg]">
                 <span class="text-white/40">&gt;_</span> <span id="role-typer">AI/ML ENGINEER</span><span class="type-caret"></span>
             </div>
 
-            <div class="flex justify-center gap-4 flex-wrap reveal">
+            <div class="flex justify-center gap-4 flex-wrap hero-in">
                 <a href="Assets/Resume/Sai%20Pranav%20Resume.pdf" download="R Sai Pranav Resume - SDE.pdf"
                     class="bg-neo-white text-black border-2 border-black px-8 py-5 text-xl font-bold shadow-hard hover:bg-neo-pink hover:text-black hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all cursor-hover flex items-center justify-center gap-2">
                     <i class="ri-download-line"></i> SDE CV
@@ -822,13 +852,41 @@
             </div>
 
             <!-- Contribution graph -->
-            <div class="reveal border-4 border-white bg-white p-4 shadow-[8px_8px_0_#33FF57] mb-12">
-                <div class="flex justify-between items-center mb-3 border-b-2 border-black pb-2">
-                    <span class="font-mono text-black text-xs font-black uppercase tracking-widest">12-Month Commit Matrix</span>
-                    <span class="font-mono text-[10px] text-gray-500">github.com/Pranav-error</span>
+            <div id="contrib-card" class="reveal relative border-4 border-white p-5 md:p-8 shadow-[8px_8px_0_#33FF57] mb-12" style="background:#0d0d0d">
+                <div class="flex flex-col md:flex-row md:justify-between md:items-end gap-2 mb-6 border-b-2 border-white/20 pb-4">
+                    <div>
+                        <div class="font-mono text-[10px] text-neo-green uppercase tracking-widest mb-1">&gt;_ contribution_matrix --last 365d</div>
+                        <h3 class="text-3xl md:text-4xl font-black uppercase tracking-tighter text-white">
+                            <span id="contrib-total">----</span> <span class="text-neo-green">contributions</span>
+                        </h3>
+                    </div>
+                    <a href="https://github.com/Pranav-error" target="_blank" rel="noopener" class="font-mono text-xs text-white/60 hover:text-neo-green transition-colors">github.com/Pranav-error ↗</a>
                 </div>
-                <img src="https://ghchart.rshah.org/121212/Pranav-error" alt="GitHub contribution graph for Pranav-error" width="828" height="128" loading="lazy" decoding="async"
-                    class="w-full h-auto" style="image-rendering: auto;" />
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8 font-mono">
+                    <div class="contrib-stat"><div class="contrib-stat-label">Longest streak</div><div class="contrib-stat-value" id="contrib-longest">--</div></div>
+                    <div class="contrib-stat"><div class="contrib-stat-label">Current streak</div><div class="contrib-stat-value" id="contrib-current">--</div></div>
+                    <div class="contrib-stat"><div class="contrib-stat-label">Best day</div><div class="contrib-stat-value" id="contrib-best">--</div></div>
+                    <div class="contrib-stat"><div class="contrib-stat-label">Most active</div><div class="contrib-stat-value" id="contrib-weekday">--</div></div>
+                </div>
+
+                <div id="contrib-scroll" class="overflow-x-auto pb-2">
+                    <div class="contrib-wrap">
+                        <div class="contrib-days font-mono" aria-hidden="true"><span></span><span></span><span>Mon</span><span></span><span>Wed</span><span></span><span>Fri</span><span></span></div>
+                        <div>
+                            <div id="contrib-months" class="contrib-months font-mono" aria-hidden="true"></div>
+                            <div id="contrib-grid" class="contrib-grid" role="img" aria-label="GitHub contribution heatmap for the last 12 months"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-between items-center mt-4 font-mono text-[10px] text-white/60 uppercase tracking-widest">
+                    <span id="contrib-range"></span>
+                    <span class="flex items-center gap-1.5">Less
+                        <i class="contrib-cell" data-l="0"></i><i class="contrib-cell" data-l="1"></i><i class="contrib-cell" data-l="2"></i><i class="contrib-cell" data-l="3"></i><i class="contrib-cell" data-l="4"></i>
+                    More</span>
+                </div>
+                <div id="contrib-tip" class="contrib-tip font-mono" role="tooltip"></div>
             </div>
 
             <!-- Command line footer -->
@@ -1077,7 +1135,7 @@
         </div>
 
         <div
-            class="absolute bottom-0 left-0 w-full text-[20vw] font-black text-white opacity-[0.03] leading-none select-none pointer-events-none text-center">
+            aria-hidden="true" class="absolute bottom-0 left-0 w-full text-[20vw] font-black text-white opacity-[0.03] leading-none select-none pointer-events-none text-center">
             BRUTAL
         </div>
     </footer>
@@ -1147,8 +1205,7 @@
             } catch (e) {
                 // Fallback: yearly contribution total (survives GitHub API rate limits)
                 try {
-                    const r = await fetch('https://github-contributions-api.jogruber.de/v4/Pranav-error?y=last');
-                    const j = await r.json();
+                    const j = await contributions;
                     const total = j.total && (j.total.lastYear ?? Object.values(j.total)[0]);
                     if (total) commitsEl.textContent = total + '+';
                 } catch (e2) {
@@ -1157,6 +1214,68 @@
             }
         }
 
+        const contributions = fetch('https://github-contributions-api.jogruber.de/v4/Pranav-error?y=last').then(r => r.json());
+
+        function renderContribGraph({ contributions: days, total }) {
+            const grid = document.getElementById('contrib-grid');
+            const fmt = (d, o) => new Date(d + 'T00:00:00').toLocaleDateString('en-US', o);
+            const pad = new Date(days[0].date + 'T00:00:00').getDay();
+            const cols = Math.ceil((pad + days.length) / 7);
+            grid.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
+
+            let html = '<i class="contrib-cell pad"></i>'.repeat(pad);
+            days.forEach((d, i) => {
+                html += `<i class="contrib-cell" data-l="${d.level}" data-n="${d.count}" data-d="${d.date}" style="--c:${Math.floor((pad + i) / 7)}"></i>`;
+            });
+            grid.innerHTML = html;
+
+            const months = document.getElementById('contrib-months');
+            months.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
+            months.innerHTML = days.map((d, i) => [d, Math.floor((pad + i) / 7)])
+                .filter(([d, col]) => d.date.endsWith('-01') && col < cols - 2)
+                .map(([d, col]) => `<span style="grid-column:${col + 1} / span 4">${fmt(d.date, { month: 'short' })}</span>`).join('');
+
+            // Streaks, best day, busiest weekday
+            let longest = 0, run = 0, best = days[0];
+            const byDay = Array(7).fill(0);
+            days.forEach(d => {
+                run = d.count ? run + 1 : 0; longest = Math.max(longest, run);
+                if (d.count > best.count) best = d;
+                byDay[new Date(d.date + 'T00:00:00').getDay()] += d.count;
+            });
+            let current = 0;
+            for (let i = days.length - 1 - (days[days.length - 1].count ? 0 : 1); i >= 0 && days[i].count; i--) current++;
+            const wd = byDay.indexOf(Math.max(...byDay));
+            const set = (id, v) => { document.getElementById(id).innerHTML = v; };
+            set('contrib-total', (total.lastYear ?? Object.values(total)[0]).toLocaleString('en-US'));
+            set('contrib-longest', `${longest}<small>DAYS</small>`);
+            set('contrib-current', `${current}<small>DAYS</small>`);
+            set('contrib-best', `${best.count}<small>${fmt(best.date, { month: 'short', day: 'numeric' }).toUpperCase()}</small>`);
+            set('contrib-weekday', `${['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'][wd]}<small>${byDay[wd].toLocaleString('en-US')}</small>`);
+            set('contrib-range', `${fmt(days[0].date, { month: 'short', year: 'numeric' })} — ${fmt(days[days.length - 1].date, { month: 'short', year: 'numeric' })}`);
+
+            // Light up in a left-to-right wave when scrolled into view
+            new IntersectionObserver((entries, obs) => {
+                if (entries[0].isIntersecting) { grid.classList.add('lit'); obs.disconnect(); }
+            }, { threshold: 0.3 }).observe(grid);
+            const scroller = document.getElementById('contrib-scroll');
+            scroller.scrollLeft = scroller.scrollWidth;
+
+            const card = document.getElementById('contrib-card'), tip = document.getElementById('contrib-tip');
+            grid.addEventListener('mouseover', e => {
+                const c = e.target.closest('.contrib-cell[data-d]');
+                if (!c) return;
+                const n = +c.dataset.n;
+                tip.textContent = `${n ? n : 'No'} contribution${n === 1 ? '' : 's'} · ${fmt(c.dataset.d, { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' })}`;
+                const r = c.getBoundingClientRect(), cr = card.getBoundingClientRect();
+                tip.style.left = Math.min(Math.max(r.left + r.width / 2 - cr.left, 110), cr.width - 110) + 'px';
+                tip.style.top = (r.top - cr.top - 8) + 'px';
+                tip.classList.add('on');
+            });
+            grid.addEventListener('mouseleave', () => tip.classList.remove('on'));
+        }
+
+        contributions.then(renderContribGraph).catch(e => console.error('contribution graph failed:', e));
         fetchGitHubStats();
 
         // Terminal modal logic
