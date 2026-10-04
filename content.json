@@ -611,34 +611,49 @@
         "VERCEL"
       ],
       "link": "https://nextjs-boilerplate-delta-opal-41.vercel.app"
+    },
+    {
+      "title": "LLM Fine-Tuning (LoRA / PEFT)",
+      "category": "ML RESEARCH & HEALTHCARE AI",
+      "featured": "",
+      "tag": "PERSONAL PROJECT",
+      "color": "orange",
+      "description": "Fine-tuned the open-weight Qwen2.5-3B with LoRA / PEFT and Hugging Face Transformers on a custom instruction dataset built from the MedSAM segmentation work.",
+      "tech": [
+        "PYTORCH",
+        "HUGGING FACE",
+        "LORA / PEFT",
+        "QWEN2.5"
+      ],
+      "link": ""
     }
   ],
   "experience": [
     {
-      "role": "Software Engineer",
-      "company": "Cepheid (Danaher)",
+      "role": "SDE Intern, MES",
+      "company": "Cepheid India Pvt Ltd (Danaher) — Bangalore",
       "period": "Sep 2026 – PRESENT",
       "color": "blue",
       "points": [
-        "Software engineer on the Manufacturing Execution Systems (MES) team.",
-        "Working on AI-assisted support tooling and automated test workflows for manufacturing systems."
+        "Develop and maintain production REST Web APIs integrating with Siemens Opcenter MES, customized to business needs, on SQL Server and AWS infrastructure.",
+        "Work in an Agile model with monthly sprints across the full development lifecycle, from user stories to iterative deployment, maintaining code running in live manufacturing."
       ]
     },
     {
       "role": "Open Source Contributor",
-      "company": "PostgreSQL ecosystem, OSGeo, GNU Radio, JabRef, Kubernetes",
+      "company": "PostgreSQL ecosystem (pgmoneta, pgagroal, pgvictoria), OSGeo GRASS GIS, GNU Radio, JabRef, Kubernetes",
       "period": "Aug 2026 – PRESENT",
       "color": "green",
       "points": [
-        "40 merged PRs across 6 upstream projects — pgagroal (15), pgmoneta (13), GRASS GIS (5), JabRef (3), GNU Radio (2), kubernetes/website (2).",
-        "Memory-safety and robustness fixes in C: unchecked allocations, buffer bounds, freed-pointer reuse, fd leaks and error-path NULL derefs; corner-case tests for the helpers fixed.",
-        "In review: constant-time SCRAM proof checks (CRYPTO_memcmp), TLS peer verification and spec-compliant Prometheus output across pgagroal / pgmoneta / pgexporter / pgvictoria."
+        "50+ patches merged across 7 upstream projects — pgmoneta (22), pgagroal (15), pgvictoria (7), GRASS GIS (5), JabRef (3), GNU Radio (2), kubernetes/website (2) — with 20+ more under review.",
+        "Found and fixed memory-safety defects in C — a stack-buffer overflow from an unbounded strcat, unchecked realloc crashes, freed-pointer reuse and fd leaks — and root-caused an intermittent CI hang to an unbounded retry loop.",
+        "Security fix (in review) in interviewstreet/hiring-agent (7k★, HackerRank OSS): closed a prompt-injection hole where PDF resumes hid LLM-manipulating text in background-coloured ink."
       ]
     },
     {
       "role": "Software Engineering Intern, Full Stack",
-      "company": "MyStartupWave — Bangalore",
-      "period": "Dec 2025 – PRESENT",
+      "company": "MyStartupWave — Bangalore (Hybrid)",
+      "period": "Dec 2025 – Aug 2026",
       "color": "yellow",
       "points": [
         "Built and shipped 10+ full-stack projects using Flutter, FastAPI, Node.js, and MongoDB from scratch to production.",
@@ -648,17 +663,17 @@
     },
     {
       "role": "Project Intern, Cybersecurity Engineering",
-      "company": "iSPIRT Foundation (Sakram) — Bangalore",
-      "period": "Nov 2025 – PRESENT",
+      "company": "iSPIRT Foundation (Sakram) — Remote",
+      "period": "Nov 2025 – Aug 2026",
       "color": "red",
       "points": [
-        "Working on protocol frameworks for India's Digital Public Infrastructure (DPI) using C++ and Python.",
-        "Contributing to hardware-bound cryptographic validation and data integrity verification systems."
+        "Worked on protocol frameworks for India's Digital Public Infrastructure (DPI) using C++ and Python.",
+        "Contributed to hardware-bound cryptographic validation and data integrity verification systems."
       ]
     },
     {
       "role": "Research Intern, Explainable AI",
-      "company": "CSIR–4Pi (Fourth Paradigm Institute) — Bangalore",
+      "company": "CSIR–4Pi (Fourth Paradigm Institute) — Remote",
       "period": "Jul 2025 – Jan 2026",
       "color": "blue",
       "points": [
@@ -681,8 +696,8 @@
       "emoji": "🐘",
       "category": "OPEN SOURCE",
       "color": "green",
-      "title": "40 Merged Upstream PRs",
-      "description": "Merged contributions to pgagroal, pgmoneta, GRASS GIS, GNU Radio, JabRef and kubernetes/website — mostly C memory-safety and correctness fixes, with ~30 more in review.",
+      "title": "50+ Merged Upstream Patches",
+      "description": "Patches merged into pgmoneta, pgagroal, pgvictoria, GRASS GIS, GNU Radio, JabRef and kubernetes/website — mostly C memory-safety and correctness fixes, with 20+ more in review.",
       "date": "Aug 2026 – Present"
     },
     {
