@@ -45,9 +45,9 @@ function renderContent(data) {
     if (allGrid && filters && data.projects) {
         const cats = [...new Set([...data.projects.filter(p => !p.featured), ...data.projects].map(p => p.category || 'OTHER'))];
         const chip = 'font-mono text-xs font-black uppercase px-3 py-2 border-2 border-black shadow-hard-sm hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition-all cursor-hover';
-        const card = (p) => `
+        const card = (p, i) => `
             <a href="${esc(p.link || 'https://github.com/Pranav-error')}" target="_blank" rel="noopener"
-                class="tilt-card group bg-white border-4 border-black p-5 shadow-hard hover:shadow-hard-xl transition-all relative flex flex-col cursor-hover">
+                style="--i:${Math.min(i, 12)}" class="tilt-card group bg-white border-4 border-black p-5 shadow-hard hover:shadow-hard-xl transition-all relative flex flex-col cursor-hover">
                 <div class="absolute top-0 left-0 w-full h-2 bg-${neo(p.color)}"></div>
                 <div class="font-mono text-[10px] font-bold text-gray-500 uppercase tracking-widest mt-1 mb-2">${esc(p.category || 'OTHER')}</div>
                 <h3 class="text-2xl font-black uppercase leading-tight mb-1 group-hover:text-neo-red transition-colors">${esc(p.title)}</h3>

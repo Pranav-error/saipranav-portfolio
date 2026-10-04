@@ -250,7 +250,6 @@
             -webkit-mask-image: radial-gradient(circle at 50% 50%, transparent 22%, #000 46%); mask-image: radial-gradient(circle at 50% 50%, transparent 22%, #000 46%);
             transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.2s, opacity 0.5s 0.2s; }
         .avatar-stage.active .avatar-speed { opacity: 1; transform: scale(1) rotate(0deg); }
-        .avatar-panel:hover .avatar-speed { animation: avatar-spin 18s linear infinite; }
         @keyframes avatar-spin { to { transform: scale(1) rotate(360deg); } }
         .avatar-tone { position: absolute; inset: -12px; background: radial-gradient(#FBFF48 2.6px, transparent 3px) 0 0 / 11px 11px;
             -webkit-mask-image: radial-gradient(circle at 50% 46%, transparent 30%, #000 68%); mask-image: radial-gradient(circle at 50% 46%, transparent 30%, #000 68%);
@@ -294,6 +293,57 @@
             .avatar-stage .avatar-speed { opacity: 1; transform: none; }
             .avatar-stage .avatar-bubble { transform: rotate(-2deg); }
             #experience-timeline::before { transform: none; }
+        }
+
+        /* ===== Site-wide motion ===== */
+        .avatar-panel { animation: fx-float 5s ease-in-out infinite; }
+        @keyframes fx-float { 50% { translate: 0 -6px; } }
+        .avatar-stage.active .avatar-speed { animation: avatar-spin 30s linear 1.1s infinite; }
+        .avatar-bubble.bump { animation: fx-bump 0.35s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        @keyframes fx-bump { 40% { scale: 1.08; } }
+
+        .fx-l { display: inline-block; transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1); will-change: transform; }
+        .fx-l.flip { animation: fx-flip 0.8s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        @keyframes fx-flip { from { rotate: x 0deg; } to { rotate: x 360deg; } }
+
+        #fx-spot { position: fixed; z-index: -1; left: 0; top: 0; width: 700px; height: 700px; margin: -350px 0 0 -350px; pointer-events: none;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.14), transparent 60%); opacity: 0; transition: opacity 0.4s; }
+        html.dark #fx-spot { background: radial-gradient(circle, rgba(51, 255, 87, 0.12), transparent 60%); }
+        body:hover #fx-spot { opacity: 1; }
+
+        #skills .group.fx-glitch { background: #33FF57 !important; animation: fx-jitter 0.5s steps(2) both; }
+        #skills .group.fx-glitch > div { color: #121212 !important; opacity: 1 !important; }
+        @keyframes fx-jitter { 25% { translate: 3px -2px; } 50% { translate: -3px 2px; } 75% { translate: 2px 1px; } }
+
+        .contrib-grid { position: relative; }
+        .contrib-grid::after { content: ''; position: absolute; top: -6px; bottom: -6px; left: 0; width: 9%; pointer-events: none;
+            background: linear-gradient(90deg, transparent, rgba(51, 255, 87, 0.28), rgba(255, 255, 255, 0.5), transparent);
+            mix-blend-mode: screen; animation: fx-scan 6s cubic-bezier(0.65, 0, 0.35, 1) infinite; opacity: 0; }
+        .contrib-grid.lit::after { opacity: 1; }
+        @keyframes fx-scan { from { transform: translateX(-120%); } 70%, to { transform: translateX(1150%); } }
+
+        #projects-grid article { transition: box-shadow 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.3s; }
+        #projects-grid article:hover { box-shadow: -10px -10px 0 0 #3B82F6, 12px 12px 0 0 #FF70A6 !important; }
+        #all-projects-grid > a:hover { box-shadow: -6px -6px 0 0 #3B82F6, 7px 7px 0 0 #FF70A6 !important; }
+        #all-projects-grid > a { animation: fx-pop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) both; animation-delay: calc(var(--i, 0) * 45ms); }
+        @keyframes fx-pop { from { opacity: 0; scale: 0.85; translate: 0 18px; } }
+        .stamp { transition: scale 0.25s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        #projects-grid article:hover .stamp { scale: 1.25; }
+
+        #hackathons-grid > div::before { content: ''; position: absolute; top: -13px; left: 50%; width: 74px; height: 24px; translate: -50% 0; rotate: -4deg;
+            background: rgba(251, 255, 72, 0.8); border-left: 2px dashed rgba(0,0,0,0.15); border-right: 2px dashed rgba(0,0,0,0.15); }
+        #hackathons-grid > div:hover { animation: fx-swing 0.9s ease-in-out; transform-origin: 50% -12px; }
+        @keyframes fx-swing { 20% { rotate: 4deg; } 45% { rotate: -3deg; } 70% { rotate: 1.5deg; } }
+
+        #achievements-grid > div:hover .text-5xl { animation: fx-hop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        @keyframes fx-hop { 40% { translate: 0 -14px; rotate: -12deg; } }
+
+        #experience-timeline > div > div:first-child { transition: scale 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s; }
+        #experience-timeline > div.lit > div:first-child { scale: 1.35; box-shadow: 0 0 0 4px rgba(51, 255, 87, 0.35), 0 0 18px #33FF57; }
+
+        @media (prefers-reduced-motion: reduce) {
+            .avatar-panel, .avatar-speed, .fx-l, #all-projects-grid > a, .contrib-grid::after, #hackathons-grid > div:hover, #achievements-grid > div:hover .text-5xl { animation: none !important; }
+            #fx-spot { display: none; }
         }
 
         /* Above-the-fold: animate in CSS so it paints without waiting for JS */
