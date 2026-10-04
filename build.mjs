@@ -6,7 +6,7 @@ import { parseHTML } from 'linkedom';
 const OUT = 'dist';
 rmSync(OUT, { recursive: true, force: true });
 mkdirSync(OUT);
-for (const f of ['admin.html', 'content.json', 'render.js', 'fx.js', 'robots.txt', 'sitemap.xml', 'Assets']) cpSync(f, `${OUT}/${f}`, { recursive: true });
+for (const f of ['admin.html', 'content.json', 'render.js', 'fx.js', 'terminal.js', 'robots.txt', 'sitemap.xml', 'Assets']) cpSync(f, `${OUT}/${f}`, { recursive: true });
 
 execFileSync('npx', ['tailwindcss', '-i', 'tailwind.css', '-o', `${OUT}/styles.css`, '--minify'], { stdio: 'inherit' });
 
