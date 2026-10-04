@@ -4,42 +4,95 @@
     "statusDot": "AVAILABLE"
   },
   "now": [
-    "Scorpio AI — Neural Anti-Piracy Engine for Google Solution Challenge 2026",
-    "Research paper on Explainable AI for breast cancer histopathology",
-    "Protocol frameworks for India's DPI @ iSPIRT",
-    "Arbix — cross-exchange arbitrage system on BNB Chain"
+    "Risk Copilot — AML & fraud copilot on Snowflake Cortex (Snowflake CoCo CLI Hackathon 2026)",
+    "SIH 2026 — SIH26231 Digital Companion for Field Drug Testing (MHA / NCB)",
+    "Hardening PostgreSQL tooling in C — pgagroal, pgmoneta, pgexporter, pgvictoria",
+    "GSoC 2027 prep — ROOT / SOFIE ML inference (CERN-HSF) & ML4SCI",
+    "Research paper on Explainable AI for breast cancer histopathology"
   ],
   "projects": [
     {
       "title": "InfrX Mortgage Pipeline",
+      "category": "AI AGENTS & LLM SYSTEMS",
+      "featured": "yes",
       "tag": "INFRX 2026 HACKATHON — 2ND PLACE · ₹75K PRIZE",
       "color": "blue",
-      "description": "Reads 100–2,000 page unstructured mortgage PDFs and reconstructs them: 91% classification accuracy across 27 document types, table stitching via probabilistic threading, VLM + Tesseract dual-mode extraction (~6.5 pages/sec at zero API cost).",
+      "description": "Segments 100–2,000 page mortgage packages into 27 document types at 91% accuracy. Cost-aware cascade (pdfplumber → heuristics → GPT-4o-mini VLM) so most pages never reach an LLM; Probabilistic Table Threading (Naive Bayes over 5 signals) auto-stitches ~85% of cross-page tables. Validated on 2,295 pages.",
       "tech": [
         "PYTHON",
         "GPT-4O VLM",
         "TESSERACT",
-        "JS"
+        "NAIVE BAYES"
       ],
       "link": "https://github.com/Pranav-error/infrx-mortgage-pipeline"
     },
     {
-      "title": "OrbitClean",
-      "tag": "AWI SPACETECH HACKATHON — TOP 5",
-      "color": "green",
-      "description": "Satellite image processing system that detects illegal dumps using Sentinel-2A imagery and a Random Forest classifier. Route optimization engine using the Clarke-Wright algorithm with AUC 0.80 risk predictor over a 552-cell grid.",
+      "title": "Evidence Verifier",
+      "category": "AI AGENTS & LLM SYSTEMS",
+      "featured": "yes",
+      "tag": "RAZORPAY AI BUILDATHON — TRACK 02",
+      "color": "red",
+      "description": "Is this document real? Verifies dispute evidence and GST invoices with cryptographic and arithmetic ground truth (signed QRs, GSTN e-invoice payloads, GSTIN checksums) instead of pixel forensics, which is blind to AI inpainting. Tested on 9 independent corpora: 15 real GSTINs accepted, 0 false positives.",
       "tech": [
         "PYTHON",
-        "RANDOM FOREST",
-        "SENTINEL-2A"
+        "CRYPTOGRAPHY",
+        "GST / IRP",
+        "PDF"
+      ],
+      "link": "https://github.com/Pranav-error/evidence-verifier"
+    },
+    {
+      "title": "Risk Copilot",
+      "category": "AI AGENTS & LLM SYSTEMS",
+      "featured": "yes",
+      "tag": "SNOWFLAKE COCO CLI HACKATHON 2026",
+      "color": "purple",
+      "description": "AML copilot that takes an analyst from a fraud signal to a cited, machine-checked SAR entirely inside Snowflake. 5 deterministic rules mapped to policy clauses — the LLM never decides what is fraud. Precision 0.71–1.00 on a held-out dataset; append-only decisions, PII masked even inside AI answers, 36/36 governance checks.",
+      "tech": [
+        "SNOWFLAKE CORTEX",
+        "SNOWPARK",
+        "STREAMLIT",
+        "RBAC"
+      ],
+      "link": "https://github.com/Pranav-error/risk-copilot"
+    },
+    {
+      "title": "claude-orchestrator",
+      "category": "DEV TOOLS",
+      "featured": "yes",
+      "tag": "OPEN SOURCE — PUBLISHED ON PYPI (claude-orc)",
+      "color": "green",
+      "description": "A personal control plane for Claude Code setups spanning multiple accounts and machines: memory sync over your own git remote, a skill registry, token-usage reporting from session transcripts, and a terminal dashboard. Purely local — never calls the API.",
+      "tech": [
+        "PYTHON",
+        "CLI",
+        "GIT",
+        "CI"
+      ],
+      "link": "https://github.com/Pranav-error/claude-orchestrator"
+    },
+    {
+      "title": "OrbitClean 2.0",
+      "category": "GEOSPATIAL & SPACE TECH",
+      "featured": "yes",
+      "tag": "AWI SPACETECH HACKATHON — TOP 5",
+      "color": "green",
+      "description": "Space-enabled waste intelligence for Bengaluru: Sentinel-2 dump detection (Random Forest, 2/2 ground-truth sites matched), XGBoost risk prediction over a 552-cell grid, and route optimisation cutting ~40% of daily distance. 9 ML models behind a 34-endpoint FastAPI + Next.js platform.",
+      "tech": [
+        "PYTHON",
+        "SENTINEL-2",
+        "XGBOOST",
+        "NEXT.JS"
       ],
       "link": "https://github.com/Pranav-error/OrbitClean-2.0"
     },
     {
       "title": "Aura AI",
+      "category": "BLOCKCHAIN & WEB3",
+      "featured": "yes",
       "tag": "CARDANO HACKATHON ASIA — WINNER · $2K PRIZE",
       "color": "yellow",
-      "description": "Healthcare diagnostics tool that verifies patient data cryptographically without exposing raw records. Won against 200+ teams nationally. Hash-map based data structures for secure and efficient patient record handling.",
+      "description": "Healthcare diagnostics tool that verifies patient data cryptographically without exposing raw records. Won against 200+ teams nationally.",
       "tech": [
         "PYTHON",
         "CRYPTOGRAPHY",
@@ -48,7 +101,237 @@
       "link": "https://github.com/Pranav-error/AURA-AI"
     },
     {
+      "title": "Buy or Wait?",
+      "category": "AI AGENTS & LLM SYSTEMS",
+      "featured": "",
+      "tag": "HACKERRANK ORCHESTRATE — SEP 2026",
+      "color": "yellow",
+      "description": "Financial affordability agent that decides pay-in-full, part-pay, installments, wait, or don't proceed. Not a classifier but a cash-flow simulator: projects a 90-day day-by-day balance against recurring commitments and a minimum-balance safety floor, with every calibration sweep documented.",
+      "tech": [
+        "PYTHON",
+        "LLM AGENTS",
+        "SIMULATION"
+      ],
+      "link": "https://github.com/Pranav-error/buy-or-wait"
+    },
+    {
+      "title": "Message Notification Router",
+      "category": "AI AGENTS & LLM SYSTEMS",
+      "featured": "",
+      "tag": "HACKERRANK ORCHESTRATE — AUG 2026",
+      "color": "pink",
+      "description": "Routes WhatsApp messages to notify / digest / mute per user across text, image posters and voice notes. Deterministic belief-fusion tier settles 23.6% with no model call; 100% action accuracy on gold labels; cold-run cost cut from $2.80 to $0.76.",
+      "tech": [
+        "PYTHON",
+        "VISION LLM",
+        "WHISPER",
+        "CASCADES"
+      ],
+      "link": "https://github.com/Pranav-error/message-notification-router"
+    },
+    {
+      "title": "CogniSure",
+      "category": "AI AGENTS & LLM SYSTEMS",
+      "featured": "",
+      "tag": "HACKRX 6.0 — BAJAJ FINSERV",
+      "color": "orange",
+      "description": "RAG system for insurance policy documents: upload PDFs and ask natural-language questions to get clause-level answers. sentence-transformers (all-MiniLM-L6-v2) embeddings over a FAISS index behind a Flask API.",
+      "tech": [
+        "PYTHON",
+        "RAG",
+        "FAISS",
+        "FLASK"
+      ],
+      "link": "https://github.com/Pranav-error/hack"
+    },
+    {
+      "title": "ZeroProof",
+      "category": "AI AGENTS & LLM SYSTEMS",
+      "featured": "",
+      "tag": "AI AGENT SECURITY",
+      "color": "red",
+      "description": "A hardware-enforced authorization layer for AI agents — stops an agent from taking actions the user never authorized, enforced in code rather than trusted to the model.",
+      "tech": [
+        "TYPESCRIPT",
+        "AI AGENTS",
+        "AUTHZ"
+      ],
+      "link": "https://zeroproof-xi.vercel.app"
+    },
+    {
+      "title": "Scorpio AI",
+      "category": "AI AGENTS & LLM SYSTEMS",
+      "featured": "",
+      "tag": "GOOGLE SOLUTION CHALLENGE 2026",
+      "color": "blue",
+      "description": "Neural anti-piracy engine — AI-powered cognitive fingerprinting to identify and protect digital content.",
+      "tech": [
+        "JAVASCRIPT",
+        "AI",
+        "FINGERPRINTING"
+      ],
+      "link": "https://github.com/Pranav-error/Scorpio_ai"
+    },
+    {
+      "title": "Scientific ML Pipelines",
+      "category": "ML RESEARCH & HEALTHCARE AI",
+      "featured": "",
+      "tag": "ML4SCI · STANFORD AIMI DATASETS",
+      "color": "blue",
+      "description": "Reproducible pipelines for strong-lensing dark-matter classification (ResNet-18, 0.9996 accuracy), cardiac CT radiomics and symbolic regression — each shipping the verification step that would catch it being wrong, e.g. nearest-neighbour leakage controls.",
+      "tech": [
+        "PYTORCH",
+        "RESNET",
+        "SCIKIT-LEARN"
+      ],
+      "link": "https://github.com/Pranav-error/scientific-ml-pipelines"
+    },
+    {
+      "title": "ML4SCI Evaluation Tasks",
+      "category": "ML RESEARCH & HEALTHCARE AI",
+      "featured": "",
+      "tag": "ML4SCI DEEPLEARNHACKATHON",
+      "color": "purple",
+      "description": "Solutions to ML4SCI evaluation tasks: gravitational-lensing substructure classification, RenAIssance historical-document OCR and SYMBA symbolic computation.",
+      "tech": [
+        "PYTORCH",
+        "OCR",
+        "TRANSFORMERS"
+      ],
+      "link": "https://github.com/Pranav-error/ml4sci-tasks"
+    },
+    {
+      "title": "Interpretable Mitosis Prediction",
+      "category": "ML RESEARCH & HEALTHCARE AI",
+      "featured": "",
+      "tag": "EXPLAINABLE AI RESEARCH",
+      "color": "pink",
+      "description": "Interpretable prediction of mitotic activity in breast-cancer histopathology using Explainable Boosting Machines and Neural Additive Models — glass-box models instead of post-hoc explanations.",
+      "tech": [
+        "PYTHON",
+        "EBM",
+        "NAM",
+        "XAI"
+      ],
+      "link": "https://github.com/Pranav-error/EBM"
+    },
+    {
+      "title": "Mitosis Classifier + RISE",
+      "category": "ML RESEARCH & HEALTHCARE AI",
+      "featured": "",
+      "tag": "EXPLAINABLE AI RESEARCH",
+      "color": "green",
+      "description": "Deep-learning mitosis detector for histopathology images with RISE (Randomized Input Sampling for Explanation) saliency maps showing which regions drive each prediction.",
+      "tech": [
+        "PYTORCH",
+        "CNN",
+        "RISE XAI"
+      ],
+      "link": "https://github.com/Pranav-error/RISE"
+    },
+    {
+      "title": "ResNet-U-Net Segmentation",
+      "category": "ML RESEARCH & HEALTHCARE AI",
+      "featured": "",
+      "tag": "CSIR-4PI RESEARCH",
+      "color": "blue",
+      "description": "Breast-cancer segmentation models (U-Net, Attention U-Net, ResNet-U-Net) trained from scratch in PyTorch, alongside MedSAM fine-tuning experiments, with XAI heatmaps for clinicians.",
+      "tech": [
+        "PYTORCH",
+        "U-NET",
+        "MEDSAM"
+      ],
+      "link": "https://github.com/Pranav-error/Resnet-unet"
+    },
+    {
+      "title": "Fatty Liver AI Pilot",
+      "category": "ML RESEARCH & HEALTHCARE AI",
+      "featured": "",
+      "tag": "CLINICAL ML FEASIBILITY STUDY",
+      "color": "yellow",
+      "description": "Pilot study on whether routine clinical variables from NHANES 2017–2018 can train classifiers to tell alcohol-associated (AFLD) from metabolic-associated (MASLD) fatty liver disease.",
+      "tech": [
+        "PYTHON",
+        "SCIKIT-LEARN",
+        "NHANES"
+      ],
+      "link": "https://github.com/Pranav-error/fatty_liver_pilot"
+    },
+    {
+      "title": "SIH26231 Field Drug Testing",
+      "category": "ML RESEARCH & HEALTHCARE AI",
+      "featured": "",
+      "tag": "SMART INDIA HACKATHON 2026 — MHA / NCB",
+      "color": "red",
+      "description": "Digital companion for field drug testing: kit-agnostic reading of colorimetric tests on existing phones, producing tamper-evident records that plug into the government's evidence systems.",
+      "tech": [
+        "COMPUTER VISION",
+        "MOBILE",
+        "CRYPTO HASHING"
+      ],
+      "link": "https://github.com/Pranav-error/sih-2026-field-drug-testing"
+    },
+    {
+      "title": "SAT Buildings",
+      "category": "GEOSPATIAL & SPACE TECH",
+      "featured": "",
+      "tag": "GEOSPATIAL API",
+      "color": "blue",
+      "description": "Geospatial FastAPI service over Google Open Buildings around Cubbon Park, Bengaluru — PostGIS spatial queries, ACID writes and an S2-cell sharding demo.",
+      "tech": [
+        "FASTAPI",
+        "POSTGIS",
+        "S2 CELLS"
+      ],
+      "link": "https://sat-buildings.vercel.app"
+    },
+    {
+      "title": "Karnataka Geodata Audit",
+      "category": "GEOSPATIAL & SPACE TECH",
+      "featured": "",
+      "tag": "DATA QUALITY",
+      "color": "green",
+      "description": "Measures, then fixes, the accuracy of the public geospatial layers (BBMP/BWSSB/BESCOM KML, OpenStreetMap, river and lake datasets) behind a Karnataka cadastral viewer.",
+      "tech": [
+        "PYTHON",
+        "GIS",
+        "OSM"
+      ],
+      "link": ""
+    },
+    {
+      "title": "LeakWatch",
+      "category": "SECURITY & SYSTEMS",
+      "featured": "",
+      "tag": "RESPONSIBLE DISCLOSURE",
+      "color": "red",
+      "description": "Monitors public GitHub for accidentally pushed secrets via Code Search and the push-event stream. Stores only redacted fingerprints, never uses a key, never auto-contacts anyone — with tests asserting no raw secret ever reaches the DB or logs.",
+      "tech": [
+        "PYTHON",
+        "FASTAPI",
+        "SQLITE"
+      ],
+      "link": "https://github.com/Pranav-error/leakwatch"
+    },
+    {
+      "title": "Native Bridge Simulator",
+      "category": "SECURITY & SYSTEMS",
+      "featured": "",
+      "tag": "SYSTEMS — C++ / JAVA",
+      "color": "orange",
+      "description": "Real-time vehicle telemetry from native C++ to Java over a lock-free SPSC ring buffer with a single JVM-attached dispatcher thread. Producer push() latency (p99 ~400 ns) is unaffected by JVM activity. Zero dependencies.",
+      "tech": [
+        "C++17",
+        "JAVA",
+        "JNI",
+        "LOCK-FREE"
+      ],
+      "link": "https://github.com/Pranav-error/native-bridge-simulator"
+    },
+    {
       "title": "Architrust",
+      "category": "SECURITY & SYSTEMS",
+      "featured": "",
       "tag": "GOOGLE DEEPMIND HACKATHON — FINALIST",
       "color": "pink",
       "description": "Distributed system that coordinates computation across independent nodes without centralizing data. Structured logging and benchmarking to track performance and handle node failures gracefully.",
@@ -57,22 +340,301 @@
         "C++",
         "NODE.JS"
       ],
-      "link": "https://github.com/Pranav-error"
+      "link": ""
     },
     {
       "title": "Spatial-Temporal Veracity",
+      "category": "SECURITY & SYSTEMS",
+      "featured": "",
       "tag": "PERSONAL PATENT — FILED 2026",
       "color": "purple",
-      "description": "Decentralized ledger system with graph algorithm-based verification to ensure data integrity at scale. Prevents tampering across distributed nodes using cryptographic proofs.",
+      "description": "Decentralized ledger system with graph-algorithm-based verification to ensure data integrity at scale — geospatial filtering, end-node credibility scoring and cryptographic proofs.",
       "tech": [
         "DISTRIBUTED LEDGER",
         "GRAPH ALGORITHMS",
         "CRYPTOGRAPHY"
       ],
-      "link": "https://github.com/Pranav-error"
+      "link": ""
+    },
+    {
+      "title": "HERB-Vault",
+      "category": "BLOCKCHAIN & WEB3",
+      "featured": "",
+      "tag": "SMART INDIA HACKATHON 2025 — BLOCKCHAIN",
+      "color": "green",
+      "description": "Botanical traceability for Ayurvedic herbs with geo-tagging from collection to final label. Hyperledger Fabric (2 orgs, Raft) with Node.js chaincode, FastAPI + MongoDB, React 19 web and offline-first React Native app.",
+      "tech": [
+        "HYPERLEDGER FABRIC",
+        "REACT NATIVE",
+        "FASTAPI"
+      ],
+      "link": "https://sih-blockchain.vercel.app"
+    },
+    {
+      "title": "Arbix",
+      "category": "BLOCKCHAIN & WEB3",
+      "featured": "",
+      "tag": "DEFI",
+      "color": "yellow",
+      "description": "AI-powered cross-exchange arbitrage trading system on BNB Chain.",
+      "tech": [
+        "JAVASCRIPT",
+        "BNB CHAIN",
+        "DEFI"
+      ],
+      "link": "https://github.com/Pranav-error/Arbix"
+    },
+    {
+      "title": "Nova Labs",
+      "category": "FULL-STACK PLATFORMS",
+      "featured": "",
+      "tag": "LMS PLATFORM",
+      "color": "purple",
+      "description": "Full LMS for a 30-day developer challenge: Next.js web, FastAPI backend, Flutter mobile app, JWT + httpOnly refresh auth, Razorpay payments, Cloudinary storage and sandboxed code execution.",
+      "tech": [
+        "NEXT.JS",
+        "FASTAPI",
+        "FLUTTER",
+        "RAZORPAY"
+      ],
+      "link": "https://github.com/Pranav-error/novalabs"
+    },
+    {
+      "title": "Campus Placement Portal",
+      "category": "FULL-STACK PLATFORMS",
+      "featured": "",
+      "tag": "FULL-STACK — LIVE",
+      "color": "blue",
+      "description": "Centralized placement platform for colleges — student profiles, company and job postings, eligibility rules, applications and outcomes in one place instead of spreadsheets.",
+      "tech": [
+        "SPRING BOOT",
+        "ANGULAR",
+        "MYSQL",
+        "JWT"
+      ],
+      "link": "https://frontend-production-3005.up.railway.app"
+    },
+    {
+      "title": "Vyapar Swap",
+      "category": "FULL-STACK PLATFORMS",
+      "featured": "",
+      "tag": "MARKETPLACE",
+      "color": "orange",
+      "description": "Two-sided marketplace for transferring running businesses in India — structured listings, AI-assisted valuation, document verification and real-time buyer matching.",
+      "tech": [
+        "FLUTTER",
+        "DART",
+        "AI VALUATION"
+      ],
+      "link": ""
+    },
+    {
+      "title": "Smart Attendance Predictor",
+      "category": "FULL-STACK PLATFORMS",
+      "featured": "",
+      "tag": "FULL-STACK",
+      "color": "green",
+      "description": "Tracks student attendance, flags shortage risk in real time and predicts outcomes before exams. Flask + React with JWT auth.",
+      "tech": [
+        "FLASK",
+        "REACT",
+        "JWT"
+      ],
+      "link": "https://github.com/Pranav-error/smart-attendance-predictor"
+    },
+    {
+      "title": ".Dev Club Website",
+      "category": "FULL-STACK PLATFORMS",
+      "featured": "",
+      "tag": "COMMUNITY",
+      "color": "pink",
+      "description": "Website for the .Dev Club — Next.js 14, TypeScript and Tailwind, with MongoDB and Notion as content sources.",
+      "tech": [
+        "NEXT.JS",
+        "MONGODB",
+        "NOTION"
+      ],
+      "link": "https://github.com/Pranav-error/dotdev-website"
+    },
+    {
+      "title": "CloudSim Experiments",
+      "category": "FULL-STACK PLATFORMS",
+      "featured": "",
+      "tag": "CLOUD COMPUTING",
+      "color": "yellow",
+      "description": "Custom cloud-scheduling and resource-allocation experiments on the CloudSim 3.0 simulation framework.",
+      "tech": [
+        "JAVA",
+        "CLOUDSIM"
+      ],
+      "link": "https://github.com/Pranav-error/cloudsim-cloud-simulation"
+    },
+    {
+      "title": "DevSpace",
+      "category": "DEV TOOLS",
+      "featured": "",
+      "tag": "MACOS MENU BAR APP",
+      "color": "green",
+      "description": "Menu bar app for developers whose Macs keep running out of RAM and disk — live usage readout, quit memory hogs, and clean gigabytes of regenerable dev caches. Tauri v2, idles under 10 MB.",
+      "tech": [
+        "RUST",
+        "TAURI",
+        "JS"
+      ],
+      "link": "https://github.com/Pranav-error/DevSpace"
+    },
+    {
+      "title": "API Test Automation Suite",
+      "category": "DEV TOOLS",
+      "featured": "",
+      "tag": "CRED — TAKE-HOME",
+      "color": "purple",
+      "description": "Automated API test suite for a login → get-product flow, built for a CRED interview take-home.",
+      "tech": [
+        "PYTHON",
+        "PYTEST",
+        "API TESTING"
+      ],
+      "link": "https://github.com/Pranav-error/CRED-interview-question"
+    },
+    {
+      "title": "PranavOS",
+      "category": "DEV TOOLS",
+      "featured": "",
+      "tag": "PORTFOLIO",
+      "color": "blue",
+      "description": "macOS-inspired interactive portfolio built with zero frameworks — windows, dock and apps in vanilla HTML/CSS/JS.",
+      "tech": [
+        "HTML",
+        "CSS",
+        "VANILLA JS"
+      ],
+      "link": "https://github.com/Pranav-error/portfolio"
+    },
+    {
+      "title": "Customer Review AI Summary",
+      "category": "AI AGENTS & LLM SYSTEMS",
+      "featured": "",
+      "tag": "LLM · E-COMMERCE",
+      "color": "yellow",
+      "description": "LLM-generated summaries of customer reviews on an e-commerce product page, so shoppers get the overall sentiment without reading every review.",
+      "tech": [
+        "NEXT.JS",
+        "TYPESCRIPT",
+        "LLM",
+        "SHADCN/UI"
+      ],
+      "link": ""
+    },
+    {
+      "title": "Next.js AI Chatbot",
+      "category": "AI AGENTS & LLM SYSTEMS",
+      "featured": "",
+      "tag": "LLM CHAT APP",
+      "color": "blue",
+      "description": "AI chatbot on Next.js App Router and the Vercel AI SDK, with authentication, persistent chat history and shareable conversations.",
+      "tech": [
+        "NEXT.JS",
+        "VERCEL AI SDK",
+        "AUTH.JS"
+      ],
+      "link": "https://github.com/Pranav-error/chatbot"
+    },
+    {
+      "title": "MindWell",
+      "category": "FULL-STACK PLATFORMS",
+      "featured": "",
+      "tag": "GEN AI HACKATHON",
+      "color": "pink",
+      "description": "Student mental-health platform: an AI wellness chat, screening questionnaires, counselling booking, a peer community and a resources hub, with an API test harness for the backend.",
+      "tech": [
+        "REACT",
+        "VITE",
+        "PYTHON",
+        "GEN AI"
+      ],
+      "link": "https://github.com/Pranav-error/Gen-ai-hack-"
+    },
+    {
+      "title": "Courier Delivery System",
+      "category": "FULL-STACK PLATFORMS",
+      "featured": "",
+      "tag": "MULTI-APP PLATFORM",
+      "color": "orange",
+      "description": "End-to-end courier platform: customer and driver Flutter apps, a React admin panel (orders, drivers, pricing, reports), a booking website with live tracking map and a FastAPI + SQLAlchemy backend on Firebase.",
+      "tech": [
+        "FLUTTER",
+        "FASTAPI",
+        "REACT",
+        "FIREBASE"
+      ],
+      "link": ""
+    },
+    {
+      "title": "Spark Distributed Inference",
+      "category": "ML RESEARCH & HEALTHCARE AI",
+      "featured": "",
+      "tag": "BIG DATA ANALYTICS",
+      "color": "purple",
+      "description": "Runs a TensorFlow segmentation model over an image dataset in parallel with PySpark pandas UDFs, tuned for CPU-only execution.",
+      "tech": [
+        "PYSPARK",
+        "TENSORFLOW",
+        "PANDAS UDF"
+      ],
+      "link": "https://github.com/Pranav-error/BDA_Project"
+    },
+    {
+      "title": "Lego OS",
+      "category": "SECURITY & SYSTEMS",
+      "featured": "",
+      "tag": "WEARABLE HEALTH DASHBOARD",
+      "color": "green",
+      "description": "Modular sensor-driver layer (heart rate, UV, hydration, posture) streaming readings live to a web dashboard over WebSockets.",
+      "tech": [
+        "PYTHON",
+        "FLASK",
+        "SOCKET.IO"
+      ],
+      "link": "https://github.com/Pranav-error/Lego-OS"
+    },
+    {
+      "title": "Next.js Starter",
+      "category": "DEV TOOLS",
+      "featured": "",
+      "tag": "STARTER — DEPLOYED",
+      "color": "yellow",
+      "description": "Next.js App Router + Tailwind starter, deployed to Vercel — the base for later Next.js projects.",
+      "tech": [
+        "NEXT.JS",
+        "TAILWIND",
+        "VERCEL"
+      ],
+      "link": "https://nextjs-boilerplate-delta-opal-41.vercel.app"
     }
   ],
   "experience": [
+    {
+      "role": "Software Engineer",
+      "company": "Cepheid (Danaher)",
+      "period": "Sep 2026 – PRESENT",
+      "color": "blue",
+      "points": [
+        "Software engineer on the Manufacturing Execution Systems (MES) team.",
+        "Working on AI-assisted support tooling and automated test workflows for manufacturing systems."
+      ]
+    },
+    {
+      "role": "Open Source Contributor",
+      "company": "PostgreSQL ecosystem, OSGeo, GNU Radio, JabRef, Kubernetes",
+      "period": "Aug 2026 – PRESENT",
+      "color": "green",
+      "points": [
+        "40 merged PRs across 6 upstream projects — pgagroal (15), pgmoneta (13), GRASS GIS (5), JabRef (3), GNU Radio (2), kubernetes/website (2).",
+        "Memory-safety and robustness fixes in C: unchecked allocations, buffer bounds, freed-pointer reuse, fd leaks and error-path NULL derefs; corner-case tests for the helpers fixed.",
+        "In review: constant-time SCRAM proof checks (CRYPTO_memcmp), TLS peer verification and spec-compliant Prometheus output across pgagroal / pgmoneta / pgexporter / pgvictoria."
+      ]
+    },
     {
       "role": "Software Engineering Intern, Full Stack",
       "company": "MyStartupWave — Bangalore",
@@ -100,7 +662,8 @@
       "period": "Jul 2025 – Jan 2026",
       "color": "blue",
       "points": [
-        "Built a medical image analysis pipeline for breast cancer detection using MedSAM, ResNet, and U-Net in PyTorch.",
+        "Trained U-Net, Attention U-Net and ResNet-U-Net from scratch in PyTorch for breast-cancer segmentation, building on MedSAM.",
+        "Diagnosed failures on noisy, non-curated clinical data and used synthetic augmentation for limited labels.",
         "Added XAI heatmaps so doctors could understand model predictions; co-authoring a research paper on this work."
       ]
     }
@@ -112,6 +675,22 @@
       "color": "blue",
       "title": "InfrX 2026 — 2nd Place",
       "description": "Won 2nd place and a ₹75,000 prize at the InfrX 2026 Hackathon with an AI mortgage document pipeline — 91% accuracy across 2,295 test pages. Team Noobda, REVA University.",
+      "date": "2026"
+    },
+    {
+      "emoji": "🐘",
+      "category": "OPEN SOURCE",
+      "color": "green",
+      "title": "40 Merged Upstream PRs",
+      "description": "Merged contributions to pgagroal, pgmoneta, GRASS GIS, GNU Radio, JabRef and kubernetes/website — mostly C memory-safety and correctness fixes, with ~30 more in review.",
+      "date": "Aug 2026 – Present"
+    },
+    {
+      "emoji": "📦",
+      "category": "OPEN SOURCE",
+      "color": "purple",
+      "title": "Published claude-orc on PyPI",
+      "description": "Released claude-orchestrator as an installable CLI (pip install claude-orc) with CI-tested releases — memory sync, skill registry and usage reporting for multi-account Claude Code setups.",
       "date": "2026"
     },
     {
@@ -143,15 +722,15 @@
       "category": "HACKATHON",
       "color": "green",
       "title": "AWI SpaceTech Top 5",
-      "description": "Top 5 finish at AWI SpaceTech Hackathon with OrbitClean — satellite image processing for illegal dump detection using Sentinel-2A and ML.",
-      "date": "2025"
+      "description": "Top 5 at AWI SpaceTech Hackathon (Mar 2026) with OrbitClean 2.0 — Sentinel-2 dump detection, XGBoost risk prediction and route optimisation for Bengaluru.",
+      "date": "2026"
     },
     {
       "emoji": "🌐",
       "category": "COMMUNITY",
       "color": "orange",
-      "title": "Member, GDG Bangalore",
-      "description": "Member of Google Developer Groups (GDG) Bangalore — engaging with the developer community, attending tech talks, and collaborating on Google tech ecosystem projects.",
+      "title": "GDG Bangalore & AWS Cloud Club",
+      "description": "Member of Google Developer Groups Bangalore (Feb 2026–) and AWS Cloud Club REVA (Mar 2026–) — tech talks, community builds and cloud workshops.",
       "date": "Feb 2026 – Present"
     },
     {
@@ -159,11 +738,46 @@
       "category": "LEADERSHIP",
       "color": "blue",
       "title": "Technical Lead, Algorand Club",
-      "description": "Technical Lead at Algorand Club, REVA University. Ran workshops and smart contract projects. Organised 5+ hackathons and competed in 20+ including Adobe India and HackRx.",
+      "description": "Technical Lead at Algorand Club, REVA University. Ran workshops and smart-contract projects. Organised 5+ hackathons and competed in 20+ including Google DeepMind, Cardano Asia, Adobe India, HackRx, Razorpay and Snowflake.",
       "date": "2026 – Present"
     }
   ],
   "hackathons": [
+    {
+      "name": "Snowflake CoCo CLI Hackathon",
+      "year": "2026",
+      "result": "SUBMITTED",
+      "project": "Risk Copilot — AML copilot on Snowflake Cortex",
+      "color": "purple"
+    },
+    {
+      "name": "Smart India Hackathon",
+      "year": "2026",
+      "result": "IN PROGRESS",
+      "project": "SIH26231 — Field drug testing companion (MHA / NCB)",
+      "color": "red"
+    },
+    {
+      "name": "HackerRank Orchestrate (Sep)",
+      "year": "2026",
+      "result": "SUBMITTED",
+      "project": "Buy or Wait? — affordability agent",
+      "color": "yellow"
+    },
+    {
+      "name": "Razorpay AI Buildathon",
+      "year": "2026",
+      "result": "BUILT",
+      "project": "Evidence Verifier — Track 02 AI Risk Manager",
+      "color": "blue"
+    },
+    {
+      "name": "HackerRank Orchestrate (Aug)",
+      "year": "2026",
+      "result": "SUBMITTED",
+      "project": "WhatsApp Message Notification Router",
+      "color": "pink"
+    },
     {
       "name": "InfrX 2026",
       "year": "2026",
@@ -187,9 +801,9 @@
     },
     {
       "name": "AWI SpaceTech Hackathon",
-      "year": "2025",
+      "year": "2026",
       "result": "TOP 5",
-      "project": "OrbitClean",
+      "project": "OrbitClean 2.0",
       "color": "green"
     },
     {
@@ -232,26 +846,43 @@
     "intro": "I take on freelance builds — full-stack apps, AI integrations, and websites that don't look like everyone else's.",
     "projects": [
       {
+        "name": "Contralyne",
+        "client": "Legal-tech startup (US & UK law firms)",
+        "description": "AI contract review and negotiation platform: clause-by-clause risk analysis, ambiguity detection, negotiation strategy, redlined DOCX export with tracked changes and Word comments, and follow-up Q&A. Built the entire backend.",
+        "tech": [
+          "NODE.JS",
+          "EXPRESS",
+          "TYPESCRIPT",
+          "SUPABASE",
+          "AWS S3",
+          "CLAUDE API"
+        ],
+        "link": "",
+        "live": "https://contralyne.com",
+        "playstore": ""
+      },
+      {
         "name": "Shree Nidhi Security Services",
         "client": "Security services company, Bangalore",
         "description": "Business website with service catalogue and lead-capture, built and delivered end-to-end.",
         "tech": [
-          "HTML/CSS",
-          "JS",
+          "TYPESCRIPT",
+          "NEXT.JS",
           "VERCEL"
         ],
         "link": "",
-        "live": "",
+        "live": "https://shree-nidhi-security-services-steel.vercel.app",
         "playstore": ""
       },
       {
         "name": "VedaAI",
         "client": "Teachers & educators",
-        "description": "AI-powered question paper generator that builds exam papers from syllabus input.",
+        "description": "AI-powered question paper generator that builds exam papers from syllabus input, with queued generation jobs, live progress over sockets and PDF export.",
         "tech": [
-          "PYTHON",
-          "FASTAPI",
-          "LLM"
+          "NEXT.JS",
+          "EXPRESS",
+          "GEMINI",
+          "BULLMQ"
         ],
         "link": "https://github.com/Pranav-error/VedaAI",
         "live": "",
