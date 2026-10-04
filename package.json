@@ -1,0 +1,12 @@
+{
+  "name": "saipranav-portfolio",
+  "private": true,
+  "scripts": {
+    "build": "node build.mjs",
+    "dev": "node build.mjs && npx serve dist"
+  },
+  "devDependencies": {
+    "linkedom": "^0.18.5",
+    "tailwindcss": "3.4.17"
+  }
+}
