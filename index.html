@@ -236,6 +236,66 @@
         .contrib-tip.on { opacity: 1; }
         @media (prefers-reduced-motion: reduce) { .contrib-grid .contrib-cell { transition: none; transform: none; opacity: 1; } }
 
+        /* ===== Avatar: manga panel ===== */
+        .avatar-panel { position: relative; aspect-ratio: 1; perspective: 900px; --rx: 0deg; --ry: 0deg; --mx: 0; --my: 0; }
+        .avatar-frame { position: absolute; inset: 0; z-index: 2; overflow: hidden; background: #FFFDF5; border: 4px solid #121212;
+            transform: rotateX(var(--rx)) rotateY(var(--ry)); transition: transform 0.25s ease-out; }
+        .avatar-misreg { position: absolute; inset: 0; z-index: 1; border: 4px solid #121212; transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.15s; }
+        .avatar-misreg--pink { background: #FF70A6; }
+        .avatar-misreg--blue { background: #3B82F6; }
+        .avatar-stage.active .avatar-misreg--pink { transform: translate(14px, 14px); }
+        .avatar-stage.active .avatar-misreg--blue { transform: translate(-10px, -10px); transition-delay: 0.3s; }
+        .avatar-speed { position: absolute; inset: -40%; opacity: 0; transform: scale(0.4) rotate(0deg);
+            background: repeating-conic-gradient(from 0deg at 50% 50%, transparent 0deg 4deg, rgba(18,18,18,0.16) 4deg 5deg);
+            -webkit-mask-image: radial-gradient(circle at 50% 50%, transparent 22%, #000 46%); mask-image: radial-gradient(circle at 50% 50%, transparent 22%, #000 46%);
+            transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.2s, opacity 0.5s 0.2s; }
+        .avatar-stage.active .avatar-speed { opacity: 1; transform: scale(1) rotate(0deg); }
+        .avatar-panel:hover .avatar-speed { animation: avatar-spin 18s linear infinite; }
+        @keyframes avatar-spin { to { transform: scale(1) rotate(360deg); } }
+        .avatar-tone { position: absolute; inset: -12px; background: radial-gradient(#FBFF48 2.6px, transparent 3px) 0 0 / 11px 11px;
+            -webkit-mask-image: radial-gradient(circle at 50% 46%, transparent 30%, #000 68%); mask-image: radial-gradient(circle at 50% 46%, transparent 30%, #000 68%);
+            transform: translate(calc(var(--mx) * -8px), calc(var(--my) * -8px)); transition: transform 0.25s ease-out; }
+        .avatar-img { position: relative; width: 100%; height: 100%; object-fit: cover; mix-blend-mode: multiply;
+            transform: translate(calc(var(--mx) * 6px), calc(var(--my) * 6px)) scale(1.02); transition: transform 0.25s ease-out; }
+        .avatar-glint { position: absolute; left: 58%; top: 29%; width: 9%; fill: #FBFF48; stroke: #121212; stroke-width: 1.4;
+            transform: translate(-50%, -50%) scale(0) rotate(-45deg); transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        .avatar-sfx { position: absolute; left: 72%; top: 6%; font-weight: 900; font-size: clamp(1.1rem, 2.2vw, 1.7rem); color: #121212;
+            -webkit-text-stroke: 1px #FFFDF5; paint-order: stroke; transform: rotate(14deg) scale(0); transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        .avatar-panel:hover .avatar-glint, .avatar-panel.glint .avatar-glint { transform: translate(-50%, -50%) scale(1) rotate(0deg); }
+        .avatar-panel:hover .avatar-sfx, .avatar-panel.glint .avatar-sfx { transform: rotate(14deg) scale(1); transition-delay: 0.08s; }
+        .avatar-pix { position: absolute; inset: 0; width: 100%; height: 100%; mix-blend-mode: multiply; image-rendering: pixelated; }
+        .avatar-panel.pixelating .avatar-img { opacity: 0; }
+        .avatar-label { position: absolute; top: 8px; left: 8px; z-index: 3; background: #FF2A2A; color: #fff; padding: 0 8px; font-size: 12px; border: 1px solid #121212; }
+        .avatar-bubble { position: absolute; z-index: 4; right: -18px; top: -30px; max-width: min(78%, 260px); margin: 0;
+            background: #fff; color: #121212; border: 3px solid #121212; border-radius: 22px; padding: 10px 16px;
+            font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 15px; line-height: 1.3; box-shadow: 4px 4px 0 #121212;
+            transform: scale(0) rotate(-6deg); transform-origin: 20% 110%; transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) 0.9s; }
+        .avatar-bubble::after { content: ''; position: absolute; left: 22%; bottom: -12px; width: 18px; height: 18px; background: #fff;
+            border-right: 3px solid #121212; border-bottom: 3px solid #121212; transform: skewX(-25deg) rotate(45deg); }
+        .avatar-stage.active .avatar-bubble { transform: scale(1) rotate(-2deg); }
+        .avatar-caret { display: inline-block; width: 2px; height: 1em; background: #121212; margin-left: 2px; vertical-align: -2px; animation: blink 1s step-end infinite; }
+        html.dark .avatar-frame, html.dark .avatar-misreg { border-color: #FFFDF5; }
+        @media (max-width: 767px) { .avatar-bubble { right: 8px; top: -22px; } }
+
+        /* ===== Experience timeline fills as you scroll ===== */
+        #experience-timeline::before { content: ''; position: absolute; left: -4px; top: 0; width: 4px; height: 100%; background: #33FF57;
+            transform-origin: top; transform: scaleY(var(--p, 0)); }
+
+        /* ===== Click burst ===== */
+        .fx-bit { position: fixed; z-index: 9999; width: 9px; height: 9px; border: 2px solid #121212; pointer-events: none;
+            animation: fx-burst 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+        @keyframes fx-burst { from { transform: translate(-50%, -50%) rotate(0); opacity: 1; }
+            to { transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) rotate(var(--r)); opacity: 0; } }
+
+        @media (prefers-reduced-motion: reduce) {
+            .avatar-frame, .avatar-misreg, .avatar-speed, .avatar-tone, .avatar-img, .avatar-bubble, .avatar-glint, .avatar-sfx { transition: none !important; animation: none !important; }
+            .avatar-stage .avatar-misreg--pink { transform: translate(14px, 14px); }
+            .avatar-stage .avatar-misreg--blue { transform: translate(-10px, -10px); }
+            .avatar-stage .avatar-speed { opacity: 1; transform: none; }
+            .avatar-stage .avatar-bubble { transform: rotate(-2deg); }
+            #experience-timeline::before { transform: none; }
+        }
+
         /* Above-the-fold: animate in CSS so it paints without waiting for JS */
         .hero-in { animation: hero-in 0.6s cubic-bezier(0.25, 1, 0.5, 1) both; }
         @keyframes hero-in { from { opacity: 0; transform: translateY(40px); } }
@@ -575,12 +635,19 @@
 
     <section id="about" class="py-24 px-4 max-w-7xl mx-auto border-x-4 border-black bg-white my-12 shadow-hard-lg">
         <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
-            <div class="md:col-span-4 reveal">
-                <div class="aspect-square bg-gray-200 border-4 border-black relative shadow-hard overflow-hidden group">
-                    <img src="Assets/images/img.jpg" alt="R Sai Pranav" width="736" height="736" loading="lazy" decoding="async"
-                        class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
-                    <span
-                        class="absolute top-2 left-2 bg-neo-red text-white px-2 font-mono text-xs border border-black z-10">AVATAR.JPG</span>
+            <div class="md:col-span-4 reveal avatar-stage">
+                <div class="avatar-panel" id="avatar-panel">
+                    <div class="avatar-misreg avatar-misreg--blue" aria-hidden="true"></div>
+                    <div class="avatar-misreg avatar-misreg--pink" aria-hidden="true"></div>
+                    <div class="avatar-frame">
+                        <div class="avatar-speed" aria-hidden="true"></div>
+                        <div class="avatar-tone" aria-hidden="true"></div>
+                        <img src="Assets/images/img.jpg" alt="Hand-drawn portrait of R Sai Pranav pushing up his glasses" width="736" height="736" loading="lazy" decoding="async" class="avatar-img">
+                        <svg class="avatar-glint" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0 L14 10 L24 12 L14 14 L12 24 L10 14 L0 12 L10 10 Z" /></svg>
+                        <span class="avatar-sfx" aria-hidden="true">クイッ</span>
+                        <span class="avatar-label font-mono">AVATAR.JPG</span>
+                    </div>
+                    <p class="avatar-bubble" aria-hidden="true"><span id="avatar-say">hi, i'm pranav</span><i class="avatar-caret"></i></p>
                 </div>
             </div>
             <div class="md:col-span-8 flex flex-col justify-center reveal">
@@ -611,19 +678,19 @@
         <!-- Stat tiles -->
         <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 reveal">
             <div class="stat-tile bg-neo-yellow p-6 text-center rotate-[-1deg]">
-                <div class="text-5xl md:text-6xl font-black tracking-tighter">4</div>
+                <div class="text-5xl md:text-6xl font-black tracking-tighter" data-count="4">4</div>
                 <div class="font-mono text-xs font-bold uppercase mt-2">Internships</div>
             </div>
             <div class="stat-tile bg-neo-pink p-6 text-center rotate-[1deg]">
-                <div class="text-5xl md:text-6xl font-black tracking-tighter">20+</div>
+                <div class="text-5xl md:text-6xl font-black tracking-tighter" data-count="20+">20+</div>
                 <div class="font-mono text-xs font-bold uppercase mt-2">Hackathons</div>
             </div>
             <div class="stat-tile bg-neo-green p-6 text-center rotate-[1deg]">
-                <div class="text-5xl md:text-6xl font-black tracking-tighter">50+</div>
+                <div class="text-5xl md:text-6xl font-black tracking-tighter" data-count="50+">50+</div>
                 <div class="font-mono text-xs font-bold uppercase mt-2">Merged OSS Patches</div>
             </div>
             <div class="stat-tile bg-neo-blue text-white p-6 text-center rotate-[-1deg]">
-                <div class="text-5xl md:text-6xl font-black tracking-tighter">8.54</div>
+                <div class="text-5xl md:text-6xl font-black tracking-tighter" data-count="8.54">8.54</div>
                 <div class="font-mono text-xs font-bold uppercase mt-2">GPA @ REVA</div>
             </div>
         </div>
@@ -1139,6 +1206,7 @@
     </footer>
 
     <script src="render.js"></script>
+    <script src="fx.js" defer></script>
     <script>
         // Custom Cursor Logic
         const cursor = document.getElementById('cursor');
