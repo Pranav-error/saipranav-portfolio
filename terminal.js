@@ -59,7 +59,7 @@
                 ['about', 'who I am, in one screen'], ['ls', 'list the filesystem (try: ls projects)'], ['cat <project>', 'details for one project'],
                 ['open <project>', 'open a project in a new tab'], ['experience', 'work history'], ['oss', 'open-source contributions, charted'],
                 ['hackathons', 'every hackathon and the result'], ['skills', 'tech stack'], ['contact', 'ways to reach me'],
-                ['resume sde|aiml', 'download a CV'], ['neofetch', 'system info, except the system is me'], ['cd <section>', 'jump to a part of the page'],
+                ['resume sde|aiml', 'download a CV'], ['blog', 'things I\'ve written'], ['neofetch', 'system info, except the system is me'], ['cd <section>', 'jump to a part of the page'],
                 ['theme dark|light', 'switch the site theme'], ['clear · history · exit', ''],
             ];
             await stream([...rows.map(([c, d]) => `  <span class="c-g">${esc(pad(c, 24))}</span><span class="c-d">${d}</span>`), '',
@@ -155,6 +155,10 @@
             document.body.appendChild(a); a.click(); a.remove();
             line(`<span class="c-g">✓</span> downloading ${esc(f[1])}`);
         },
+        async blog() {
+            await stream([`<span class="c-y">2026-10</span>  <a href="https://dev.to/pranav-error/two-stack-overflows-hiding-in-plain-sight-1on2" target="_blank" rel="noopener">Two stack overflows hiding in plain sight</a>`,
+                '<span class="c-d">          strcat into 512 bytes (pgagroal) and "%.8f" into 30 bytes (GRASS GIS)</span>']);
+        },
         async neofetch() {
             const s = await site(), commits = await commitTotal(), years = new Date().getFullYear() - 2023;
             const art = ['      .-"""""""-.     ', '    .\'           \'.   ', '   /   _       _   \\  ', '  |  (o)-----(o)   | ', '  |       ^        | ',
@@ -232,7 +236,7 @@
             line('<span class="c-d">wake up, recruiter…</span>');
         },
     };
-    const ALIASES = { projects: () => C.ls('projects'), exp: C.experience, work: () => C.ls('projects'), cv: C.resume, hello: C.hi, '?': C.help, man: C.help };
+    const ALIASES = { writing: () => C.blog(), posts: () => C.blog(), projects: () => C.ls('projects'), exp: C.experience, work: () => C.ls('projects'), cv: C.resume, hello: C.hi, '?': C.help, man: C.help };
 
     // ---------- input ----------
     const hist = [];
