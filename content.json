@@ -646,7 +646,7 @@
       "color": "green",
       "points": [
         "50+ patches merged across 7 upstream projects — pgmoneta (22), pgagroal (15), pgvictoria (7), GRASS GIS (5), JabRef (3), GNU Radio (2), kubernetes/website (2) — with 20+ more under review.",
-        "Found and fixed memory-safety defects in C — a stack-buffer overflow from an unbounded strcat, unchecked realloc crashes, freed-pointer reuse and fd leaks — and root-caused an intermittent CI hang to an unbounded retry loop.",
+        "Found and fixed memory-safety defects in C — a stack-buffer overflow from an unbounded strcat, unchecked realloc crashes, freed-pointer reuse and fd leaks — and stabilized flaky CI tests in GNU Radio and JabRef.",
         "Security fix (in review) in interviewstreet/hiring-agent (7k★, HackerRank OSS): closed a prompt-injection hole where PDF resumes hid LLM-manipulating text in background-coloured ink."
       ]
     },
