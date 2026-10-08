@@ -645,7 +645,7 @@
       "period": "Aug 2026 – PRESENT",
       "color": "green",
       "points": [
-        "65+ patches merged across 8 upstream projects — pgmoneta (22), pgagroal (15), pgexporter (13), pgvictoria (7), GRASS GIS (5), JabRef (3), GNU Radio (2), kubernetes/website (2) — with 50+ more under review.",
+        "95+ patches merged across 8 upstream projects — pgmoneta (48), pgagroal (15), pgexporter (13), pgvictoria (7), GRASS GIS (5), JabRef (3), GNU Radio (2), kubernetes/website (2) — with 30+ more under review.",
         "Found and fixed memory-safety defects in C — a stack-buffer overflow from an unbounded strcat, unchecked realloc crashes, freed-pointer reuse and fd leaks — and stabilized flaky CI tests in GNU Radio and JabRef.",
         "Security fix (in review) in interviewstreet/hiring-agent (7k★, HackerRank OSS): closed a prompt-injection hole where PDF resumes hid LLM-manipulating text in background-coloured ink."
       ]
@@ -696,8 +696,8 @@
       "emoji": "🐘",
       "category": "OPEN SOURCE",
       "color": "green",
-      "title": "65+ Merged Upstream Patches",
-      "description": "Patches merged into pgmoneta, pgagroal, pgexporter, pgvictoria, GRASS GIS, GNU Radio, JabRef and kubernetes/website — mostly C memory-safety and correctness fixes, with 50+ more in review.",
+      "title": "95+ Merged Upstream Patches",
+      "description": "Patches merged into pgmoneta, pgagroal, pgexporter, pgvictoria, GRASS GIS, GNU Radio, JabRef and kubernetes/website — mostly C memory-safety and correctness fixes, with 30+ more in review.",
       "date": "Aug 2026 – Present"
     },
     {

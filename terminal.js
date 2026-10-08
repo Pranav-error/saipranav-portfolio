@@ -73,7 +73,7 @@
         async about() {
             await C.whoami();
             await stream(['', `<span class="c-y">edu   </span> REVA University · B.Tech CSE (2023–2027) · GPA 8.54`,
-                `<span class="c-y">where </span> Bangalore, Karnataka`, `<span class="c-y">known </span> 65+ upstream patches · patent filed · national hackathon winner`,
+                `<span class="c-y">where </span> Bangalore, Karnataka`, `<span class="c-y">known </span> 95+ upstream patches · patent filed · national hackathon winner`,
                 `<span class="c-y">status</span> <span class="c-g">● ${esc((await site()).meta?.availability?.toLowerCase() || 'available')}</span>`]);
         },
         async ls(arg) {
@@ -166,7 +166,7 @@
             const info = [`<span class="c-g b">pranav</span>@<span class="c-g b">portfolio</span>`, '<span class="c-d">----------------</span>',
                 `<span class="c-y">os</span>        neo-brutalist 2026`, `<span class="c-y">host</span>      REVA University · B.Tech CSE`,
                 `<span class="c-y">kernel</span>    ${esc(s.experience[0].role)} @ Cepheid`, `<span class="c-y">uptime</span>    ${years} years of shipping`,
-                `<span class="c-y">packages</span>  ${s.projects.length} projects · 65+ upstream patches`, `<span class="c-y">commits</span>   ${commits ? commits.toLocaleString('en-US') + ' in the last year' : 'a lot'}`,
+                `<span class="c-y">packages</span>  ${s.projects.length} projects · 95+ upstream patches`, `<span class="c-y">commits</span>   ${commits ? commits.toLocaleString('en-US') + ' in the last year' : 'a lot'}`,
                 `<span class="c-y">shell</span>     pranav-sh 2.0`, `<span class="c-y">langs</span>     python · c · c++ · java · typescript`,
                 ['c-y', 'c-p', 'c-b', 'c-g', 'c-v', 'c-o'].map(c => `<span class="${c}">███</span>`).join('')];
             await stream(art.map((a, i) => `<span class="c-g">${esc(a)}</span>  ${info[i] || ''}`), 35);
