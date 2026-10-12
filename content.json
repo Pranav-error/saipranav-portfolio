@@ -633,7 +633,7 @@
       "role": "SDE Intern, MES",
       "company": "Cepheid India Pvt Ltd (Danaher) — Bangalore",
       "period": "Sep 2026 – PRESENT",
-      "color": "blue",
+      "color": "purple",
       "points": [
         "Develop and maintain production REST Web APIs integrating with Siemens Opcenter MES, customized to business needs, on SQL Server and AWS infrastructure.",
         "Work in an Agile model with monthly sprints across the full development lifecycle, from user stories to iterative deployment, maintaining code running in live manufacturing."
