@@ -641,11 +641,11 @@
     },
     {
       "role": "Open Source Contributor",
-      "company": "PostgreSQL ecosystem (pgmoneta, pgvictoria, pgagroal, pgexporter, pgmoneta_ext), GRASS GIS, creature-hq, GNU Radio, JabRef, kubernetes/website",
+      "company": "PostgreSQL ecosystem (pgmoneta, pgvictoria, pgagroal, pgexporter, pgmoneta_ext), GRASS GIS, creature-hq, GNU Radio, JabRef, kubernetes/website, flux2, source-controller",
       "period": "Aug 2026 – PRESENT",
       "color": "green",
       "points": [
-        "150+ patches merged across 10 upstream projects — pgmoneta (84), pgvictoria (17), pgagroal (15), pgexporter (15), GRASS GIS (5), creature-hq (3), GNU Radio (3), JabRef (3), pgmoneta_ext (3), kubernetes/website (2) — with 40+ more under review.",
+        "150+ patches merged across 12 upstream projects — pgmoneta (84), pgvictoria (17), pgagroal (15), pgexporter (15), GRASS GIS (5), creature-hq (3), GNU Radio (3), JabRef (3), pgmoneta_ext (3), kubernetes/website (2), flux2 (1), source-controller (1) — with 40+ more under review.",
         "Found and fixed memory-safety defects in C — a stack-buffer overflow from an unbounded strcat, unchecked realloc crashes, freed-pointer reuse and fd leaks — and stabilized flaky CI tests in GNU Radio and JabRef.",
         "Security fix (in review) in interviewstreet/hiring-agent (7k★, HackerRank OSS): closed a prompt-injection hole where PDF resumes hid LLM-manipulating text in background-coloured ink."
       ]
