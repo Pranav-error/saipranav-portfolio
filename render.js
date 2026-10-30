@@ -84,9 +84,10 @@ function renderContent(data) {
                     <span class="font-mono font-bold bg-neo-black text-white px-2 py-1 whitespace-nowrap">${esc(x.period)}</span>
                 </div>
                 <p class="font-mono text-xl mb-2 text-${neo(x.color)} font-bold">@ ${esc(x.company)}</p>
-                <ul class="list-disc list-inside font-mono text-gray-700 space-y-1">
+                <ul class="exp-points list-disc list-inside font-mono text-gray-700 space-y-1">
                     ${(x.points || []).map(pt => `<li>${esc(pt)}</li>`).join('')}
                 </ul>
+                ${(x.points || []).length > 1 ? `<button type="button" class="exp-more md:hidden font-mono text-xs font-black uppercase mt-3 underline" data-more="+ ${x.points.length - 1} more">+ ${x.points.length - 1} more</button>` : ''}
             </div>
         </div>`).join('');
     }
