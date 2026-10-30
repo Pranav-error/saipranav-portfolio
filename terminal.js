@@ -73,7 +73,7 @@
         async about() {
             await C.whoami();
             await stream(['', `<span class="c-y">edu   </span> REVA University · B.Tech CSE (2023–2027) · GPA 8.54`,
-                `<span class="c-y">where </span> Bangalore, Karnataka`, `<span class="c-y">known </span> 155+ upstream patches · patent filed · national hackathon winner`,
+                `<span class="c-y">where </span> Bangalore, Karnataka`, `<span class="c-y">known </span> major contributor @ mnemosyne systems · 155+ upstream patches · patent filed · national hackathon winner`,
                 `<span class="c-y">status</span> <span class="c-g">● ${esc((await site()).meta?.availability?.toLowerCase() || 'available')}</span>`]);
         },
         async ls(arg) {

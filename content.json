@@ -6,7 +6,7 @@
   "now": [
     "Risk Copilot — AML & fraud copilot on Snowflake Cortex (Snowflake CoCo CLI Hackathon 2026)",
     "SIH 2026 — SIH26231 Digital Companion for Field Drug Testing (MHA / NCB)",
-    "Hardening PostgreSQL tooling in C — pgagroal, pgmoneta, pgexporter, pgvictoria",
+    "Major Contributor at mnemosyne systems — hardening PostgreSQL tooling in C (pgmoneta, pgagroal, pgexporter, pgvictoria)",
     "GSoC 2027 prep — ROOT / SOFIE ML inference (CERN-HSF) & ML4SCI",
     "Research paper on Explainable AI for breast cancer histopathology"
   ],
@@ -640,6 +640,17 @@
       ]
     },
     {
+      "role": "Major Contributor",
+      "company": "mnemosyne systems — PostgreSQL tooling (pgmoneta, pgagroal, pgexporter, pgvictoria)",
+      "period": "2026 – PRESENT",
+      "color": "green",
+      "points": [
+        "Listed as a Major Contributor on the mnemosyne systems team page (mnemosyne-systems.ai/about/team).",
+        "Found and fixed silent data-loss bugs in pgmoneta's PostgreSQL 14-16 incremental backups (wrong WAL summary start, corrupt incremental file headers, truncated block reads) and WAL streaming stalls, each proven with failing-then-passing tests and end-to-end restores.",
+        "Trusted by the maintainers with on-disk format work: the encryption header format byte for pgmoneta 0.22, so backups and WAL stay readable after the encryption setting changes."
+      ]
+    },
+    {
       "role": "Open Source Contributor",
       "company": "PostgreSQL ecosystem (pgmoneta, pgagroal, pgvictoria, pgexporter, pgmoneta_ext), GRASS GIS, creature-hq, GNU Radio, JabRef, kubernetes/website, flux2, source-controller",
       "period": "Aug 2026 – PRESENT",
@@ -684,6 +695,14 @@
     }
   ],
   "achievements": [
+    {
+      "emoji": "🐘",
+      "category": "OPEN SOURCE",
+      "color": "green",
+      "title": "Major Contributor — mnemosyne systems",
+      "description": "Recognised as a Major Contributor on the mnemosyne systems team page for work on pgmoneta, pgagroal, pgexporter and pgvictoria — PostgreSQL backup, pooling and monitoring tools.",
+      "date": "2026"
+    },
     {
       "emoji": "🥈",
       "category": "HACKATHON",
