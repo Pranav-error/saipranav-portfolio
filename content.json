@@ -641,11 +641,11 @@
     },
     {
       "role": "Open Source Contributor",
-      "company": "PostgreSQL ecosystem (pgmoneta, pgvictoria, pgagroal, pgexporter, pgmoneta_ext), GRASS GIS, creature-hq, GNU Radio, JabRef, kubernetes/website, flux2, source-controller",
+      "company": "PostgreSQL ecosystem (pgmoneta, pgagroal, pgvictoria, pgexporter, pgmoneta_ext), GRASS GIS, creature-hq, GNU Radio, JabRef, kubernetes/website, flux2, source-controller",
       "period": "Aug 2026 – PRESENT",
       "color": "green",
       "points": [
-        "150+ patches merged across 12 upstream projects — pgmoneta (84), pgvictoria (17), pgagroal (15), pgexporter (15), GRASS GIS (5), creature-hq (3), GNU Radio (3), JabRef (3), pgmoneta_ext (3), kubernetes/website (2), flux2 (1), source-controller (1) — with 50+ more under review.",
+        "155+ patches merged across 12 upstream projects — pgmoneta (89), pgagroal (17), pgvictoria (17), pgexporter (15), GRASS GIS (5), creature-hq (3), GNU Radio (3), JabRef (3), pgmoneta_ext (3), kubernetes/website (2), flux2 (1), source-controller (1) — with 40+ more under review.",
         "Found and fixed memory-safety defects in C — a stack-buffer overflow from an unbounded strcat, unchecked realloc crashes, freed-pointer reuse and fd leaks — and stabilized flaky CI tests in GNU Radio and JabRef.",
         "Security fix (in review) in interviewstreet/hiring-agent (7k★, HackerRank OSS): closed a prompt-injection hole where PDF resumes hid LLM-manipulating text in background-coloured ink."
       ]
@@ -696,8 +696,8 @@
       "emoji": "🐘",
       "category": "OPEN SOURCE",
       "color": "green",
-      "title": "150+ Merged Upstream Patches",
-      "description": "Patches merged into pgmoneta, pgagroal, pgexporter, pgvictoria, GRASS GIS, GNU Radio, JabRef and kubernetes/website — mostly C memory-safety and correctness fixes, with 50+ more in review.",
+      "title": "155+ Merged Upstream Patches",
+      "description": "Patches merged into pgmoneta, pgagroal, pgexporter, pgvictoria, GRASS GIS, GNU Radio, JabRef and kubernetes/website — mostly C memory-safety and correctness fixes, with 40+ more in review.",
       "date": "Aug 2026 – Present"
     },
     {
